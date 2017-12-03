@@ -1,0 +1,24 @@
+{
+  "name": "music-stats-server",
+  "version": "0.0.0",
+  "description": "an API gateway between the front-end and various data providers",
+  "main": "index.js",
+  "author": "Oleksii Markhovskyi",
+  "license": "MIT",
+  "scripts": {
+    "scripts:fetch-artists": "node ./src/scripts/fetch-artists",
+    "lint": "eslint ./src/",
+    "precommit": "yarn lint"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "husky": "^0.14.3"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "dotenv": "^4.0.0",
+    "ramda": "^0.25.0"
+  }
+}
