@@ -12,6 +12,7 @@ $ cd ./client/
 ### Tech stack
 
 - [ ] [vue](https://vuejs.org/v2/guide)
+- [ ] [normalizr](https://github.com/paularmstrong/normalizr)
 - [ ] [leaflet](http://leafletjs.com)
 - [ ] [d3](https://github.com/d3/d3/wiki)
 
