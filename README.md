@@ -35,8 +35,8 @@ $ cd ./server/
 ### APIs
 
 - [x] [lastfm](https://www.last.fm/api/intro)
-- [ ] [spotify](https://developer.spotify.com/web-api/endpoint-reference)
 - [ ] [musicbrainz](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2)
+- [ ] [spotify](https://developer.spotify.com/web-api/endpoint-reference)
 - [ ] [songkick](https://www.songkick.com/developer/upcoming-events)
 
 ### Setup
