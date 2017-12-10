@@ -35,7 +35,7 @@ $ cd ./server/
 ### APIs
 
 - [x] [lastfm](https://www.last.fm/api/intro)
-- [ ] [musicbrainz](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2)
+- [x] [musicbrainz](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2)
 - [ ] [spotify](https://developer.spotify.com/web-api/endpoint-reference)
 - [ ] [songkick](https://www.songkick.com/developer/upcoming-events)
 
@@ -69,4 +69,22 @@ Example output:
   { name: 'Animal Джаz',
     playcount: 181,
     mbid: '973d7c4c-11b6-4424-980a-eb9262a08589' } ]
+```
+
+#### List areas for a given set of artists
+
+Expects an output of `scripts:fetch-artists` to be located at `config.lastfm.outputFilePath`.
+
+```bash
+$ yarn scripts:fetch-artists-areas
+```
+
+Example output:
+
+```js
+[ { artist: 'Dream Theater', area: 'New York' },
+  { artist: 'Queen', area: 'Japan' }, // Japan? "mbid" from lastfm must be wrong
+  ...
+  { artist: 'Обійми Дощу', area: 'Ukraine' },
+  { artist: 'Animal ДжаZ', area: 'Russia' } ]
 ```

@@ -1,11 +1,10 @@
 const fs = require('fs');
-const path = require('path');
 const {pick} = require('ramda');
 
 const {fetchLibraryArtists} = require('../utils/lastfm');
 const config = require('../config');
 
-const {username} = config.lastfm;
+const {username, outputFilePath} = config.lastfm;
 const artistFields = [
   'name',
   'playcount',
@@ -24,7 +23,7 @@ fetchLibraryArtists(username)
     console.log(artists);
 
     fs.writeFileSync(
-      path.resolve('./tmp/lastfm-user-library.json'),
+      outputFilePath,
       JSON.stringify(artists, null, 2),
     );
   })

@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "scripts:fetch-artists": "node ./src/scripts/fetch-artists",
+    "scripts:fetch-artists-areas": "node ./src/scripts/fetch-artists-areas",
     "lint": "eslint ./src/",
     "precommit": "yarn lint"
   },

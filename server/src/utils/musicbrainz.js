@@ -3,26 +3,18 @@ const axios = require('axios');
 
 const config = require('../config');
 
-require('dotenv').config();
+const {api} = config.musicbrainz;
 
-const {LASTFM_API_KEY} = process.env;
-const {api} = config.lastfm;
-
-function buildApiUrl(method, params = {}) {
+function buildApiLookupUrl(entity, mbid) {
   const queryParamsString = querystring.stringify({
-    method,
-    api_key: LASTFM_API_KEY,
-    format: 'json',
-    ...params,
+    fmt: 'json',
   });
 
-  return `${api.root}?${queryParamsString}`;
+  return `${api.root}/${entity}/${mbid}?${queryParamsString}`;
 }
 
-function fetchLibraryArtists(username) {
-  const url = buildApiUrl('library.getartists', {
-    user: username,
-  });
+function fetchArtist(mbid) {
+  const url = buildApiLookupUrl('artist', mbid);
   const headers = {
     'User-Agent': config.userAgent,
   };
@@ -39,6 +31,6 @@ function fetchLibraryArtists(username) {
 }
 
 module.exports = {
-  buildApiUrl,
-  fetchLibraryArtists,
+  buildApiLookupUrl,
+  fetchArtist,
 };
