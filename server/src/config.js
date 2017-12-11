@@ -16,7 +16,9 @@ const config = {
   musicbrainz: {
     api: {
       root: 'https://musicbrainz.org/ws/2',
+      requestFrequency: 1000, // @see https://wiki.musicbrainz.org/XML_Web_Service/Rate_Limiting
     },
+    outputFilePath: path.resolve(tmpDir, 'musicbrainz-artists-areas.json'),
   },
 };
 

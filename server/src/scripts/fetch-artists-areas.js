@@ -1,7 +1,10 @@
 const fs = require('fs');
+const {take} = require('ramda');
 
 const {fetchArtist} = require('../utils/musicbrainz');
 const config = require('../config');
+
+const {lastfm: {outputFilePath: inputFilePath}, musicbrainz: {outputFilePath}} = config;
 
 function readFile(filePath) {
   return new Promise((resolve, reject) => {
@@ -15,16 +18,36 @@ function readFile(filePath) {
   });
 }
 
-readFile(config.lastfm.outputFilePath)
+function delay(promise, wait, ...args) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      promise(...args)
+        .then(resolve)
+        .catch(reject);
+    }, wait);
+  });
+}
+
+readFile(inputFilePath)
   .then((data) => JSON.parse(data))
+  .then((lastfmArtists) => take(8, lastfmArtists))
   .then((lastfmArtists) => lastfmArtists.map((lastfmArtist) => lastfmArtist.mbid))
   .then((mbids) => mbids.filter((mbid) => Boolean(mbid)))
-  .then((mbids) => fetchArtist(mbids[0]))
-  .then((musicbrainzArtist) => ({
+  .then((mbids) => Promise.all(mbids.map((mbid, index) => delay(
+    fetchArtist,
+    index * config.musicbrainz.api.requestFrequency,
+    mbid,
+  ))))
+  .then((musicbrainzArtists) => musicbrainzArtists.map((musicbrainzArtist) => ({
     artist: musicbrainzArtist.name,
     area: musicbrainzArtist.area.name,
-  }))
-  .then(console.log)
-  .catch(console.error);
+  })))
+  .then((artistsAreas) => {
+    console.log(artistsAreas);
 
-// @todo: fetch areas for all artists, not just for a single one
+    fs.writeFileSync(
+      outputFilePath,
+      JSON.stringify(artistsAreas, null, 2),
+    );
+  })
+  .catch(console.error);
