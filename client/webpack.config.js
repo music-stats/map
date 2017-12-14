@@ -105,7 +105,7 @@ const config = {
 
   entry: [
     'babel-polyfill',
-    './scripts/app.ts',
+    './app.ts',
   ],
 
   output: {

@@ -2,7 +2,7 @@
   "name": "music-stats-client",
   "version": "0.0.0",
   "description": "the front-end",
-  "main": "index.js",
+  "main": "src/app.ts",
   "author": "Oleksii Markhovskyi",
   "license": "MIT",
   "scripts": {

@@ -1,3 +1,4 @@
+.awcache/
 node_modules/
 .yarn-integrity
 yarn.lock
@@ -7,3 +8,5 @@ yarn-error.log*
 
 .env
 server/tmp/*.json
+
+client/dist/
