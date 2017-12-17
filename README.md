@@ -26,7 +26,7 @@ $ yarn install
 
 2. Provide environment variables
 
-Create a `.env` file and fill its values according to `.env.template`.
+Create a `.env` file and fill its values according to [.env.template](client/.env.template).
 
 3. Run a local dev server
 
@@ -62,7 +62,7 @@ $ yarn install
 
 2. Provide environment variables
 
-Create a `.env` file and fill its values according to `.env.template`.
+Create a `.env` file and fill its values according to [.env.template](server/.env.template).
 
 ### Scripts
 
