@@ -10,9 +10,7 @@
     ],
     "no-var-requires": false,
     "arrow-parens": false,
-    "only-arrow-functions": [
-      false
-    ],
+    "only-arrow-functions": false,
     "member-access": false,
     "member-ordering": [
       true,
@@ -31,13 +29,15 @@
       true,
       "never-prefix"
     ],
-    "ordered-imports": [false],
+    "ordered-imports": false,
     "object-literal-sort-keys": false,
     "max-classes-per-file": [
       5
     ],
-    "no-console": [
-      false
+    "no-console": false,
+    "no-submodule-imports": [
+      true,
+      "leaflet"
     ],
     "variable-name": [
       true,
