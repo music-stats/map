@@ -1,4 +1,4 @@
-# music-stats server
+# music-stats back-end
 
 an API gateway between the front-end and various data providers
 
@@ -24,7 +24,7 @@ $ yarn install
 
 2. Provide environment variables
 
-Create a `.env` file and fill its values according to [.env.template](server/.env.template).
+Create a `.env` file and fill its values according to [.env.template](.env.template).
 
 ## Scripts
 

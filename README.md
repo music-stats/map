@@ -2,10 +2,10 @@
 
 A playground for fetching and rendering music-related data.
 
-## Front-end
+## front-end
 
 See [client/README.md](client/README.md)
 
-## Back-end
+## back-end
 
 See [server/README.md](server/README.md)

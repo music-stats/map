@@ -1,6 +1,4 @@
-# music-stats client
-
-the front-end
+# music-stats front-end
 
 ## Tech stack
 
@@ -19,7 +17,7 @@ $ yarn install
 
 2. Provide environment variables
 
-Create a `.env` file and fill its values according to [.env.template](client/.env.template).
+Create a `.env` file and fill its values according to [.env.template](.env.template).
 
 3. Run a local dev server
 
