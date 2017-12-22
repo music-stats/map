@@ -1,3 +1,4 @@
+.DS_Store
 .awcache/
 node_modules/
 .yarn-integrity
