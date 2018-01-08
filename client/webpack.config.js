@@ -128,6 +128,8 @@ plugins.uglifyJs = new webpack.optimize.UglifyJsPlugin({
   },
 });
 
+plugins.namedModules = new webpack.NamedModulesPlugin();
+
 plugins.hotModuleReplacement = new webpack.HotModuleReplacementPlugin();
 
 plugins.dashboard = new DashboardPlugin();
@@ -177,6 +179,7 @@ const config = {
       plugins.uglifyJs,
     ]
     : [
+      plugins.namedModules,
       plugins.hotModuleReplacement,
       plugins.dashboard,
     ]
@@ -185,7 +188,6 @@ const config = {
   devServer: {
     contentBase: DIST_DIR,
     hot: true,
-    port: 8080,
   },
 
   devtool: 'inline-source-map',
