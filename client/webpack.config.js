@@ -149,6 +149,10 @@ const config = {
   },
 
   resolve: {
+    modules: [
+      path.resolve('./'),
+      'node_modules',
+    ],
     extensions: [
       '.js',
       '.ts',

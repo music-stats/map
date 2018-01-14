@@ -35,8 +35,11 @@
       5
     ],
     "no-console": false,
+    "no-implicit-dependencies": false,
     "no-submodule-imports": [
       true,
+      "data",
+      "src",
       "leaflet"
     ],
     "variable-name": [
