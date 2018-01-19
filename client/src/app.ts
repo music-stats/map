@@ -27,6 +27,11 @@ const colorOpacityScale = d3Scale.scaleLinear()
     config.map.area.fillColorOpacity.max,
   ]);
 
+const map = L.map('map').setView(
+  config.map.defaultView.center,
+  config.map.defaultView.zoom,
+);
+
 function getAreaStyle(area: Area) {
   const fillColor = getColorString(
     config.map.area.fillColor,
@@ -34,9 +39,24 @@ function getAreaStyle(area: Area) {
   );
 
   return {
-    ...config.map.area.baseStyle,
+    ...config.map.area.style.default,
     fillColor,
   };
+}
+
+function higlightArea(e: L.LeafletEvent) {
+  const layer = e.target as L.Path;
+
+  layer.setStyle(config.map.area.style.highlight);
+  layer.bringToFront();
+}
+
+function resetHighlight(e: L.LeafletEvent) {
+  geojson.resetStyle(e.target);
+}
+
+function zoomToArea(e: L.LeafletEvent) {
+  map.fitBounds(e.target.getBounds());
 }
 
 const areasCollection = {
@@ -49,12 +69,14 @@ const tileLayer = L.tileLayer(config.map.tileLayer.urlTemplate, {
   accessToken,
 });
 
-const geojson = L.geoJSON(areasCollection, {style: getAreaStyle});
-
-const map = L.map('map').setView(
-  config.map.defaultView.center,
-  config.map.defaultView.zoom,
-);
+const geojson = L.geoJSON(areasCollection, {
+  style: getAreaStyle,
+  onEachFeature: (_, layer) => layer.on({
+    mouseover: higlightArea,
+    mouseout: resetHighlight,
+    click: zoomToArea,
+  }),
+});
 
 tileLayer.addTo(map);
 geojson.addTo(map);

@@ -10,8 +10,11 @@ const config = {
     tileLayer: {
       urlTemplate: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
       options: {
-        // tslint:disable-next-line max-line-length
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+        attribution: [
+          'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+          '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+          'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+        ].join(', '),
         minZoom: 2,
         maxZoom: 6,
         id: 'mapbox.light',
@@ -19,12 +22,21 @@ const config = {
     },
 
     area: {
-      baseStyle: {
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.7,
+      style: {
+        default: {
+          weight: 2,
+          opacity: 1,
+          color: 'white',
+          dashArray: '3',
+          fillOpacity: 0.7,
+        },
+
+        highlight: {
+          weight: 3,
+          color: '#789',
+          dashArray: '',
+          fillOpacity: 0.9,
+        },
       },
 
       // http://colorbrewer2.org
