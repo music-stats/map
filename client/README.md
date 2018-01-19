@@ -5,7 +5,9 @@
 - [ ] [vue](https://vuejs.org/v2/guide)
 - [ ] [normalizr](https://github.com/paularmstrong/normalizr)
 - [x] [leaflet](http://leafletjs.com)
-- [x] [d3](https://github.com/d3/d3/wiki) utils
+* [d3](https://github.com/d3/d3/wiki) utils
+  - [x] [d3-scale](https://github.com/d3/d3-scale)
+  - [ ] [d3-color](https://github.com/d3/d3-color)
 
 ## Setup
 

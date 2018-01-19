@@ -3,7 +3,8 @@ import {GeoJsonTypes} from 'geojson';
 import * as d3Scale from 'd3-scale';
 
 import {Area} from 'src/types';
-import {getArtistsAreas} from 'src/utils/artists';
+import {getArtistsAreas} from 'src/utils/area';
+import {getColorString} from 'src/utils/color';
 import config from 'src/config';
 
 import * as artists from 'data/artists.json';
@@ -27,27 +28,36 @@ const colorOpacityScale = d3Scale.scaleLinear()
   ]);
 
 function getAreaStyle(area: Area) {
-  const {r, g, b} = config.map.area.fillColor;
+  const fillColor = getColorString(
+    config.map.area.fillColor,
+    colorOpacityScale(area.properties.playcount),
+  );
 
   return {
     ...config.map.area.baseStyle,
-    fillColor: `rgba(${r}, ${g}, ${b}, ${colorOpacityScale(area.properties.playcount)})`,
+    fillColor,
   };
 }
 
-const map = L.map('map').setView(config.map.defaultView.center, config.map.defaultView.zoom);
-const tileLayerOptions = {
-  ...config.map.tileLayer.options,
-  accessToken,
-};
-
-const geojson = {
+const areasCollection = {
   type: 'FeatureCollection' as GeoJsonTypes,
   features: areas,
 };
 
-L.tileLayer(config.map.tileLayer.urlTemplate, tileLayerOptions).addTo(map);
-L.geoJSON(geojson, {style: getAreaStyle}).addTo(map);
+const tileLayer = L.tileLayer(config.map.tileLayer.urlTemplate, {
+  ...config.map.tileLayer.options,
+  accessToken,
+});
+
+const geojson = L.geoJSON(areasCollection, {style: getAreaStyle});
+
+const map = L.map('map').setView(
+  config.map.defaultView.center,
+  config.map.defaultView.zoom,
+);
+
+tileLayer.addTo(map);
+geojson.addTo(map);
 
 (window as any).L = L;
 (window as any).map = map;
