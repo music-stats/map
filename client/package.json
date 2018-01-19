@@ -19,6 +19,7 @@
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "@types/d3-scale": "^1.0.11",
     "@types/leaflet": "^1.2.3",
     "@types/node": "^8.0.58",
     "autoprefixer": "^7.2.2",

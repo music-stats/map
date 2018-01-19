@@ -21,5 +21,13 @@ export function getArtistsAreas(artists: Artist[]): Area[] {
   const areasPlaycounts = getAreasPlaycounts(artists);
   const areas = (worldData as any).features;
 
-  return areas.filter((area: Area) => area.properties.name_sort in areasPlaycounts);
+  return areas
+    .filter((area: Area) => area.properties.name_sort in areasPlaycounts)
+    .map((area: Area) => ({
+      ...area,
+      properties: {
+        ...area.properties,
+        playcount: areasPlaycounts[area.properties.name_sort],
+      },
+    }));
 }

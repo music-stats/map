@@ -8,6 +8,7 @@ export interface Artist {
 
 interface AreaProperties {
   name_sort: string;
+  playcount: number;
 }
 
 export type Area = Feature<GeometryObject, AreaProperties>;
