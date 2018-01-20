@@ -1,5 +1,7 @@
 # music-stats front-end
 
+https://oleksmarkh.github.io/music-stats/
+
 ## Tech stack
 
 - [ ] [vue](https://vuejs.org/v2/guide)
@@ -25,4 +27,11 @@ Create a `.env` file and fill its values according to [.env.template](.env.templ
 
 ```bash
 $ yarn run:dev
+```
+
+4. Build and deploy to GitHub pages
+
+```bash
+$ yarn build:prod
+$ yarn deploy
 ```
