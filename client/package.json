@@ -13,7 +13,8 @@
     "precommit": "yarn lint",
     "prebuild:dev": "yarn clean",
     "prebuild:prod": "yarn clean",
-    "run:dev": "export NODE_ENV=development PUBLIC_PATH=/ && webpack-dashboard webpack-dev-server",
+    "run:dev": "export NODE_ENV=development PUBLIC_PATH=/ && webpack-dev-server",
+    "run:dev-dashboard": "export NODE_ENV=development PUBLIC_PATH=/ && webpack-dashboard webpack-dev-server",
     "build:dev": "export NODE_ENV=development PUBLIC_PATH=/ && webpack --progress --bail",
     "build:prod": "export NODE_ENV=production PUBLIC_PATH=https://oleksmarkh.github.io/music-stats/ && webpack --progress --bail",
     "deploy": "gh-pages -d dist"

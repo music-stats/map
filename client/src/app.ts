@@ -3,11 +3,13 @@ import {GeoJsonTypes} from 'geojson';
 import * as d3Scale from 'd3-scale';
 
 import {Area} from 'src/types';
-import {getArtistsAreas} from 'src/utils/area';
+import {getArtistsAreas, getAreaSongCount} from 'src/utils/area';
 import {getColorString} from 'src/utils/color';
 import config from 'src/config';
 
 import * as artists from 'data/artists.json';
+
+import renderInfoBox from 'src/templates/InfoBox';
 
 import 'leaflet/dist/leaflet.css';
 import 'src/app.scss';
@@ -15,12 +17,14 @@ import 'src/app.scss';
 const {MAPBOX_ACCESS_TOKEN: accessToken} = process.env;
 
 const areas = getArtistsAreas(artists as any);
-const playcounts = areas.map((area) => area.properties.playcount);
+const songCounts = areas.map(getAreaSongCount);
+const totalArtistCount = (artists as any).length;
+const totalSongCount = songCounts.reduce((sum, areaSongCount) => sum + areaSongCount, 0);
 
 const colorOpacityScale = d3Scale.scaleLinear()
   .domain([
-    Math.min(...playcounts),
-    Math.max(...playcounts),
+    Math.min(...songCounts),
+    Math.max(...songCounts),
   ])
   .range([
     config.map.area.fillColorOpacity.min,
@@ -35,7 +39,7 @@ const map = L.map('map').setView(
 function getAreaStyle(area: Area) {
   const fillColor = getColorString(
     config.map.area.fillColor,
-    colorOpacityScale(area.properties.playcount),
+    colorOpacityScale(getAreaSongCount(area)),
   );
 
   return {
@@ -45,10 +49,12 @@ function getAreaStyle(area: Area) {
 }
 
 function higlightArea(e: L.LeafletEvent) {
-  const layer = e.target as L.Path;
+  const layer = e.target as L.Polyline;
 
   layer.setStyle(config.map.area.style.highlight);
   layer.bringToFront();
+
+  info.update(layer.feature);
 }
 
 function resetHighlight(e: L.LeafletEvent) {
@@ -78,8 +84,38 @@ const geojson = L.geoJSON(areasCollection, {
   }),
 });
 
+interface InfoBox extends L.Control {
+  element: HTMLElement;
+  update: (area?: Area) => void;
+}
+
+const info: InfoBox = (L.control as any)();
+
+info.onAdd = function() {
+  (this as InfoBox).element = L.DomUtil.create('article', 'InfoBox');
+  (this as InfoBox).update();
+
+  return (this as InfoBox).element;
+};
+
+info.update = function(area = null) {
+  (this as InfoBox).element.innerHTML = renderInfoBox({
+    username: config.username,
+    totalSongCount,
+    totalArtistCount,
+    areaSongCount: area
+      ? getAreaSongCount(area)
+      : null,
+    ...(area
+      ? area.properties
+      : null),
+  });
+};
+
 tileLayer.addTo(map);
 geojson.addTo(map);
+info.addTo(map);
 
+// debug
 (window as any).L = L;
 (window as any).map = map;
