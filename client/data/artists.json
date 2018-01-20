@@ -248,5 +248,255 @@
     "name": "Metallica",
     "playcount": 175,
     "area": "United States"
+  },
+  {
+    "name": "Eisbrecher",
+    "playcount": 165,
+    "area": "Germany"
+  },
+  {
+    "name": "Architects",
+    "playcount": 162,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Children of Bodom",
+    "playcount": 160,
+    "area": "Finland"
+  },
+  {
+    "name": "Evanescence",
+    "playcount": 156,
+    "area": "United States"
+  },
+  {
+    "name": "Ляпис Трубецкой",
+    "playcount": 156,
+    "area": "Belarus"
+  },
+  {
+    "name": "Led Zeppelin",
+    "playcount": 154,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Black Sabbath",
+    "playcount": 153,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Heaven Shall Burn",
+    "playcount": 153,
+    "area": "Germany"
+  },
+  {
+    "name": "Porcupine Tree",
+    "playcount": 151,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Mudvayne",
+    "playcount": 147,
+    "area": "United States"
+  },
+  {
+    "name": "Antimatter",
+    "playcount": 146,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Godsmack",
+    "playcount": 145,
+    "area": "United States"
+  },
+  {
+    "name": "Полинове Поле",
+    "playcount": 145,
+    "area": "Ukraine"
+  },
+  {
+    "name": "In Extremo",
+    "playcount": 143,
+    "area": "Germany"
+  },
+  {
+    "name": "Nirvana",
+    "playcount": 142,
+    "area": "United States"
+  },
+  {
+    "name": "Scale the Summit",
+    "playcount": 142,
+    "area": "United States"
+  },
+  {
+    "name": "Воплі Відоплясова",
+    "playcount": 142,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Gazpacho",
+    "playcount": 139,
+    "area": "Norway"
+  },
+  {
+    "name": "Trivium",
+    "playcount": 137,
+    "area": "United States"
+  },
+  {
+    "name": "Draconian",
+    "playcount": 134,
+    "area": "Sweden"
+  },
+  {
+    "name": "W.A.S.P.",
+    "playcount": 134,
+    "area": "United States"
+  },
+  {
+    "name": "Motörhead",
+    "playcount": 133,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Tracktor Bowling",
+    "playcount": 133,
+    "area": "Russia"
+  },
+  {
+    "name": "After Forever",
+    "playcount": 129,
+    "area": "Netherlands"
+  },
+  {
+    "name": "Machine Head",
+    "playcount": 128,
+    "area": "United States"
+  },
+  {
+    "name": "O.Torvald",
+    "playcount": 128,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Animals as Leaders",
+    "playcount": 126,
+    "area": "United States"
+  },
+  {
+    "name": "Vivienne Mort",
+    "playcount": 125,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Amorphis",
+    "playcount": 124,
+    "area": "Finland"
+  },
+  {
+    "name": "Cult of Luna",
+    "playcount": 123,
+    "area": "Sweden"
+  },
+  {
+    "name": "A Perfect Circle",
+    "playcount": 122,
+    "area": "United States"
+  },
+  {
+    "name": "Avril Lavigne",
+    "playcount": 121,
+    "area": "Canada"
+  },
+  {
+    "name": "Leprous",
+    "playcount": 121,
+    "area": "Norway"
+  },
+  {
+    "name": "Judas Priest",
+    "playcount": 120,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Within Temptation",
+    "playcount": 120,
+    "area": "Netherlands"
+  },
+  {
+    "name": "Ulver",
+    "playcount": 119,
+    "area": "Norway"
+  },
+  {
+    "name": "The Agonist",
+    "playcount": 116,
+    "area": "Canada"
+  },
+  {
+    "name": "Norma Jean",
+    "playcount": 114,
+    "area": "United States"
+  },
+  {
+    "name": "Rainbow",
+    "playcount": 112,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Dio",
+    "playcount": 110,
+    "area": "United States"
+  },
+  {
+    "name": "F.R.A.M.",
+    "playcount": 110,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Blind Guardian",
+    "playcount": 105,
+    "area": "Germany"
+  },
+  {
+    "name": "Rage",
+    "playcount": 103,
+    "area": "Germany"
+  },
+  {
+    "name": "Stream of Passion",
+    "playcount": 102,
+    "area": "Netherlands"
+  },
+  {
+    "name": "Веремій",
+    "playcount": 102,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Shadow Gallery",
+    "playcount": 100,
+    "area": "United States"
+  },
+  {
+    "name": "Cradle of Filth",
+    "playcount": 97,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Death",
+    "playcount": 96,
+    "area": "United States"
+  },
+  {
+    "name": "Kansas",
+    "playcount": 96,
+    "area": "United States"
+  },
+  {
+    "name": "Lacrimas Profundere",
+    "playcount": 96,
+    "area": "Germany"
   }
 ]
