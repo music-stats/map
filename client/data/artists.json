@@ -1,12 +1,12 @@
 [
   {
     "name": "Dream Theater",
-    "playcount": 749,
+    "playcount": 755,
     "area": "United States"
   },
   {
     "name": "Queen",
-    "playcount": 716,
+    "playcount": 738,
     "area": "United Kingdom"
   },
   {
@@ -15,13 +15,13 @@
     "area": "Germany"
   },
   {
-    "name": "In Flames",
+    "name": "Dark Tranquillity",
     "playcount": 626,
     "area": "Sweden"
   },
   {
-    "name": "Dark Tranquillity",
-    "playcount": 612,
+    "name": "In Flames",
+    "playcount": 626,
     "area": "Sweden"
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "name": "Him",
-    "playcount": 563,
+    "playcount": 572,
     "area": "Finland"
   },
   {
@@ -41,12 +41,12 @@
   },
   {
     "name": "Nightwish",
-    "playcount": 453,
+    "playcount": 461,
     "area": "Finland"
   },
   {
     "name": "Deftones",
-    "playcount": 429,
+    "playcount": 450,
     "area": "United States"
   },
   {
@@ -60,6 +60,11 @@
     "area": "Ukraine"
   },
   {
+    "name": "The Gathering",
+    "playcount": 406,
+    "area": "Netherlands"
+  },
+  {
     "name": "Marilyn Manson",
     "playcount": 403,
     "area": "United States"
@@ -70,23 +75,18 @@
     "area": "Germany"
   },
   {
-    "name": "The Gathering",
-    "playcount": 397,
-    "area": "Netherlands"
-  },
-  {
     "name": "Between the Buried and Me",
-    "playcount": 389,
+    "playcount": 394,
     "area": "United States"
   },
   {
     "name": "Tool",
-    "playcount": 380,
+    "playcount": 391,
     "area": "United States"
   },
   {
     "name": "Pink Floyd",
-    "playcount": 373,
+    "playcount": 385,
     "area": "United Kingdom"
   },
   {
@@ -115,9 +115,19 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Tenhi",
+    "playcount": 291,
+    "area": "Finland"
+  },
+  {
     "name": "Therion",
     "playcount": 286,
     "area": "Sweden"
+  },
+  {
+    "name": "Riverside",
+    "playcount": 281,
+    "area": "Poland"
   },
   {
     "name": "The Beatles",
@@ -130,9 +140,9 @@
     "area": "United Kingdom"
   },
   {
-    "name": "Riverside",
-    "playcount": 272,
-    "area": "Poland"
+    "name": "Linkin Park",
+    "playcount": 270,
+    "area": "United States"
   },
   {
     "name": "Pain of Salvation",
@@ -145,19 +155,9 @@
     "area": "Germany"
   },
   {
-    "name": "Tenhi",
-    "playcount": 262,
-    "area": "Finland"
-  },
-  {
     "name": "Scorpions",
     "playcount": 253,
     "area": "Germany"
-  },
-  {
-    "name": "Linkin Park",
-    "playcount": 248,
-    "area": "United States"
   },
   {
     "name": "Guano Apes",
@@ -225,14 +225,14 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Обійми Дощу",
+    "playcount": 199,
+    "area": "Ukraine"
+  },
+  {
     "name": "Epica",
     "playcount": 197,
     "area": "Netherlands"
-  },
-  {
-    "name": "Обійми Дощу",
-    "playcount": 197,
-    "area": "Ukraine"
   },
   {
     "name": "Die Apokalyptischen Reiter",
@@ -241,7 +241,7 @@
   },
   {
     "name": "Animal Джаz",
-    "playcount": 181,
+    "playcount": 195,
     "area": "Russia"
   },
   {
