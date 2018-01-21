@@ -6,16 +6,21 @@ import {Area, AreaProperties, Artist} from 'src/types';
 function groupArtistsByArea(artists: Artist[]): {[areaName: string]: AreaProperties} {
   const areas = {};
 
-  artists.forEach((artist) => {
+  artists.forEach((artist, index) => {
+    const rankedArtist = {
+      ...artist,
+      rank: index + 1, // assuming that "artists" are already sorted by playcount
+    };
+
     if (!(artist.area in areas)) {
       (areas[artist.area] as AreaProperties) = {
         name: artist.area,
         artists: [
-          artist,
+          rankedArtist,
         ],
       };
     } else {
-      (areas[artist.area] as AreaProperties).artists.push(artist);
+      (areas[artist.area] as AreaProperties).artists.push(rankedArtist);
     }
   });
 

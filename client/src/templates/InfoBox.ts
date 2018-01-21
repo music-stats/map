@@ -96,9 +96,12 @@ export default function render({
                 <a
                   href="https://www.last.fm/user/${username}/library/music/${artist.name}"
                   target="_blank"
+                >${artist.playcount}</a>
+                <span
+                  class="InfoBox__artist-rank"
                 >
-                  ${artist.playcount}
-                </a>
+                  #${artist.rank}
+                </span>
               </li>
             `).join('')}
           </ul>

@@ -4,8 +4,14 @@ const config = {
   username: 'markhovskiy', // last.fm
 
   links: {
-    github: 'https://github.com/oleksmarkh/music-stats',
-    twitter: 'https://twitter.com/oleksmarkh',
+    github: {
+      url: 'https://github.com/oleksmarkh/music-stats',
+      text: 'music-stats',
+    },
+    twitter: {
+      url: 'https://twitter.com/oleksmarkh',
+      text: '@oleksmarkh',
+    },
   },
 
   map: {

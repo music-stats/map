@@ -1,3 +1,5 @@
+import './LinksBox.scss';
+
 interface Link {
   url: string;
   text: string;
