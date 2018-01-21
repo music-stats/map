@@ -10,6 +10,8 @@ import config from 'src/config';
 import * as artists from 'data/artists.json';
 
 import renderInfoBox from 'src/templates/InfoBox';
+import renderLegend from 'src/templates/Legend';
+import renderLinksBox from 'src/templates/LinksBox';
 
 import 'leaflet/dist/leaflet.css';
 import 'src/app.scss';
@@ -54,7 +56,7 @@ function higlightArea(e: L.LeafletEvent) {
   layer.setStyle(config.map.area.style.highlight);
   layer.bringToFront();
 
-  info.update(layer.feature);
+  infoBox.update(layer.feature);
 }
 
 function resetHighlight(e: L.LeafletEvent) {
@@ -89,16 +91,16 @@ interface InfoBox extends L.Control {
   update: (area?: Area) => void;
 }
 
-const info: InfoBox = (L.control as any)();
+const infoBox: InfoBox = (L.control as any)();
 
-info.onAdd = function() {
-  (this as InfoBox).element = L.DomUtil.create('article', 'InfoBox');
+infoBox.onAdd = function() {
+  (this as InfoBox).element = L.DomUtil.create('aside', 'Map__control');
   (this as InfoBox).update();
 
   return (this as InfoBox).element;
 };
 
-info.update = function(area = null) {
+infoBox.update = function(area = null) {
   (this as InfoBox).element.innerHTML = renderInfoBox({
     username: config.username,
     totalSongCount,
@@ -112,9 +114,61 @@ info.update = function(area = null) {
   });
 };
 
+const legend: L.Control = (L.control as any)({
+  position: 'bottomleft',
+});
+
+legend.onAdd = function() {
+  const element = L.DomUtil.create('aside', 'Map__control');
+  const areaList = areas.map((area) => {
+    const songCount = getAreaSongCount(area);
+    const songCountPersent = songCount / totalSongCount * 100;
+    const color = getColorString(
+      config.map.area.fillColor,
+      colorOpacityScale(songCount),
+    );
+
+    return {
+      name: area.properties.name,
+      songCount,
+      songCountPersent,
+      color,
+    };
+  }).sort((a, b) => b.songCount - a.songCount);
+
+  element.innerHTML = renderLegend({
+    areaList,
+  });
+
+  return element;
+};
+
+const linksBox: L.Control = (L.control as any)({
+  position: 'bottomright',
+});
+
+linksBox.onAdd = function() {
+  const element = L.DomUtil.create('aside', 'Map__control');
+
+  element.innerHTML = renderLinksBox({
+    github: {
+      url: config.links.github,
+      text: 'music-stats',
+    },
+    twitter: {
+      url: config.links.twitter,
+      text: '@oleksmarkh',
+    },
+  });
+
+  return element;
+};
+
 tileLayer.addTo(map);
 geojson.addTo(map);
-info.addTo(map);
+infoBox.addTo(map);
+legend.addTo(map);
+linksBox.addTo(map);
 
 // debug
 (window as any).L = L;

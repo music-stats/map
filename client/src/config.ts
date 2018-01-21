@@ -3,6 +3,11 @@ import * as L from 'leaflet';
 const config = {
   username: 'markhovskiy', // last.fm
 
+  links: {
+    github: 'https://github.com/oleksmarkh/music-stats',
+    twitter: 'https://twitter.com/oleksmarkh',
+  },
+
   map: {
     defaultView: {
       center: ([50.45, 30.52] as L.LatLngExpression), // Kyiv
