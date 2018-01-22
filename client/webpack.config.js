@@ -56,10 +56,7 @@ loaders.ts = {
         useCache: true,
         useBabel: true,
         babelOptions: {
-          presets: [
-            'env'
-          ],
-          babelrc: false,
+          babelrc: true,
           compact: true,
         },
       },

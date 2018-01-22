@@ -10,6 +10,7 @@ https://oleksmarkh.github.io/music-stats/
 * [d3](https://github.com/d3/d3/wiki) utils
   - [x] [d3-scale](https://github.com/d3/d3-scale)
   - [ ] [d3-color](https://github.com/d3/d3-color)
+- [x] [jest](https://facebook.github.io/jest)
 
 ## Setup
 
@@ -29,7 +30,13 @@ Create a `.env` file and fill its values according to [.env.template](.env.templ
 $ yarn run:dev
 ```
 
-4. Build and deploy to GitHub pages
+4. Run unit tests
+
+```bash
+$ yarn test
+```
+
+5. Build and deploy to GitHub pages
 
 ```bash
 $ yarn build:prod

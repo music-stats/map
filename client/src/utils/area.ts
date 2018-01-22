@@ -3,7 +3,7 @@ import * as worldData from 'data/world.geo.json';
 
 import {Area, AreaProperties, Artist} from 'src/types';
 
-function groupArtistsByArea(artists: Artist[]): {[areaName: string]: AreaProperties} {
+export function groupArtistsByArea(artists: Artist[]): {[areaName: string]: AreaProperties} {
   const areas = {};
 
   artists.forEach((artist, index) => {
@@ -36,7 +36,6 @@ export function getArtistsAreas(artists: Artist[]): Area[] {
     .map((area: Area) => ({
       ...area,
       properties: {
-        ...area.properties,
         ...artistsAreas[area.properties.name],
       },
     }));
