@@ -1,15 +1,14 @@
 # music-stats front-end
 
-https://oleksmarkh.github.io/music-stats/
+https://oleksmarkh.github.io/music-stats
 
 ## Tech stack
 
 - [ ] [vue](https://vuejs.org/v2/guide)
 - [ ] [normalizr](https://github.com/paularmstrong/normalizr)
 - [x] [leaflet](http://leafletjs.com)
-* [d3](https://github.com/d3/d3/wiki) utils
-  - [x] [d3-scale](https://github.com/d3/d3-scale)
-  - [ ] [d3-color](https://github.com/d3/d3-color)
+- [x] [d3-scale](https://github.com/d3/d3-scale)
+- [ ] [d3-color](https://github.com/d3/d3-color)
 - [x] [jest](https://facebook.github.io/jest)
 
 ## Setup
@@ -22,7 +21,9 @@ $ yarn install
 
 2. Provide environment variables
 
-Create a `.env` file and fill its values according to [.env.template](.env.template).
+Create a `.env` file and fill its values according to [.env.template](.env.template):
+
+* `MAPBOX_ACCESS_TOKEN` (see Mapbox [account](https://www.mapbox.com/account/access-tokens) and [docs](https://www.mapbox.com/help/how-access-tokens-work))
 
 3. Run a local dev server
 

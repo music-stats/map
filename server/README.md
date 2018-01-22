@@ -24,7 +24,9 @@ $ yarn install
 
 2. Provide environment variables
 
-Create a `.env` file and fill its values according to [.env.template](.env.template).
+Create a `.env` file and fill its values according to [.env.template](.env.template):
+
+* `LASTFM_API_KEY` (see last.fm [docs](https://www.last.fm/api/authentication))
 
 ## Scripts
 
