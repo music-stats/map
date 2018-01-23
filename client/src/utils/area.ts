@@ -41,6 +41,6 @@ export function getArtistsAreas(artists: Artist[]): Area[] {
     }));
 }
 
-export function getAreaSongCount(area: Area): number {
+export function getAreaScrobbleCount(area: Area): number {
   return area.properties.artists.reduce((sum, artist) => sum + artist.playcount, 0);
 }

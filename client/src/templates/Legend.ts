@@ -2,8 +2,8 @@ import './Legend.scss';
 
 interface AreaListItem {
   name: string;
-  songCount: number;
-  songCountPersent: number;
+  scrobbleCount: number;
+  scrobbleCountPersent: number;
   color: string;
 }
 
@@ -16,7 +16,7 @@ export default function render({
 }: LegendProps): string {
   return `
     <ul>
-      ${areaList.map(({name, songCount, songCountPersent, color}) => `
+      ${areaList.map(({name, scrobbleCount, scrobbleCountPersent, color}) => `
         <li
           class="Legend__area-list-item"
         >
@@ -27,7 +27,7 @@ export default function render({
           </div>
 
           <span>
-            ${name}: ${songCount}, ${songCountPersent.toFixed(1)}%
+            ${name}: ${scrobbleCount}, ${scrobbleCountPersent.toFixed(1)}%
           </span>
         </li>
       `).join('')}

@@ -1,4 +1,4 @@
-import {groupArtistsByArea, getArtistsAreas, getAreaSongCount} from '../area';
+import {groupArtistsByArea, getArtistsAreas, getAreaScrobbleCount} from '../area';
 
 const dreamTheater = {
   name: 'Dream Theater',
@@ -246,8 +246,8 @@ describe('area utils', () => {
     ]);
   });
 
-  test('getAreaSongCount()', () => {
-    expect(getAreaSongCount({
+  test('getAreaScrobbleCount()', () => {
+    expect(getAreaScrobbleCount({
       type: 'Feature',
       geometry: null,
       properties: {
@@ -260,7 +260,7 @@ describe('area utils', () => {
       },
     })).toBe(1835);
 
-    expect(getAreaSongCount({
+    expect(getAreaScrobbleCount({
       type: 'Feature',
       geometry: null,
       properties: {

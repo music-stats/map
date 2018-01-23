@@ -3,7 +3,7 @@ import {GeoJsonTypes} from 'geojson';
 import * as d3Scale from 'd3-scale';
 
 import {Artist, Area, AreaProperties, CustomControl} from 'src/types';
-import {getArtistsAreas, getAreaSongCount} from 'src/utils/area';
+import {getArtistsAreas, getAreaScrobbleCount} from 'src/utils/area';
 import {getColorString} from 'src/utils/color';
 import config from 'src/config';
 
@@ -26,7 +26,7 @@ interface InfoBox extends CustomControl {
 
 class PlaycountMap {
   private areas: Area[];
-  private totalSongCount: number;
+  private totalScrobbleCount: number;
   private colorOpacityScale: ColorOpacityScale;
   private geojson: L.GeoJSON<AreaProperties>;
 
@@ -39,15 +39,15 @@ class PlaycountMap {
     private artists: Artist[],
   ) {
     const areas = getArtistsAreas(this.artists);
-    const songCounts = areas.map(getAreaSongCount);
+    const scrobbleCount = areas.map(getAreaScrobbleCount);
     const areasCollection = {
       type: 'FeatureCollection' as GeoJsonTypes,
       features: areas,
     };
 
     this.areas = areas;
-    this.totalSongCount = songCounts.reduce((sum, areaSongCount) => sum + areaSongCount, 0);
-    this.colorOpacityScale = this.getColorOpacityScale(songCounts);
+    this.totalScrobbleCount = scrobbleCount.reduce((sum, areaScrobbleCount) => sum + areaScrobbleCount, 0);
+    this.colorOpacityScale = this.getColorOpacityScale(scrobbleCount);
     this.geojson = L.geoJSON(areasCollection, {
       style: this.getAreaStyle.bind(this),
       onEachFeature: (_, layer) => layer.on({
@@ -69,11 +69,11 @@ class PlaycountMap {
     this.linksBox.addTo(this.map);
   }
 
-  private getColorOpacityScale(songCounts: number[]): ColorOpacityScale {
+  private getColorOpacityScale(scrobbleCount: number[]): ColorOpacityScale {
     return d3Scale.scaleLinear()
       .domain([
-        Math.min(...songCounts),
-        Math.max(...songCounts),
+        Math.min(...scrobbleCount),
+        Math.max(...scrobbleCount),
       ])
       .range([
         config.map.area.fillColorOpacity.min,
@@ -84,7 +84,7 @@ class PlaycountMap {
   private getAreaStyle(area: Area): L.PathOptions {
     const fillColor = getColorString(
       config.map.area.fillColor,
-      this.colorOpacityScale(getAreaSongCount(area)),
+      this.colorOpacityScale(getAreaScrobbleCount(area)),
     );
 
     return {
@@ -118,8 +118,11 @@ class PlaycountMap {
     });
 
     infoBox.onAdd = () => {
-      infoBox.element = L.DomUtil.create('article', 'PlaycountMap__control');
+      infoBox.element = L.DomUtil.create('article', 'PlaycountMap__control InfoBox');
       infoBox.render();
+
+      L.DomEvent.disableClickPropagation(infoBox.element);
+      L.DomEvent.disableScrollPropagation(infoBox.element);
 
       return infoBox.element;
     };
@@ -127,10 +130,10 @@ class PlaycountMap {
     infoBox.render = ({area} = {}) => {
       infoBox.element.innerHTML = renderInfoBox({
         username: config.username,
-        totalSongCount: this.totalSongCount,
+        totalScrobbleCount: this.totalScrobbleCount,
         totalArtistCount: this.artists.length,
-        areaSongCount: area
-          ? getAreaSongCount(area)
+        areaScrobbleCount: area
+          ? getAreaScrobbleCount(area)
           : null,
         ...(area
           ? area.properties
@@ -148,20 +151,20 @@ class PlaycountMap {
 
     const areaList = this.areas.map((area) => {
       const {name} = area.properties;
-      const songCount = getAreaSongCount(area);
-      const songCountPersent = songCount / this.totalSongCount * 100;
+      const scrobbleCount = getAreaScrobbleCount(area);
+      const scrobbleCountPersent = scrobbleCount / this.totalScrobbleCount * 100;
       const color = getColorString(
         config.map.area.fillColor,
-        this.colorOpacityScale(songCount),
+        this.colorOpacityScale(scrobbleCount),
       );
 
       return {
         name,
-        songCount,
-        songCountPersent,
+        scrobbleCount,
+        scrobbleCountPersent,
         color,
       };
-    }).sort((a, b) => b.songCount - a.songCount);
+    }).sort((a, b) => b.scrobbleCount - a.scrobbleCount);
 
     legend.onAdd = () => {
       legend.element = L.DomUtil.create('aside', 'PlaycountMap__control Legend');

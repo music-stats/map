@@ -1,3 +1,8 @@
+.InfoBox {
+  max-height: calc(100vh - 10em);
+  overflow: auto;
+}
+
 .InfoBox__section {
   margin: 1em 0;
 
@@ -12,6 +17,8 @@
 
 .InfoBox__header {
   font-weight: bold;
+
+  color: #444;
 }
 
 .InfoBox__artist-list {

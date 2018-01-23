@@ -5,15 +5,15 @@ import './InfoBox.scss';
 interface InfoBoxProps extends AreaProperties {
   username: string;
   totalArtistCount: number;
-  totalSongCount: number;
-  areaSongCount: number;
+  totalScrobbleCount: number;
+  areaScrobbleCount: number;
 }
 
 export default function render({
   username,
-  totalSongCount,
+  totalScrobbleCount,
   totalArtistCount,
-  areaSongCount,
+  areaScrobbleCount,
   ...area,
 }: InfoBoxProps): string {
   return `
@@ -24,7 +24,7 @@ export default function render({
         last.fm user:
       </span>
       <a
-        href="https://www.last.fm/user/${username}/library"
+        href="https://www.last.fm/user/${username}"
         target="_blank"
       >
         ${username}
@@ -54,13 +54,13 @@ export default function render({
 
       <p>
         <span>
-          songs:
+          scrobbles:
         </span>
         <a
-          href="https://www.last.fm/user/${username}/library/tracks"
+          href="https://www.last.fm/user/${username}/library"
           target="_blank"
         >
-           ${totalSongCount}
+           ${totalScrobbleCount}
         </a>
       </p>
     </section>
@@ -81,7 +81,7 @@ export default function render({
           </p>
 
           <p>
-            songs: ${areaSongCount}
+            scrobbles: ${areaScrobbleCount}
           </p>
 
           <ul
