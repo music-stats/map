@@ -12,14 +12,14 @@
     "precommit": "yarn lint"
   },
   "devDependencies": {
-    "eslint": "^4.12.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "husky": "^0.14.3"
+    "eslint": "4.16.0",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.8.0",
+    "husky": "0.14.3"
   },
   "dependencies": {
-    "axios": "^0.17.1",
-    "dotenv": "^4.0.0",
-    "ramda": "^0.25.0"
+    "axios": "0.17.1",
+    "dotenv": "4.0.0",
+    "ramda": "0.25.0"
   }
 }

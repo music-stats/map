@@ -10,6 +10,11 @@ const config = {
       root: 'https://ws.audioscrobbler.com/2.0',
     },
     username: 'markhovskiy',
+    artists: {
+      maxPageNumber: 5, // @see https://www.last.fm/api/tos
+      perPage: 50,
+      countDefault: 50,
+    },
     outputFilePath: path.resolve(tmpDir, 'lastfm-user-library.json'),
   },
 

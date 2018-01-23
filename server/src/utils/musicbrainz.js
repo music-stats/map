@@ -3,14 +3,12 @@ const axios = require('axios');
 
 const config = require('../config');
 
-const {api} = config.musicbrainz;
-
 function buildApiLookupUrl(entity, mbid) {
   const queryParamsString = querystring.stringify({
     fmt: 'json',
   });
 
-  return `${api.root}/${entity}/${mbid}?${queryParamsString}`;
+  return `${config.musicbrainz.api.root}/${entity}/${mbid}?${queryParamsString}`;
 }
 
 function fetchArtist(mbid) {

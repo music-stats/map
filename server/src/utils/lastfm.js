@@ -1,12 +1,12 @@
 const querystring = require('querystring');
 const axios = require('axios');
+const {times, take} = require('ramda');
 
 const config = require('../config');
 
 require('dotenv').config();
 
 const {LASTFM_API_KEY} = process.env;
-const {api} = config.lastfm;
 
 function buildApiUrl(method, params = {}) {
   const queryParamsString = querystring.stringify({
@@ -16,12 +16,13 @@ function buildApiUrl(method, params = {}) {
     ...params,
   });
 
-  return `${api.root}?${queryParamsString}`;
+  return `${config.lastfm.api.root}?${queryParamsString}`;
 }
 
-function fetchLibraryArtists(username) {
+function fetchPage(username, pageNumber) {
   const url = buildApiUrl('library.getartists', {
     user: username,
+    page: pageNumber + 1, // bounds: 1-1000000
   });
   const headers = {
     'User-Agent': config.userAgent,
@@ -36,6 +37,23 @@ function fetchLibraryArtists(username) {
       })
       .catch(reject);
   });
+}
+
+function fetchLibraryArtists(username, artistsCount) {
+  const pagesCount = Math.min(
+    Math.ceil(artistsCount / config.lastfm.artists.perPage),
+    config.lastfm.artists.maxPageNumber,
+  );
+
+  console.log('pages:', pagesCount);
+
+  // this fires simultaneous requests
+  // @todo: set delays or use a generic queue
+  return Promise.all(times((pageNumber) => fetchPage(username, pageNumber), pagesCount))
+    .then((pagesData) => pagesData.reduce((rawArtists, pageData) => (
+      rawArtists.concat(pageData.artists.artist)
+    ), []))
+    .then((rawArtists) => take(artistsCount, rawArtists));
 }
 
 module.exports = {
