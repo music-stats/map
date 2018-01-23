@@ -1,27 +1,29 @@
 .Legend {
-  opacity: 0.8;
-  transform: translate(0, 80%);
   transition: opacity 200ms, transform 200ms;
+  transform: translate(0, 80%);
+
+  opacity: 0.8;
 
   &:hover {
-    opacity: 1;
     transform: translate(0, 0);
+
+    opacity: 1;
   }
 
   // to avoid jumping if a cursor goes below the element
   &::after {
-    content: '';
-
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
+    left: 0;
 
     height: 10px; // ".leaflet-control" offset
+
+    content: '';
   }
 }
 
-.Legend__area-list-item {
+.Legend__area {
   display: flex;
 
   margin: 0.6em 0;
@@ -40,4 +42,12 @@
   height: 20px;
 
   margin-right: 0.4em;
+}
+
+.Legend__area-stats {
+  color: #888;
+
+  .Legend__area:hover & {
+    color: #444;
+  }
 }

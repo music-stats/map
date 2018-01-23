@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint:scripts": "tslint ./src/{**,**/__tests__}/*.ts",
-    "lint:styles": "stylelint ./src/**/*.css",
+    "lint:styles": "stylelint ./src/**/*.scss",
     "lint": "yarn lint:styles && yarn lint:scripts",
     "test": "NODE_PATH=./src jest",
     "clean": "rm -rf ./dist/*",

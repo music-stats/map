@@ -1,8 +1,3 @@
-.InfoBox {
-  max-height: calc(100vh - 10em);
-  overflow: auto;
-}
-
 .InfoBox__section {
   margin: 1em 0;
 
@@ -22,11 +17,26 @@
 }
 
 .InfoBox__artist-list {
+  display: block;
+  overflow: auto;
+
+  max-height: calc(100vh - 24em);
+
   margin-top: 1em;
 }
 
 .InfoBox__artist-rank {
   font-size: smaller;
 
-  color: #444;
+  text-align: right;
+
+  color: #888;
+
+  .InfoBox__artist:hover & {
+    color: #444;
+  }
+}
+
+.InfoBox__artist-playcount {
+  text-align: right;
 }

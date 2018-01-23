@@ -121,7 +121,6 @@ class PlaycountMap {
       infoBox.element = L.DomUtil.create('article', 'PlaycountMap__control InfoBox');
       infoBox.render();
 
-      L.DomEvent.disableClickPropagation(infoBox.element);
       L.DomEvent.disableScrollPropagation(infoBox.element);
 
       return infoBox.element;

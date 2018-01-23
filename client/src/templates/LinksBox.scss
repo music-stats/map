@@ -1,22 +1,24 @@
 .LinksBox {
-  opacity: 0.8;
-  transform: translate(80%, 0);
   transition: opacity 200ms, transform 200ms;
+  transform: translate(80%, 0);
+
+  opacity: 0.8;
 
   &:hover {
-    opacity: 1;
     transform: translate(0, 0);
+
+    opacity: 1;
   }
 
   // to avoid jumping if a cursor goes to the right of the element
   &::after {
-    content: '';
-
     position: absolute;
     top: 0;
     bottom: 0;
     left: 100%;
 
     width: 10px; // ".leaflet-control" offset
+
+    content: '';
   }
 }

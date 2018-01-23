@@ -84,27 +84,41 @@ export default function render({
             scrobbles: ${areaScrobbleCount}
           </p>
 
-          <ul
+          <table
             class="InfoBox__artist-list"
           >
             ${area.artists.map((artist) => `
-              <li>
-                <a
-                  href="https://www.last.fm/music/${artist.name}"
-                  target="_blank"
-                >${artist.name}</a>:
-                <a
-                  href="https://www.last.fm/user/${username}/library/music/${artist.name}"
-                  target="_blank"
-                >${artist.playcount}</a>
-                <span
+              <tr
+                class="InfoBox__artist"
+              >
+                <td
                   class="InfoBox__artist-rank"
                 >
                   #${artist.rank}
-                </span>
-              </li>
+                </td>
+
+                <td
+                  class="InfoBox__artist-playcount"
+                >
+                  <a
+                    href="https://www.last.fm/user/${username}/library/music/${artist.name}"
+                    target="_blank"
+                  >
+                    ${artist.playcount}
+                  </a>
+                </td>
+
+                <td>
+                  <a
+                    href="https://www.last.fm/music/${artist.name}"
+                    target="_blank"
+                  >
+                    ${artist.name}
+                  </a>
+                </td>
+              </tr>
             `).join('')}
-          </ul>
+          </table>
         `
         : `
           <p>

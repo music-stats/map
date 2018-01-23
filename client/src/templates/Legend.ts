@@ -18,7 +18,7 @@ export default function render({
     <ul>
       ${areaList.map(({name, scrobbleCount, scrobbleCountPersent, color}) => `
         <li
-          class="Legend__area-list-item"
+          class="Legend__area"
         >
           <div
             class="Legend__area-color"
@@ -27,7 +27,13 @@ export default function render({
           </div>
 
           <span>
-            ${name}: ${scrobbleCount}, ${scrobbleCountPersent.toFixed(1)}%
+            ${name}:&nbsp;
+          </span>
+
+          <span
+            class="Legend__area-stats"
+          >
+            ${scrobbleCount}, ${scrobbleCountPersent.toFixed(1)}%
           </span>
         </li>
       `).join('')}
