@@ -5,6 +5,30 @@ interface Link {
   text: string;
 }
 
+interface LinkListItemProps extends Link {
+  label: string;
+}
+
+function renderLinkListItem({
+  url,
+  text,
+  label,
+}: LinkListItemProps): string {
+  return `
+    <li>
+      <span>
+        ${label}:
+      </span>
+      <a
+        href="${url}"
+        target="_blank"
+      >
+        ${text}
+      </a>
+    </li>
+  `;
+}
+
 interface LinksBoxProps {
   github: Link;
   twitter: Link;
@@ -16,29 +40,15 @@ export default function render({
 }: LinksBoxProps): string {
   return `
     <ul>
-      <li>
-        <span>
-          GitHub:
-        </span>
-        <a
-          href="${github.url}"
-          target="_blank"
-        >
-          ${github.text}
-        </a>
-      </li>
+      ${renderLinkListItem({
+        ...github,
+        label: 'GitHub',
+      })}
 
-      <li>
-        <span>
-          Twitter:
-        </span>
-        <a
-          href="${twitter.url}"
-          target="_blank"
-        >
-          ${twitter.text}
-        </a>
-      </li>
+      ${renderLinkListItem({
+        ...twitter,
+        label: 'Twitter',
+      })}
     </ul>
   `;
 }

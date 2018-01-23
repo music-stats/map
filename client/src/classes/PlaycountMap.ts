@@ -146,9 +146,10 @@ class PlaycountMap {
     });
 
     infoBox.onAdd = () => {
-      infoBox.element = L.DomUtil.create('article', 'PlaycountMap__control InfoBox');
+      infoBox.element = L.DomUtil.create('article', 'PlaycountMap__control');
       infoBox.render();
 
+      // so the list of artists is actually scrollable
       L.DomEvent.disableScrollPropagation(infoBox.element);
 
       return infoBox.element;
@@ -177,7 +178,8 @@ class PlaycountMap {
     });
 
     const areaList = this.areas.map((area) => {
-      const {name} = area.properties;
+      const {name, artists} = area.properties;
+      const artistCount = artists.length;
       const scrobbleCount = getAreaScrobbleCount(area);
       const scrobbleCountPersent = scrobbleCount / this.totalScrobbleCount * 100;
       const color = getColorString(
@@ -187,6 +189,7 @@ class PlaycountMap {
 
       return {
         name,
+        artistCount,
         scrobbleCount,
         scrobbleCountPersent,
         color,

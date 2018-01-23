@@ -1,6 +1,48 @@
-import {AreaProperties} from 'src/types';
+import {Artist, AreaProperties} from 'src/types';
 
 import './InfoBox.scss';
+
+interface ArtistListItemProps {
+  artist: Artist;
+  username: string;
+}
+
+function renderArtistListItem({
+  artist,
+  username,
+}: ArtistListItemProps): string {
+  return `
+    <tr
+      class="InfoBox__artist"
+    >
+      <td
+        class="InfoBox__artist-rank"
+      >
+        #${artist.rank}
+      </td>
+
+      <td
+        class="InfoBox__artist-playcount"
+      >
+        <a
+          href="https://www.last.fm/user/${username}/library/music/${artist.name}"
+          target="_blank"
+        >
+          ${artist.playcount}
+        </a>
+      </td>
+
+      <td>
+        <a
+          href="https://www.last.fm/music/${artist.name}"
+          target="_blank"
+        >
+          ${artist.name}
+        </a>
+      </td>
+    </tr>
+  `;
+}
 
 interface InfoBoxProps extends AreaProperties {
   username: string;
@@ -87,37 +129,10 @@ export default function render({
           <table
             class="InfoBox__artist-list"
           >
-            ${area.artists.map((artist) => `
-              <tr
-                class="InfoBox__artist"
-              >
-                <td
-                  class="InfoBox__artist-rank"
-                >
-                  #${artist.rank}
-                </td>
-
-                <td
-                  class="InfoBox__artist-playcount"
-                >
-                  <a
-                    href="https://www.last.fm/user/${username}/library/music/${artist.name}"
-                    target="_blank"
-                  >
-                    ${artist.playcount}
-                  </a>
-                </td>
-
-                <td>
-                  <a
-                    href="https://www.last.fm/music/${artist.name}"
-                    target="_blank"
-                  >
-                    ${artist.name}
-                  </a>
-                </td>
-              </tr>
-            `).join('')}
+            ${area.artists.map((artist) => renderArtistListItem({
+              artist,
+              username,
+            })).join('')}
           </table>
         `
         : `

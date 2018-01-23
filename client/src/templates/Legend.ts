@@ -1,14 +1,47 @@
 import './Legend.scss';
 
-interface AreaListItem {
+interface AreaListItemProps {
   name: string;
+  artistCount: number;
   scrobbleCount: number;
   scrobbleCountPersent: number;
   color: string;
 }
 
+function renderAreaListItem({
+  name,
+  artistCount,
+  scrobbleCount,
+  scrobbleCountPersent,
+  color,
+}: AreaListItemProps): string {
+  return `
+    <li
+      class="Legend__area"
+      data-name="${name}"
+    >
+      <div
+        class="Legend__area-color"
+        style="background-color: ${color}"
+      >
+      </div>
+
+      <span>
+        ${name}&nbsp;
+      </span>
+
+      <span
+        class="Legend__area-stats"
+      >
+        <span title="artists">${artistCount}</span>:<span title="scrobbles">${scrobbleCount}</span>,
+        <span>${scrobbleCountPersent.toFixed(1)}%</span>
+      </span>
+    </li>
+  `;
+}
+
 interface LegendProps {
-  areaList: AreaListItem[];
+  areaList: AreaListItemProps[];
 }
 
 export default function render({
@@ -16,28 +49,7 @@ export default function render({
 }: LegendProps): string {
   return `
     <ul>
-      ${areaList.map(({name, scrobbleCount, scrobbleCountPersent, color}) => `
-        <li
-          class="Legend__area"
-          data-name="${name}"
-        >
-          <div
-            class="Legend__area-color"
-            style="background-color: ${color}"
-          >
-          </div>
-
-          <span>
-            ${name}:&nbsp;
-          </span>
-
-          <span
-            class="Legend__area-stats"
-          >
-            ${scrobbleCount}, ${scrobbleCountPersent.toFixed(1)}%
-          </span>
-        </li>
-      `).join('')}
+      ${areaList.map(renderAreaListItem).join('')}
     </ul>
   `;
 }
