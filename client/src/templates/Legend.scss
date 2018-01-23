@@ -28,6 +28,8 @@
 
   margin: 0.6em 0;
 
+  cursor: default;
+
   &:first-of-type {
     margin-top: 0;
   }
@@ -38,10 +40,18 @@
 }
 
 .Legend__area-color {
+  box-sizing: border-box;
+
   width: 20px;
   height: 20px;
 
   margin-right: 0.4em;
+
+  border: 2px solid #fff;
+
+  .Legend__area:hover & {
+    border-color: #abc;
+  }
 }
 
 .Legend__area-stats {

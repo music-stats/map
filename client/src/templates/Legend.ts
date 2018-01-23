@@ -19,6 +19,7 @@ export default function render({
       ${areaList.map(({name, scrobbleCount, scrobbleCountPersent, color}) => `
         <li
           class="Legend__area"
+          data-name="${name}"
         >
           <div
             class="Legend__area-color"

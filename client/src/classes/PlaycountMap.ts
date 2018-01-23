@@ -50,11 +50,7 @@ class PlaycountMap {
     this.colorOpacityScale = this.getColorOpacityScale(scrobbleCount);
     this.geojson = L.geoJSON(areasCollection, {
       style: this.getAreaStyle.bind(this),
-      onEachFeature: (_, layer) => layer.on({
-        mouseover: this.higlightArea.bind(this),
-        mouseout: this.resetHighlight.bind(this),
-        click: this.zoomToArea.bind(this),
-      }),
+      onEachFeature: (_, layer) => this.subscribeLayer(layer),
     });
 
     this.infoBox = this.createInfoBox();
@@ -67,6 +63,38 @@ class PlaycountMap {
     this.infoBox.addTo(this.map);
     this.legend.addTo(this.map);
     this.linksBox.addTo(this.map);
+  }
+
+  private subscribeLayer(layer: L.Layer) {
+    layer.on({
+      mouseover: this.higlightArea.bind(this),
+      mouseout: this.resetHighlight.bind(this),
+      click: this.zoomToArea.bind(this),
+    });
+  }
+
+  private subscribeLegendListItem(legendListItem: HTMLElement) {
+    const areaLayer = this.getAreaLayer(legendListItem.dataset.name);
+
+    legendListItem.addEventListener('mouseover', () => {
+      this.higlightArea({
+        type: 'mouseover',
+        target: areaLayer,
+      });
+    });
+
+    legendListItem.addEventListener('mouseout', () => {
+      this.resetHighlight({
+        type: 'mouseout',
+        target: areaLayer,
+      });
+    });
+  }
+
+  private getAreaLayer(areaName: string): L.Layer {
+    return this.geojson
+      .getLayers()
+      .find((layer) => ((layer as any).feature as Area).properties.name === areaName);
   }
 
   private getColorOpacityScale(scrobbleCount: number[]): ColorOpacityScale {
@@ -170,6 +198,11 @@ class PlaycountMap {
       legend.element.innerHTML = renderLegend({
         areaList,
       });
+
+      Array.prototype.forEach.call(
+        legend.element.querySelectorAll('.Legend__area'),
+        this.subscribeLegendListItem.bind(this),
+      );
 
       return legend.element;
     };
