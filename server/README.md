@@ -33,7 +33,7 @@ Create a `.env` file and fill its values according to [.env.template](.env.templ
 ### List top 50 artists for a given lastfm user
 
 ```bash
-$ yarn scripts:fetch-artists # username is set in "./src/config.js"
+$ yarn scripts:fetch-artists [number] # username is set in "./src/config.js"
 ```
 
 Example output:

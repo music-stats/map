@@ -51,7 +51,7 @@
   },
   {
     "name": "Iron Maiden",
-    "playcount": 420,
+    "playcount": 427,
     "area": "United Kingdom"
   },
   {
@@ -250,6 +250,11 @@
     "area": "United States"
   },
   {
+    "name": "Children of Bodom",
+    "playcount": 169,
+    "area": "Finland"
+  },
+  {
     "name": "Eisbrecher",
     "playcount": 165,
     "area": "Germany"
@@ -258,11 +263,6 @@
     "name": "Architects",
     "playcount": 162,
     "area": "United Kingdom"
-  },
-  {
-    "name": "Children of Bodom",
-    "playcount": 160,
-    "area": "Finland"
   },
   {
     "name": "Evanescence",
@@ -498,5 +498,255 @@
     "name": "Lacrimas Profundere",
     "playcount": 96,
     "area": "Germany"
+  },
+  {
+    "name": "Tristania",
+    "playcount": 96,
+    "area": "Norway"
+  },
+  {
+    "name": "Katatonia",
+    "playcount": 95,
+    "area": "Sweden"
+  },
+  {
+    "name": "God Is An Astronaut",
+    "playcount": 93,
+    "area": "Ireland"
+  },
+  {
+    "name": "Pelican",
+    "playcount": 92,
+    "area": "United States"
+  },
+  {
+    "name": "Static-X",
+    "playcount": 92,
+    "area": "United States"
+  },
+  {
+    "name": "Amon Amarth",
+    "playcount": 90,
+    "area": "Sweden"
+  },
+  {
+    "name": "65daysofstatic",
+    "playcount": 89,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Brutto",
+    "playcount": 89,
+    "area": "Belarus"
+  },
+  {
+    "name": "The 3rd and the Mortal",
+    "playcount": 89,
+    "area": "Norway"
+  },
+  {
+    "name": "Boston",
+    "playcount": 87,
+    "area": "United States"
+  },
+  {
+    "name": "Demons & Wizards",
+    "playcount": 86,
+    "area": "Germany"
+  },
+  {
+    "name": "Lunatic Soul",
+    "playcount": 86,
+    "area": "Poland"
+  },
+  {
+    "name": "Fates Warning",
+    "playcount": 85,
+    "area": "United States"
+  },
+  {
+    "name": "Elton John",
+    "playcount": 84,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Тінь Сонця",
+    "playcount": 84,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Ensiferum",
+    "playcount": 83,
+    "area": "Finland"
+  },
+  {
+    "name": "Notre Dame de Paris",
+    "playcount": 83,
+    "area": "Canada"
+  },
+  {
+    "name": "Iced Earth",
+    "playcount": 79,
+    "area": "United States"
+  },
+  {
+    "name": "Stratovarius",
+    "playcount": 79,
+    "area": "Finland"
+  },
+  {
+    "name": "Radiohead",
+    "playcount": 78,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Король и Шут",
+    "playcount": 77,
+    "area": "Russia"
+  },
+  {
+    "name": "Elane",
+    "playcount": 75,
+    "area": "Germany"
+  },
+  {
+    "name": "Green Carnation",
+    "playcount": 75,
+    "area": "Norway"
+  },
+  {
+    "name": "Joe Satriani",
+    "playcount": 75,
+    "area": "United States"
+  },
+  {
+    "name": "Woods of Ypres",
+    "playcount": 75,
+    "area": "Canada"
+  },
+  {
+    "name": "Kreator",
+    "playcount": 73,
+    "area": "Germany"
+  },
+  {
+    "name": "Apocalyptica",
+    "playcount": 72,
+    "area": "Finland"
+  },
+  {
+    "name": "Creedence Clearwater Revival",
+    "playcount": 72,
+    "area": "United States"
+  },
+  {
+    "name": "Fallujah",
+    "playcount": 72,
+    "area": "United States"
+  },
+  {
+    "name": "Vàli",
+    "playcount": 72,
+    "area": "Norway"
+  },
+  {
+    "name": "Estatic Fear",
+    "playcount": 70,
+    "area": "Austria"
+  },
+  {
+    "name": "Grave Digger",
+    "playcount": 70,
+    "area": "Germany"
+  },
+  {
+    "name": "Gojira",
+    "playcount": 69,
+    "area": "France"
+  },
+  {
+    "name": "Gordian Knot",
+    "playcount": 69,
+    "area": "United States"
+  },
+  {
+    "name": "The Faceless",
+    "playcount": 69,
+    "area": "United States"
+  },
+  {
+    "name": "Cynic",
+    "playcount": 68,
+    "area": "United States"
+  },
+  {
+    "name": "Gamma Ray",
+    "playcount": 68,
+    "area": "Germany"
+  },
+  {
+    "name": "Liquid Tension Experiment",
+    "playcount": 67,
+    "area": "United States"
+  },
+  {
+    "name": "Racer X",
+    "playcount": 67,
+    "area": "United States"
+  },
+  {
+    "name": "Крихітка",
+    "playcount": 67,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Papa Roach",
+    "playcount": 66,
+    "area": "United States"
+  },
+  {
+    "name": "Пикник",
+    "playcount": 66,
+    "area": "Russia"
+  },
+  {
+    "name": "Despised Icon",
+    "playcount": 65,
+    "area": "Canada"
+  },
+  {
+    "name": "John Petrucci",
+    "playcount": 65,
+    "area": "United States"
+  },
+  {
+    "name": "Johnny Cash",
+    "playcount": 65,
+    "area": "United States"
+  },
+  {
+    "name": "Kraftwerk",
+    "playcount": 65,
+    "area": "Germany"
+  },
+  {
+    "name": "Manowar",
+    "playcount": 65,
+    "area": "United States"
+  },
+  {
+    "name": "Slipknot",
+    "playcount": 65,
+    "area": "United States"
+  },
+  {
+    "name": "Empyrium",
+    "playcount": 64,
+    "area": "Germany"
+  },
+  {
+    "name": "Insomnium",
+    "playcount": 64,
+    "area": "Finland"
   }
 ]
