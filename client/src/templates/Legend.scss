@@ -1,8 +1,4 @@
 .Legend {
-  overflow: auto;
-
-  max-height: 60vh;
-
   transition-property: opacity, transform;
   transform: translate(0, 80%);
 
@@ -25,6 +21,12 @@
 
     content: '';
   }
+}
+
+.Legend__area-list {
+  overflow: auto;
+
+  max-height: 72vh;
 }
 
 .Legend__area {

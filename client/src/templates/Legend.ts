@@ -49,7 +49,9 @@ export default function render({
   areaList,
 }: LegendProps): string {
   return `
-    <ul>
+    <ul
+      class="Legend__area-list"
+    >
       ${areaList.map(renderAreaListItem).join('')}
     </ul>
   `;
