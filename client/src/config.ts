@@ -2,12 +2,10 @@ import * as L from 'leaflet';
 
 const config = {
   controls: {
+    toggleAnimationDuration: 200,
+
     infoBox: {
       username: 'markhovskiy', // last.fm
-    },
-
-    legend: {
-      expandingAnimationDuration: 200,
     },
 
     linksBox: {

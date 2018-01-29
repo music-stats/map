@@ -53,9 +53,15 @@ class PlaycountMap {
       onEachFeature: (_, layer) => this.subscribeLayer(layer),
     });
 
-    this.infoBox = this.createInfoBox();
-    this.legend = this.createLegend();
-    this.linksBox = this.createLinksBox();
+    this.infoBox = this.createInfoBox({
+      position: 'topright',
+    });
+    this.legend = this.createLegend({
+      position: 'bottomleft',
+    });
+    this.linksBox = this.createLinksBox({
+      position: 'bottomright',
+    });
   }
 
   public render() {
@@ -77,7 +83,7 @@ class PlaycountMap {
     legendElement.addEventListener('mouseenter', () => {
       setTimeout(() => {
         legendElement.removeAttribute('disabled');
-      }, config.controls.legend.expandingAnimationDuration);
+      }, config.controls.toggleAnimationDuration);
     });
 
     legendElement.addEventListener('mouseleave', () => {
@@ -153,16 +159,13 @@ class PlaycountMap {
     this.map.fitBounds(e.target.getBounds());
   }
 
-  private createInfoBox(): InfoBox {
-    const infoBox: InfoBox = (L.control as any)({
-      position: 'topright',
-    });
+  private createInfoBox(options: L.ControlOptions): InfoBox {
+    const infoBox: InfoBox = (L.control as any)(options);
 
     infoBox.onAdd = () => {
       infoBox.element = L.DomUtil.create('article', 'PlaycountMap__control');
       infoBox.render();
 
-      // so the list of artists is actually scrollable
       L.DomEvent.disableScrollPropagation(infoBox.element);
 
       return infoBox.element;
@@ -186,10 +189,8 @@ class PlaycountMap {
     return infoBox;
   }
 
-  private createLegend(): CustomControl {
-    const legend: CustomControl = (L.control as any)({
-      position: 'bottomleft',
-    });
+  private createLegend(options: L.ControlOptions): CustomControl {
+    const legend: CustomControl = (L.control as any)(options);
 
     const areaList = this.areas.map((area) => {
       const {name, artists} = area.properties;
@@ -216,9 +217,10 @@ class PlaycountMap {
         areaList,
       });
 
-      legend.element.style.transitionDuration = `${config.controls.legend.expandingAnimationDuration}ms`;
+      legend.element.style.transitionDuration = `${config.controls.toggleAnimationDuration}ms`;
       legend.element.setAttribute('disabled', 'disabled');
       this.subscribeLegendElement(legend.element);
+      L.DomEvent.disableScrollPropagation(legend.element);
 
       Array.prototype.forEach.call(
         legend.element.querySelectorAll('.Legend__area'),
@@ -231,16 +233,16 @@ class PlaycountMap {
     return legend;
   }
 
-  private createLinksBox(): CustomControl {
-    const linksBox: CustomControl = (L.control as any)({
-      position: 'bottomright',
-    });
+  private createLinksBox(options: L.ControlOptions): CustomControl {
+    const linksBox: CustomControl = (L.control as any)(options);
 
     linksBox.onAdd = () => {
       linksBox.element = L.DomUtil.create('aside', 'PlaycountMap__control LinksBox');
       linksBox.element.innerHTML = renderLinksBox({
         ...config.controls.linksBox.links,
       });
+
+      linksBox.element.style.transitionDuration = `${config.controls.toggleAnimationDuration}ms`;
 
       return linksBox.element;
     };

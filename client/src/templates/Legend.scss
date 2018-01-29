@@ -1,4 +1,8 @@
 .Legend {
+  overflow: auto;
+
+  max-height: 60vh;
+
   transition-property: opacity, transform;
   transform: translate(0, 80%);
 

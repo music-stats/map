@@ -1,5 +1,5 @@
 .LinksBox {
-  transition: opacity 200ms, transform 200ms;
+  transition-property: opacity, transform;
   transform: translate(80%, 0);
 
   opacity: 0.8;
