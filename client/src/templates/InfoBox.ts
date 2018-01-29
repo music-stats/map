@@ -46,6 +46,7 @@ function renderArtistListItem({
 
 interface InfoBoxProps extends AreaProperties {
   username: string;
+  totalCountriesCount: number;
   totalArtistCount: number;
   totalScrobbleCount: number;
   areaScrobbleCount: number;
@@ -53,6 +54,7 @@ interface InfoBoxProps extends AreaProperties {
 
 export default function render({
   username,
+  totalCountriesCount,
   totalScrobbleCount,
   totalArtistCount,
   areaScrobbleCount,
@@ -81,6 +83,10 @@ export default function render({
       >
         Total
       </header>
+
+      <p>
+        countries: ${totalCountriesCount}
+      </p>
 
       <p>
         <span>

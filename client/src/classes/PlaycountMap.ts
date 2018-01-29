@@ -171,6 +171,7 @@ class PlaycountMap {
     infoBox.render = ({area} = {}) => {
       infoBox.element.innerHTML = renderInfoBox({
         username: config.controls.infoBox.username,
+        totalCountriesCount: this.areas.length,
         totalScrobbleCount: this.totalScrobbleCount,
         totalArtistCount: this.artists.length,
         areaScrobbleCount: area

@@ -515,6 +515,11 @@
     "area": "Ireland"
   },
   {
+    "name": "Ensiferum",
+    "playcount": 92,
+    "area": "Finland"
+  },
+  {
     "name": "Pelican",
     "playcount": 92,
     "area": "United States"
@@ -573,11 +578,6 @@
     "name": "Тінь Сонця",
     "playcount": 84,
     "area": "Ukraine"
-  },
-  {
-    "name": "Ensiferum",
-    "playcount": 83,
-    "area": "Finland"
   },
   {
     "name": "Notre Dame de Paris",
@@ -643,6 +643,11 @@
     "name": "Fallujah",
     "playcount": 72,
     "area": "United States"
+  },
+  {
+    "name": "Norther",
+    "playcount": 72,
+    "area": "Finland"
   },
   {
     "name": "Vàli",
@@ -748,5 +753,250 @@
     "name": "Insomnium",
     "playcount": 64,
     "area": "Finland"
+  },
+  {
+    "name": "Ozzy Osbourne",
+    "playcount": 64,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Queensrÿche",
+    "playcount": 63,
+    "area": "United States"
+  },
+  {
+    "name": "Eternal Tears of Sorrow",
+    "playcount": 62,
+    "area": "Finland"
+  },
+  {
+    "name": "Кому Вниз",
+    "playcount": 62,
+    "area": "Ukraine"
+  },
+  {
+    "name": "August Burns Red",
+    "playcount": 61,
+    "area": "United States"
+  },
+  {
+    "name": "Emerson, Lake & Palmer",
+    "playcount": 61,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "The 69 Eyes",
+    "playcount": 61,
+    "area": "Finland"
+  },
+  {
+    "name": "Arch Enemy",
+    "playcount": 60,
+    "area": "Sweden"
+  },
+  {
+    "name": "Be'lakor",
+    "playcount": 58,
+    "area": "Australia"
+  },
+  {
+    "name": "Sonata Arctica",
+    "playcount": 58,
+    "area": "Finland"
+  },
+  {
+    "name": "Crematory",
+    "playcount": 57,
+    "area": "Germany"
+  },
+  {
+    "name": "Darkest Hour",
+    "playcount": 56,
+    "area": "United States"
+  },
+  {
+    "name": "Rokash",
+    "playcount": 56,
+    "area": "Belarus"
+  },
+  {
+    "name": "Virgin Black",
+    "playcount": 56,
+    "area": "Australia"
+  },
+  {
+    "name": "Aerosmith",
+    "playcount": 55,
+    "area": "United States"
+  },
+  {
+    "name": "Bruce Dickinson",
+    "playcount": 55,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Eagles",
+    "playcount": 55,
+    "area": "United States"
+  },
+  {
+    "name": "Maybeshewill",
+    "playcount": 55,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Moonspell",
+    "playcount": 55,
+    "area": "Portugal"
+  },
+  {
+    "name": "Sepultura",
+    "playcount": 54,
+    "area": "Brazil"
+  },
+  {
+    "name": "The Human Abstract",
+    "playcount": 54,
+    "area": "United States"
+  },
+  {
+    "name": "All Shall Perish",
+    "playcount": 53,
+    "area": "United States"
+  },
+  {
+    "name": "Macbeth",
+    "playcount": 53,
+    "area": "Italy"
+  },
+  {
+    "name": "Cosmosquad",
+    "playcount": 52,
+    "area": "United States"
+  },
+  {
+    "name": "The Rolling Stones",
+    "playcount": 52,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Trail of Tears",
+    "playcount": 52,
+    "area": "Norway"
+  },
+  {
+    "name": "All That Remains",
+    "playcount": 50,
+    "area": "United States"
+  },
+  {
+    "name": "Frank Sinatra",
+    "playcount": 50,
+    "area": "United States"
+  },
+  {
+    "name": "Kamelot",
+    "playcount": 50,
+    "area": "United States"
+  },
+  {
+    "name": "Limp Bizkit",
+    "playcount": 50,
+    "area": "United States"
+  },
+  {
+    "name": "Inner Maze",
+    "playcount": 49,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Sólstafir",
+    "playcount": 49,
+    "area": "Iceland"
+  },
+  {
+    "name": "Тартак",
+    "playcount": 48,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Eisblume",
+    "playcount": 47,
+    "area": "Germany"
+  },
+  {
+    "name": "Evan Brewer",
+    "playcount": 47,
+    "area": "United States"
+  },
+  {
+    "name": "Steve Vai",
+    "playcount": 47,
+    "area": "United States"
+  },
+  {
+    "name": "The Atomic Bitchwax",
+    "playcount": 47,
+    "area": "United States"
+  },
+  {
+    "name": "Thin Lizzy",
+    "playcount": 47,
+    "area": "Ireland"
+  },
+  {
+    "name": "Кино",
+    "playcount": 47,
+    "area": "Russia"
+  },
+  {
+    "name": "ЧЕКА",
+    "playcount": 47,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Blutengel",
+    "playcount": 46,
+    "area": "Germany"
+  },
+  {
+    "name": "Communic",
+    "playcount": 46,
+    "area": "Norway"
+  },
+  {
+    "name": "Eric Clapton",
+    "playcount": 46,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Faun",
+    "playcount": 46,
+    "area": "Germany"
+  },
+  {
+    "name": "P.O.D.",
+    "playcount": 46,
+    "area": "United States"
+  },
+  {
+    "name": "AC/DC",
+    "playcount": 45,
+    "area": "Australia"
+  },
+  {
+    "name": "Nine Inch Nails",
+    "playcount": 45,
+    "area": "United States"
+  },
+  {
+    "name": "Richard Wagner",
+    "playcount": 45,
+    "area": "Germany"
+  },
+  {
+    "name": "Theatre of Tragedy",
+    "playcount": 45,
+    "area": "Norway"
   }
 ]
