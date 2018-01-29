@@ -1,16 +1,26 @@
 import * as L from 'leaflet';
 
 const config = {
-  username: 'markhovskiy', // last.fm
-
-  links: {
-    github: {
-      url: 'https://github.com/oleksmarkh/music-stats',
-      text: 'music-stats',
+  controls: {
+    infoBox: {
+      username: 'markhovskiy', // last.fm
     },
-    twitter: {
-      url: 'https://twitter.com/oleksmarkh',
-      text: '@oleksmarkh',
+
+    legend: {
+      expandingAnimationDuration: 200,
+    },
+
+    linksBox: {
+      links: {
+        github: {
+          url: 'https://github.com/oleksmarkh/music-stats',
+          text: 'music-stats',
+        },
+        twitter: {
+          url: 'https://twitter.com/oleksmarkh',
+          text: '@oleksmarkh',
+        },
+      },
     },
   },
 

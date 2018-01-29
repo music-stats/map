@@ -15,6 +15,7 @@ function renderAreaListItem({
   scrobbleCountPersent,
   color,
 }: AreaListItemProps): string {
+  // "data-name" is used for binding mouse events
   return `
     <li
       class="Legend__area"

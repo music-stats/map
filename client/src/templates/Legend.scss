@@ -1,5 +1,5 @@
 .Legend {
-  transition: opacity 200ms, transform 200ms;
+  transition-property: opacity, transform;
   transform: translate(0, 80%);
 
   opacity: 0.8;
@@ -36,6 +36,10 @@
 
   &:last-of-type {
     margin-bottom: 0;
+  }
+
+  .Legend[disabled] & {
+    pointer-events: none;
   }
 }
 

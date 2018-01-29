@@ -73,19 +73,32 @@ class PlaycountMap {
     });
   }
 
-  private subscribeLegendListItem(legendListItem: HTMLElement) {
-    const areaLayer = this.getAreaLayer(legendListItem.dataset.name);
+  private subscribeLegendElement(legendElement: HTMLElement) {
+    legendElement.addEventListener('mouseenter', () => {
+      setTimeout(() => {
+        legendElement.removeAttribute('disabled');
+      }, config.controls.legend.expandingAnimationDuration);
+    });
 
-    legendListItem.addEventListener('mouseover', () => {
+    legendElement.addEventListener('mouseleave', () => {
+      legendElement.setAttribute('disabled', 'disabled');
+    });
+  }
+
+  private subscribeLegendListItemElement(legendListItemElement: HTMLElement) {
+    const {name: areaName} = legendListItemElement.dataset;
+    const areaLayer = this.getAreaLayer(areaName);
+
+    legendListItemElement.addEventListener('mouseenter', () => {
       this.higlightArea({
-        type: 'mouseover',
+        type: 'mouseenter',
         target: areaLayer,
       });
     });
 
-    legendListItem.addEventListener('mouseout', () => {
+    legendListItemElement.addEventListener('mouseleave', () => {
       this.resetHighlight({
-        type: 'mouseout',
+        type: 'mouseleave',
         target: areaLayer,
       });
     });
@@ -157,7 +170,7 @@ class PlaycountMap {
 
     infoBox.render = ({area} = {}) => {
       infoBox.element.innerHTML = renderInfoBox({
-        username: config.username,
+        username: config.controls.infoBox.username,
         totalScrobbleCount: this.totalScrobbleCount,
         totalArtistCount: this.artists.length,
         areaScrobbleCount: area
@@ -202,9 +215,13 @@ class PlaycountMap {
         areaList,
       });
 
+      legend.element.style.transitionDuration = `${config.controls.legend.expandingAnimationDuration}ms`;
+      legend.element.setAttribute('disabled', 'disabled');
+      this.subscribeLegendElement(legend.element);
+
       Array.prototype.forEach.call(
         legend.element.querySelectorAll('.Legend__area'),
-        this.subscribeLegendListItem.bind(this),
+        this.subscribeLegendListItemElement.bind(this),
       );
 
       return legend.element;
@@ -221,7 +238,7 @@ class PlaycountMap {
     linksBox.onAdd = () => {
       linksBox.element = L.DomUtil.create('aside', 'PlaycountMap__control LinksBox');
       linksBox.element.innerHTML = renderLinksBox({
-        ...config.links,
+        ...config.controls.linksBox.links,
       });
 
       return linksBox.element;
