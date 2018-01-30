@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "axios": "0.17.1",
-    "dotenv": "4.0.0",
+    "dotenv": "5.0.0",
     "ramda": "0.25.0"
   }
 }
