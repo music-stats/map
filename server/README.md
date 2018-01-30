@@ -1,6 +1,6 @@
 # music-stats back-end
 
-an API gateway between the front-end and various data providers
+An API gateway between the front-end and various data providers.
 
 ## Tech stack
 
@@ -16,13 +16,13 @@ an API gateway between the front-end and various data providers
 
 ## Setup
 
-1. Install dependencies
+### Install dependencies
 
 ```bash
 $ yarn install
 ```
 
-2. Provide environment variables
+### Provide environment variables
 
 Create a `.env` file and fill its values according to [.env.template](.env.template):
 

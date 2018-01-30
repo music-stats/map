@@ -14,31 +14,31 @@ https://oleksmarkh.github.io/music-stats
 
 ## Setup
 
-1. Install dependencies
+### Install dependencies
 
 ```bash
 $ yarn install
 ```
 
-2. Provide environment variables
+### Provide environment variables
 
 Create a `.env` file and fill its values according to [.env.template](.env.template):
 
 * `MAPBOX_ACCESS_TOKEN` (see Mapbox [account](https://www.mapbox.com/account/access-tokens) and [docs](https://www.mapbox.com/help/how-access-tokens-work))
 
-3. Run a local dev server
+### Run a local dev server
 
 ```bash
 $ yarn run:dev
 ```
 
-4. Run unit tests
+### Run unit tests
 
 ```bash
 $ yarn test
 ```
 
-5. Build and deploy to GitHub pages
+### Build and deploy to GitHub pages
 
 ```bash
 $ yarn build:prod
