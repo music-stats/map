@@ -1,12 +1,11 @@
 const querystring = require('querystring');
 const axios = require('axios');
 const {times, take} = require('ramda');
+const dotenv = require('dotenv');
 
 const config = require('../config');
 
-require('dotenv').config();
-
-const {LASTFM_API_KEY} = process.env;
+const {parsed: {LASTFM_API_KEY}} = dotenv.config();
 
 function buildApiUrl(method, params = {}) {
   const queryParamsString = querystring.stringify({

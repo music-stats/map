@@ -33,7 +33,7 @@ Create a `.env` file and fill its values according to [.env.template](.env.templ
 ### List top artists for a given last.fm user
 
 ```bash
-$ yarn scripts:fetch-artists [number] # username is set in "./src/config.js"
+$ yarn scripts:fetch-artists [number=50] # username is set in "./src/config.js"
 ```
 
 Example output:
@@ -59,7 +59,7 @@ Example output:
 Expects an output of `scripts:fetch-artists` to be located at `config.lastfm.outputFilePath`.
 
 ```bash
-$ yarn scripts:fetch-artists-areas
+$ yarn scripts:fetch-artists-areas [number=10]
 ```
 
 Example output:
