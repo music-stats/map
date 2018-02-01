@@ -7,12 +7,13 @@ An API gateway between the front-end and various data providers.
 - [x] [node](https://nodejs.org/dist/latest-v9.x/docs/api)
 - [ ] [koa](http://koajs.com/#application)
 
-## APIs
+## APIs, datasets
 
 - [x] [last.fm](https://www.last.fm/api/intro)
 - [x] [musicbrainz](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2)
 - [ ] [spotify](https://developer.spotify.com/web-api/endpoint-reference)
 - [ ] [songkick](https://www.songkick.com/developer/upcoming-events)
+- [ ] [FMA (Free Music Archive)](https://github.com/mdeff/fma)
 
 ## Setup
 
