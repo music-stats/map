@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -129,8 +128,6 @@ plugins.namedModules = new webpack.NamedModulesPlugin();
 
 plugins.hotModuleReplacement = new webpack.HotModuleReplacementPlugin();
 
-plugins.dashboard = new DashboardPlugin();
-
 const config = {
   context: SRC_DIR,
 
@@ -182,7 +179,6 @@ const config = {
     : [
       plugins.namedModules,
       plugins.hotModuleReplacement,
-      plugins.dashboard,
     ]
   ),
 
