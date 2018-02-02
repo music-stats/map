@@ -73,41 +73,55 @@ class PlaycountMap {
 
   private subscribeLayer(layer: L.Layer) {
     layer.on({
-      mouseover: this.higlightArea.bind(this),
-      mouseout: this.resetHighlight.bind(this),
-      click: this.zoomToArea.bind(this),
+      mouseover: this.highlightArea.bind(this),
+      mouseout: this.resetAreaHighlight.bind(this),
+      click: this.selectArea.bind(this),
     });
   }
 
   private subscribeLegendElement(legendElement: HTMLElement) {
-    legendElement.addEventListener('mouseenter', () => {
+    const onMouseEnter = () => {
       setTimeout(() => {
         legendElement.removeAttribute('disabled');
       }, config.controls.toggleAnimationDuration);
-    });
+    };
 
-    legendElement.addEventListener('mouseleave', () => {
+    const onMouseLeave = () => {
       legendElement.setAttribute('disabled', 'disabled');
-    });
+    };
+
+    legendElement.addEventListener('mouseenter', onMouseEnter);
+    legendElement.addEventListener('mouseleave', onMouseLeave);
   }
 
   private subscribeLegendListItemElement(legendListItemElement: HTMLElement) {
     const {name: areaName} = legendListItemElement.dataset;
     const areaLayer = this.getAreaLayer(areaName);
 
-    legendListItemElement.addEventListener('mouseenter', () => {
-      this.higlightArea({
+    const onMouseEnter = () => {
+      this.highlightArea({
         type: 'mouseenter',
         target: areaLayer,
       });
-    });
+    };
 
-    legendListItemElement.addEventListener('mouseleave', () => {
-      this.resetHighlight({
+    const onMouseLeave = () => {
+      this.resetAreaHighlight({
         type: 'mouseleave',
         target: areaLayer,
       });
-    });
+    };
+
+    const onClick = () => {
+      this.selectArea({
+        type: 'click',
+        target: areaLayer,
+      });
+    };
+
+    legendListItemElement.addEventListener('mouseenter', onMouseEnter);
+    legendListItemElement.addEventListener('mouseleave', onMouseLeave);
+    legendListItemElement.addEventListener('click', onClick);
   }
 
   private getAreaLayer(areaName: string): L.Layer {
@@ -140,23 +154,43 @@ class PlaycountMap {
     };
   }
 
-  private higlightArea(e: L.LeafletEvent) {
+  private highlightArea(e: L.LeafletEvent) {
     const layer = e.target as L.Polyline;
+    const area = layer.feature as Area;
 
     layer.setStyle(config.map.area.style.highlight);
     layer.bringToFront();
 
     this.infoBox.render({
-      area: layer.feature,
+      area,
     });
   }
 
-  private resetHighlight(e: L.LeafletEvent) {
-    this.geojson.resetStyle(e.target);
+  private resetAreaHighlight(e: L.LeafletEvent) {
+    const layer = e.target as L.Polyline;
+    this.geojson.resetStyle(layer);
   }
 
   private zoomToArea(e: L.LeafletEvent) {
-    this.map.fitBounds(e.target.getBounds());
+    const layer = e.target as L.Polyline;
+    this.map.fitBounds(layer.getBounds());
+  }
+
+  private selectArea(e: L.LeafletEvent) {
+    const layer = e.target as L.Polyline;
+    const area = layer.feature as Area;
+
+    this.geojson.getLayers().forEach((l: L.Polyline) => {
+      if (l.feature === area) {
+        this.zoomToArea(e);
+        this.highlightArea(e);
+      } else {
+        this.resetAreaHighlight({
+          type: 'mouseleave',
+          target: l,
+        });
+      }
+    });
   }
 
   private createInfoBox(options: L.ControlOptions): InfoBox {
