@@ -142,11 +142,15 @@ class PlaycountMap {
       ]);
   }
 
-  private getAreaStyle(area: Area): L.PathOptions {
-    const fillColor = getColorString(
+  private getAreaColorString(scrobbleCount: number): string {
+    return getColorString(
       config.map.area.fillColor,
-      this.colorOpacityScale(getAreaScrobbleCount(area)),
+      this.colorOpacityScale(scrobbleCount),
     );
+  }
+
+  private getAreaStyle(area: Area): L.PathOptions {
+    const fillColor = this.getAreaColorString(getAreaScrobbleCount(area));
 
     return {
       ...config.map.area.style.default,
@@ -231,10 +235,7 @@ class PlaycountMap {
       const artistCount = artists.length;
       const scrobbleCount = getAreaScrobbleCount(area);
       const scrobbleCountPersent = scrobbleCount / this.totalScrobbleCount * 100;
-      const color = getColorString(
-        config.map.area.fillColor,
-        this.colorOpacityScale(scrobbleCount),
-      );
+      const color = this.getAreaColorString(scrobbleCount);
 
       return {
         name,
