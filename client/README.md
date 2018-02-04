@@ -8,7 +8,7 @@ https://oleksmarkh.github.io/music-stats
 - [ ] [normalizr](https://github.com/paularmstrong/normalizr)
 - [x] [leaflet](http://leafletjs.com)
 - [x] [d3-scale](https://github.com/d3/d3-scale)
-- [ ] [d3-scale-chromatic](https://github.com/d3/d3-scale-chromatic)
+- [x] [d3-scale-chromatic](https://github.com/d3/d3-scale-chromatic)
 - [ ] [d3-color](https://github.com/d3/d3-color)
 - [x] [jest](https://facebook.github.io/jest)
 

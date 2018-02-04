@@ -50,27 +50,21 @@ const config = {
           opacity: 1,
           color: 'white',
           dashArray: '3',
-          fillOpacity: 0.7,
+          fillOpacity: 0.6,
         },
 
         highlight: {
           weight: 3,
           color: '#abc',
           dashArray: '',
-          fillOpacity: 0.9,
+          fillOpacity: 0.8,
         },
       },
 
-      // http://colorbrewer2.org
-      fillColor: {
-        r: 43,
-        g: 140,
-        b: 190,
-      },
-
-      fillColorOpacity: {
-        min: 0.1,
-        max: 1,
+      fillColorScale: {
+        powerExponent: 0.5,
+        minRange: 0.2,
+        maxRange: 1,
       },
     },
   },

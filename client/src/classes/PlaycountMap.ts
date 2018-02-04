@@ -1,10 +1,10 @@
 import * as L from 'leaflet';
 import {GeoJsonTypes} from 'geojson';
 import * as d3Scale from 'd3-scale';
+import * as d3ScaleChromatic from 'd3-scale-chromatic';
 
 import {Artist, Area, AreaProperties, CustomControl} from 'src/types';
 import {getArtistsAreas, getAreaScrobbleCount} from 'src/utils/area';
-import {getColorString} from 'src/utils/color';
 import config from 'src/config';
 
 import renderInfoBox from 'src/templates/InfoBox';
@@ -14,7 +14,7 @@ import renderLinksBox from 'src/templates/LinksBox';
 import 'leaflet/dist/leaflet.css';
 import './PlaycountMap.scss';
 
-type ColorOpacityScale = d3Scale.ScaleLinear<number, number>;
+type ColorScale = d3Scale.ScalePower<number, number>;
 
 interface InfoBoxProps {
   area?: Area;
@@ -27,7 +27,7 @@ interface InfoBox extends CustomControl {
 class PlaycountMap {
   private areas: Area[];
   private totalScrobbleCount: number;
-  private colorOpacityScale: ColorOpacityScale;
+  private colorScale: ColorScale;
   private geojson: L.GeoJSON<AreaProperties>;
 
   private infoBox: InfoBox;
@@ -39,15 +39,15 @@ class PlaycountMap {
     private artists: Artist[],
   ) {
     const areas = getArtistsAreas(this.artists);
-    const scrobbleCount = areas.map(getAreaScrobbleCount);
+    const allScrobbleCounts = areas.map(getAreaScrobbleCount);
     const areasCollection = {
       type: 'FeatureCollection' as GeoJsonTypes,
       features: areas,
     };
 
     this.areas = areas;
-    this.totalScrobbleCount = scrobbleCount.reduce((sum, areaScrobbleCount) => sum + areaScrobbleCount, 0);
-    this.colorOpacityScale = this.getColorOpacityScale(scrobbleCount);
+    this.totalScrobbleCount = allScrobbleCounts.reduce((sum, areaScrobbleCount) => sum + areaScrobbleCount, 0);
+    this.colorScale = this.getColorScale(allScrobbleCounts);
     this.geojson = L.geoJSON(areasCollection, {
       style: this.getAreaStyle.bind(this),
       onEachFeature: (_, layer) => this.subscribeLayer(layer),
@@ -130,23 +130,21 @@ class PlaycountMap {
       .find((layer) => ((layer as any).feature as Area).properties.name === areaName);
   }
 
-  private getColorOpacityScale(scrobbleCount: number[]): ColorOpacityScale {
-    return d3Scale.scaleLinear()
+  private getColorScale(allScrobbleCounts: number[]): ColorScale {
+    return d3Scale.scalePow()
+      .exponent(config.map.area.fillColorScale.powerExponent)
       .domain([
-        Math.min(...scrobbleCount),
-        Math.max(...scrobbleCount),
+        Math.min(...allScrobbleCounts),
+        Math.max(...allScrobbleCounts),
       ])
       .range([
-        config.map.area.fillColorOpacity.min,
-        config.map.area.fillColorOpacity.max,
+        config.map.area.fillColorScale.minRange,
+        config.map.area.fillColorScale.maxRange,
       ]);
   }
 
   private getAreaColorString(scrobbleCount: number): string {
-    return getColorString(
-      config.map.area.fillColor,
-      this.colorOpacityScale(scrobbleCount),
-    );
+    return d3ScaleChromatic.interpolateBlues(this.colorScale(scrobbleCount));
   }
 
   private getAreaStyle(area: Area): L.PathOptions {
