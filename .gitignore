@@ -1,13 +1,15 @@
 .DS_Store
 .awcache/
 node_modules/
+
 .yarn-integrity
 yarn.lock
-npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+npm-debug.log*
 
 .env
 server/tmp/*.json
 
 client/dist/
+server/dist/

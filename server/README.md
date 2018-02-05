@@ -29,12 +29,18 @@ Create a `.env` file and fill its values according to [.env.template](.env.templ
 
 * `LASTFM_API_KEY` (see last.fm [docs](https://www.last.fm/api/authentication))
 
+### Build
+
+```bash
+$ yarn build # yarn build:watch
+```
+
 ## Scripts
 
 ### List top artists for a given last.fm user
 
 ```bash
-$ yarn scripts:fetch-artists [number=50] # username is set in "./src/config.js"
+$ yarn script:fetch-artists [number=50] # username is set in "./src/config.js"
 ```
 
 Example output:
@@ -57,10 +63,10 @@ Example output:
 
 ### List areas for a given set of artists
 
-Expects an output of `scripts:fetch-artists` to be located at `config.lastfm.outputFilePath`.
+Expects an output of `script:fetch-artists` to be located at `config.lastfm.outputFilePath`.
 
 ```bash
-$ yarn scripts:fetch-artists-areas [number=10]
+$ yarn script:fetch-artists-areas [number=10]
 ```
 
 Example output:

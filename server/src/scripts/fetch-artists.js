@@ -1,49 +1,31 @@
-const fs = require('fs');
-const {pick} = require('ramda');
-
-const {fetchLibraryArtists} = require('../utils/lastfm');
-const config = require('../config');
-
-const argv = process.argv.slice(2);
-const artistsCount = parseInt(argv[0], 10) || config.lastfm.artists.countDefault;
-
+"use strict";
+exports.__esModule = true;
+var fs = require("fs");
+var lastfm_1 = require("src/utils/lastfm");
+var config_1 = require("src/config");
+var argv = process.argv.slice(2);
+var artistsCount = parseInt(argv[0], 10) || config_1["default"].lastfm.artists.countDefault;
 if (artistsCount <= 0) {
-  throw new Error(`Expected a number of artists greater then 0, got ${artistsCount}`);
+    throw new Error("Expected a number of artists greater then 0, got " + artistsCount);
 }
-
-function convert(rawArtist) {
-  const artist = pick([
-    'name',
-    'playcount',
-    'mbid', // musicbrainz id
-  ], rawArtist);
-
-  return {
-    ...artist,
-    playcount: Number(artist.playcount),
-    mbid: artist.mbid || null,
-  };
-}
-
 function extract(count) {
-  console.log(`fetching ${count} artists from last.fm...`);
-  return fetchLibraryArtists(config.lastfm.username, count);
+    console.log("fetching " + count + " artists from last.fm...");
+    return lastfm_1.fetchLibraryArtists(config_1["default"].lastfm.username, count);
 }
-
 function transform(rawArtists) {
-  return rawArtists.map(convert);
+    return rawArtists.map(convert);
 }
-
+function convert(rawArtist) {
+    return {
+        name: rawArtist.name,
+        playcount: Number(rawArtist.playcount),
+        mbid: rawArtist.mbid || null
+    };
+}
 function load(artists) {
-  console.log(artists, artists.length);
-
-  fs.writeFileSync(
-    config.lastfm.outputFilePath,
-    JSON.stringify(artists, null, 2),
-  );
+    console.log(artists, artists.length);
+    fs.writeFileSync(config_1["default"].lastfm.outputFilePath, JSON.stringify(artists, null, 2));
 }
-
 extract(artistsCount)
-  .then(transform)
-  .then(load)
-  .catch(console.error);
+    .then(transform)
+    .then(load)["catch"](console.error);

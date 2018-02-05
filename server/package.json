@@ -2,20 +2,26 @@
   "name": "music-stats-server",
   "version": "0.0.0",
   "description": "an API gateway between the front-end and various data providers",
-  "main": "index.js",
   "author": "Oleksii Markhovskyi",
   "license": "MIT",
   "scripts": {
-    "scripts:fetch-artists": "node ./src/scripts/fetch-artists",
-    "scripts:fetch-artists-areas": "node ./src/scripts/fetch-artists-areas",
-    "lint": "eslint ./src/",
-    "precommit": "yarn lint"
+    "lint": "tslint ./src/**/*.ts",
+    "clean": "rm -rf ./dist/*",
+    "prebuild": "yarn clean",
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "precommit": "yarn lint",
+    "script:fetch-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/fetch-artists",
+    "script:fetch-artists-areas": "export NODE_PATH=./dist/ && node ./dist/src/scripts/fetch-artists-areas"
   },
   "devDependencies": {
-    "eslint": "4.16.0",
-    "eslint-config-airbnb-base": "12.1.0",
-    "eslint-plugin-import": "2.8.0",
-    "husky": "0.14.3"
+    "@types/dotenv": "4.0.2",
+    "@types/node": "9.4.0",
+    "@types/ramda": "0.25.17",
+    "husky": "0.14.3",
+    "tslint": "5.9.1",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "2.7.1"
   },
   "dependencies": {
     "axios": "0.17.1",
