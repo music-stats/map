@@ -3,13 +3,17 @@ import * as worldData from 'data/world.geo.json';
 
 import {Area, AreaProperties, Artist} from 'src/types';
 
-export function groupArtistsByArea(artists: Artist[]): {[areaName: string]: AreaProperties} {
-  const areas = {};
+interface AreasGroupping {
+  [areaName: string]: AreaProperties;
+}
+
+export function groupArtistsByArea(artists: Artist[]): AreasGroupping {
+  const areas: AreasGroupping = {};
 
   artists.forEach((artist, index) => {
     const rankedArtist = {
       ...artist,
-      rank: index + 1, // assuming that "artists" are already sorted by playcount
+      rank: index + 1, // assuming that "artists" are already ordered by "playcount" (descending)
     };
 
     if (!(artist.area in areas)) {

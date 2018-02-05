@@ -3,9 +3,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es6",
-    "noImplicitAny": true,
     "removeComments": false,
     "sourceMap": true,
+    "noImplicitAny": true,
     "outDir": "dist/src",
     "baseUrl": ".",
     "paths": {
