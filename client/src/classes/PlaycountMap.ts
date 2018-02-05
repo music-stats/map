@@ -4,8 +4,8 @@ import * as d3Scale from 'd3-scale';
 import * as d3ScaleChromatic from 'd3-scale-chromatic';
 
 import {Artist, Area, AreaProperties, CustomControl} from 'src/types';
-import {getArtistsAreas, getAreaScrobbleCount} from 'src/utils/area';
 import config from 'src/config';
+import {getArtistsAreas, getAreaScrobbleCount} from 'src/utils/area';
 
 import renderInfoBox from 'src/templates/InfoBox';
 import renderLegend from 'src/templates/Legend';

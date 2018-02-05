@@ -5,9 +5,9 @@ import {Artist as LastfmArtist} from 'src/types/lastfm';
 import {Artist as MusicbrainzArtist} from 'src/types/musicbrainz';
 import {ArtistArea} from 'src/types/artist';
 
-import {readFile, delay} from 'src/utils/promise';
-import {fetchArtist} from 'src/utils/musicbrainz';
 import config from 'src/config';
+import {readFile, delay} from 'src/utils/promise';
+import {fetchArtist} from 'src/connectors/musicbrainz';
 
 const argv = process.argv.slice(2);
 const artistsCount = parseInt(argv[0], 10) || config.musicbrainz.artists.countDefault;

@@ -3,8 +3,8 @@ import * as fs from 'fs';
 import {Artist as LastfmArtist} from 'src/types/lastfm';
 import {Artist} from 'src/types/artist';
 
-import {fetchLibraryArtists} from 'src/utils/lastfm';
 import config from 'src/config';
+import {fetchLibraryArtists} from 'src/connectors/lastfm';
 
 const argv = process.argv.slice(2);
 const artistsCount = parseInt(argv[0], 10) || config.lastfm.artists.countDefault;
