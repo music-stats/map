@@ -13,4 +13,4 @@ server/tmp/*.json
 
 client/dist/
 server/dist/
-server/cache/
+server/cache/**/*.json
