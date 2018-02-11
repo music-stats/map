@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@types/dotenv": "4.0.2",
-    "@types/node": "9.4.0",
+    "@types/node": "9.4.5",
     "@types/ramda": "0.25.17",
     "husky": "0.14.3",
     "tslint": "5.9.1",

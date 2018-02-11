@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 
 import {LibraryResponse, Artist} from 'src/types/lastfm';
 import config from 'src/config';
+import {getResponseDataCache, cacheResponseData} from 'src/utils/cache';
 
 const {parsed: {LASTFM_API_KEY}} = dotenv.config();
 
@@ -33,8 +34,18 @@ function fetchPage(username: string, pageNumber: number): Promise<LibraryRespons
   console.log(url);
 
   return new Promise((resolve, reject) => {
-    axios.get(url, {headers})
-      .then((response) => resolve(response.data))
+    getResponseDataCache(config.lastfm.cache.dir, url)
+      .then((responseDataCache) => {
+        if (responseDataCache) {
+          resolve(responseDataCache);
+          return;
+        }
+
+        axios.get(url, {headers})
+          .then((response) => cacheResponseData(config.lastfm.cache.dir, url, response.data))
+          .then((responseData) => resolve(responseData))
+          .catch(reject);
+      })
       .catch(reject);
   });
 }

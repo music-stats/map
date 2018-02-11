@@ -1,6 +1,8 @@
 import * as path from 'path';
 
-const tmpDir = path.resolve(__dirname, '../../tmp/');
+const rootDir = path.resolve(__dirname, '../../');
+const tmpDir = path.resolve(rootDir, 'tmp/');
+const cacheDir = path.resolve(rootDir, 'cache/');
 
 const config = {
   userAgent: 'music-stats/0.0.0 (https://github.com/oleksmarkh/music-stats)',
@@ -16,6 +18,10 @@ const config = {
       countDefault: 50,
     },
     outputFilePath: path.resolve(tmpDir, 'lastfm-user-library.json'),
+    cache: {
+      ttl: 60 * 60 * 1000, // ms
+      dir: path.resolve(cacheDir, 'lastfm/'),
+    },
   },
 
   musicbrainz: {
