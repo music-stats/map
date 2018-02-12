@@ -1,11 +1,11 @@
 import * as querystring from 'querystring';
 import {times, take} from 'ramda';
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import * as dotenv from 'dotenv';
 
-import {LibraryResponse, Artist} from 'src/types/lastfm';
+import {LibraryResponseData, Artist} from 'src/types/lastfm';
 import config from 'src/config';
-import {getResponseDataCache, cacheResponseData} from 'src/utils/cache';
+import {retrieveResponseDataCache, storeResponseDataCache} from 'src/utils/cache';
 
 const {parsed: {LASTFM_API_KEY}} = dotenv.config();
 
@@ -22,7 +22,7 @@ export function buildApiUrl(method: string, params = {}): string {
   })}`;
 }
 
-function fetchPage(username: string, pageNumber: number): Promise<LibraryResponse> {
+function fetchPage(username: string, pageNumber: number): Promise<LibraryResponseData> {
   const url = buildApiUrl('library.getartists', {
     user: username,
     page: pageNumber + 1, // bounds: 1-1000000
@@ -33,24 +33,39 @@ function fetchPage(username: string, pageNumber: number): Promise<LibraryRespons
 
   console.log(url);
 
+  function retrieveLastfmLibraryCache(): Promise<LibraryResponseData> {
+    return retrieveResponseDataCache<LibraryResponseData>(
+      url,
+      config.lastfm.cache,
+    );
+  }
+
+  function storeLastfmLibraryCache(response: AxiosResponse): Promise<LibraryResponseData> {
+    return storeResponseDataCache<LibraryResponseData>(
+      url,
+      response.data,
+      config.lastfm.cache,
+    );
+  }
+
   return new Promise((resolve, reject) => {
-    getResponseDataCache(config.lastfm.cache.dir, url)
-      .then((responseDataCache) => {
-        if (responseDataCache) {
-          resolve(responseDataCache);
+    retrieveLastfmLibraryCache()
+      .then((libraryCache) => {
+        if (libraryCache) {
+          resolve(libraryCache);
           return;
         }
 
         axios.get(url, {headers})
-          .then((response) => cacheResponseData(config.lastfm.cache.dir, url, response.data))
-          .then((responseData) => resolve(responseData))
+          .then(storeLastfmLibraryCache)
+          .then(resolve)
           .catch(reject);
       })
       .catch(reject);
   });
 }
 
-function concatPages(pagesData: LibraryResponse[]): Artist[] {
+function concatPages(pagesData: LibraryResponseData[]): Artist[] {
   return pagesData.reduce(
     (rawArtists: Artist[], pageData) => rawArtists.concat(pageData.artists.artist),
     [],

@@ -38,7 +38,8 @@
     "no-implicit-dependencies": false,
     "no-submodule-imports": [
       true,
-      "src"
+      "src",
+      "colors"
     ],
     "variable-name": [
       true,

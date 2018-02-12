@@ -1,5 +1,5 @@
 // @see: https://www.last.fm/api/show/library.getArtists
-export interface LibraryResponse {
+export interface LibraryResponseData {
   artists: {
     artist: Artist[];
     '@attr': {

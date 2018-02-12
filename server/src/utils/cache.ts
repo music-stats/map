@@ -1,21 +1,28 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {LibraryResponse} from 'src/types/lastfm';
-import config from 'src/config';
+import {ConnectorCacheConfig} from 'src/types/config';
+
+import log from 'src/utils/log';
 
 function getFilePath(dir: string, url: string, format: string = 'json'): string {
   return path.resolve(dir, `${encodeURIComponent(url)}.${format}`);
 }
 
-export function getResponseDataCache(dir: string, url: string): Promise<LibraryResponse> {
-  const filePath = getFilePath(dir, url);
+export function retrieveResponseDataCache<ResponseData>(
+  url: string,
+  connectorCacheConfig: ConnectorCacheConfig,
+): Promise<ResponseData> {
+  const filePath = getFilePath(connectorCacheConfig.dir, url);
 
   return new Promise((resolve, reject) => {
     fs.stat(filePath, (err, stats) => {
       if (err) {
         if (err.code === 'ENOENT') {
-          console.log(`response is not cached, file not found: ${filePath}`);
+          log(`
+            response is not cached, file not found:
+            - file: ${filePath}
+          `);
           resolve(null);
           return;
         }
@@ -24,10 +31,15 @@ export function getResponseDataCache(dir: string, url: string): Promise<LibraryR
         return;
       }
 
-      console.log(stats);
+      // console.log(stats);
 
-      if (Date.now() - stats.mtimeMs > config.lastfm.cache.ttl) {
-        console.log(`response cache is outdated, mtime: ${stats.mtime}, ttl: ${config.lastfm.cache.ttl}ms`);
+      if (Date.now() - stats.mtimeMs > connectorCacheConfig.ttl) {
+        log(`
+          response cache is outdated:
+          - file: ${filePath}
+          - mtime: ${stats.mtime}
+          - ttl: ${connectorCacheConfig.ttl}ms
+        `);
         resolve(null);
         return;
       }
@@ -38,15 +50,22 @@ export function getResponseDataCache(dir: string, url: string): Promise<LibraryR
           return;
         }
 
-        console.log('response cache is valid');
+        log(`
+          response cache is valid:
+          - file: ${filePath}
+        `);
         resolve(JSON.parse(data));
       });
     });
   });
 }
 
-export function cacheResponseData(dir: string, url: string, responseData: LibraryResponse): Promise<LibraryResponse> {
-  const filePath = getFilePath(dir, url);
+export function storeResponseDataCache<ResponseData>(
+  url: string,
+  responseData: ResponseData,
+  connectorCacheConfig: ConnectorCacheConfig,
+): Promise<ResponseData> {
+  const filePath = getFilePath(connectorCacheConfig.dir, url);
   const responseDataSerialized = JSON.stringify(responseData, null, 2);
 
   return new Promise((resolve, reject) => {

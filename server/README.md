@@ -5,6 +5,7 @@ An API gateway between the front-end and various data providers.
 ## Tech stack
 
 - [x] [node](https://nodejs.org/dist/latest-v9.x/docs/api)
+- [x] [axios](https://github.com/axios/axios)
 - [ ] [koa](http://koajs.com/#application)
 
 ## APIs, datasets

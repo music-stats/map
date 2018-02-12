@@ -1,10 +1,12 @@
 import * as path from 'path';
 
+import Config from 'src/types/config';
+
 const rootDir = path.resolve(__dirname, '../../');
 const tmpDir = path.resolve(rootDir, 'tmp/');
 const cacheDir = path.resolve(rootDir, 'cache/');
 
-const config = {
+const config: Config = {
   userAgent: 'music-stats/0.0.0 (https://github.com/oleksmarkh/music-stats)',
 
   lastfm: {
@@ -19,7 +21,7 @@ const config = {
     },
     outputFilePath: path.resolve(tmpDir, 'lastfm-user-library.json'),
     cache: {
-      ttl: 60 * 60 * 1000, // ms
+      ttl: 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'lastfm/'),
     },
   },
@@ -33,6 +35,10 @@ const config = {
       countDefault: 10,
     },
     outputFilePath: path.resolve(tmpDir, 'musicbrainz-artists-areas.json'),
+    cache: {
+      ttl: 24 * 60 * 60 * 1000,
+      dir: path.resolve(cacheDir, 'musicbrainz/'),
+    },
   },
 };
 
