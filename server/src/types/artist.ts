@@ -1,7 +1,7 @@
 export interface Artist {
   name: string;
   playcount: number;
-  mbid: string; // musicbrainz id
+  mbid: string; // MusicBrainz id
 }
 
 export interface ArtistArea {

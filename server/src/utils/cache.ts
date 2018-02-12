@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import {ConnectorCacheConfig} from 'src/types/config';
+import {readFile} from 'src/utils/promise';
 import log from 'src/utils/log';
 
 function constructCacheFilePath(dir: string, url: string, format: string = 'json'): string {
@@ -43,18 +44,13 @@ export function retrieveResponseDataCache<ResponseData>(
         return;
       }
 
-      fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        log(`
-          response cache is valid:
-          - file: ${filePath}
-        `);
-        resolve(JSON.parse(data));
-      });
+      log(`
+        response cache is valid:
+        - file: ${filePath}
+      `);
+      readFile(filePath)
+        .then((data) => resolve(JSON.parse(data)))
+        .catch(reject);
     });
   });
 }

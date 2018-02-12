@@ -67,7 +67,7 @@ Example output:
 Expects an output of `script:fetch-artists` to be located at `config.lastfm.outputFilePath`.
 
 ```bash
-$ yarn script:fetch-artists-areas [10]
+$ yarn script:fetch-artists-areas [10] [--no-color] [--no-cache]
 ```
 
 Example output:

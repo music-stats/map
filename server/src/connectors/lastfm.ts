@@ -4,10 +4,15 @@ import axios, {AxiosResponse} from 'axios';
 import * as dotenv from 'dotenv';
 
 import {LibraryResponseData, Artist} from 'src/types/lastfm';
+
 import config from 'src/config';
+import {sequence} from 'src/utils/promise';
+import {logRequest} from 'src/utils/log';
 import {retrieveResponseDataCache, storeResponseDataCache} from 'src/utils/cache';
 
 const {parsed: {LASTFM_API_KEY}} = dotenv.config();
+
+type LibraryResponse = AxiosResponse<LibraryResponseData>;
 
 export function buildApiUrl(method: string, params = {}): string {
   const defaultParams = {
@@ -35,40 +40,35 @@ function fetchPage(
     'User-Agent': config.userAgent,
   };
 
-  console.log(url);
-
-  if (toBypassCache) {
-    return new Promise((resolve, reject) => {
-      axios.get(url, {headers})
-        .then((response) => resolve(response.data))
-        .catch(reject);
-    });
+  function requestLastfmLibrary(): Promise<LibraryResponse> {
+    logRequest(url);
+    return axios.get(url, {headers});
   }
 
   function retrieveLastfmLibraryCache(): Promise<LibraryResponseData> {
     return retrieveResponseDataCache<LibraryResponseData>(url, config.lastfm.cache);
   }
 
-  function storeLastfmLibraryCache(response: AxiosResponse): Promise<AxiosResponse> {
+  function storeLastfmLibraryCache(response: LibraryResponse): Promise<LibraryResponse> {
     return storeResponseDataCache<LibraryResponseData>(url, response.data, config.lastfm.cache)
       .then(() => response);
   }
 
-  return new Promise((resolve, reject) => {
-    retrieveLastfmLibraryCache()
-      .then((libraryCache) => {
-        if (libraryCache) {
-          resolve(libraryCache);
-          return;
-        }
+  if (toBypassCache) {
+    return requestLastfmLibrary()
+      .then((response) => response.data);
+  }
 
-        axios.get(url, {headers})
-          .then(storeLastfmLibraryCache)
-          .then((response) => resolve(response.data))
-          .catch(reject);
-      })
-      .catch(reject);
-  });
+  return retrieveLastfmLibraryCache()
+    .then((libraryCache) => {
+      if (libraryCache) {
+        return libraryCache;
+      }
+
+      return requestLastfmLibrary()
+        .then(storeLastfmLibraryCache)
+        .then((response) => response.data);
+    });
 }
 
 function concatPages(pagesData: LibraryResponseData[]): Artist[] {
@@ -88,13 +88,12 @@ export function fetchLibraryArtists(
     config.lastfm.artists.maxPageNumber,
   );
 
-  const fetchAllPages = times((pageNumber) => fetchPage(username, pageNumber, toBypassCache), pagesCount);
+  const fetchAllPages = times((pageNumber) => fetchPage.bind(null, username, pageNumber, toBypassCache), pagesCount);
   const cutExtraArtists = (rawArtists: Artist[]) => take(artistsCount, rawArtists);
 
   console.log('pages:', pagesCount);
 
-  // @todo: set delays (or use a generic queue) instead of firing simultaneous requests
-  return Promise.all(fetchAllPages)
+  return sequence(fetchAllPages)
     .then(concatPages)
     .then(cutExtraArtists);
 }

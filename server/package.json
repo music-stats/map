@@ -6,8 +6,9 @@
   "license": "MIT",
   "scripts": {
     "lint": "tslint ./src/**/*.ts",
-    "clean": "rm -rf ./dist/*",
-    "prebuild": "yarn clean",
+    "clean:dist": "rm -rf ./dist/*",
+    "clean:cache": "rm -rf ./cache/**/*.json",
+    "prebuild": "yarn clean:dist",
     "build": "tsc",
     "build:watch": "tsc -w",
     "precommit": "yarn lint",

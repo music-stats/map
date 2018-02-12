@@ -6,11 +6,12 @@ import {Artist as MusicbrainzArtist} from 'src/types/musicbrainz';
 import {ArtistArea} from 'src/types/artist';
 
 import config from 'src/config';
-import {readFile, delay} from 'src/utils/promise';
+import {readFile, sequence} from 'src/utils/promise';
 import {fetchArtist} from 'src/connectors/musicbrainz';
 
 const argv = process.argv.slice(2);
 const artistsCount = parseInt(argv[0], 10) || config.musicbrainz.artists.countDefault;
+const toBypassCache = argv.includes('--no-cache');
 
 if (artistsCount <= 0) {
   throw new Error(`Expected a number of artists greater then 0, got ${artistsCount}`);
@@ -23,14 +24,10 @@ function extract(): Promise<MusicbrainzArtist[]> {
     .then((lastfmArtists) => lastfmArtists.map((lastfmArtist) => lastfmArtist.mbid))
     .then((mbids) => mbids.filter((mbid) => Boolean(mbid)))
     .then((mbids) => {
-      console.log(`fetching ${mbids.length} artists from musicbrainz...`);
+      console.log(`fetching ${mbids.length} artists from MusicBrainz...`);
       return mbids;
     })
-    .then((mbids) => Promise.all(mbids.map((mbid, index) => delay(
-      fetchArtist,
-      index * config.musicbrainz.api.requestFrequency,
-      mbid,
-    ))));
+    .then((mbids) => sequence(mbids.map((mbid) => fetchArtist.bind(null, mbid, toBypassCache))));
 }
 
 function transform(musicbrainzArtists: MusicbrainzArtist[]): ArtistArea[] {
@@ -40,7 +37,9 @@ function transform(musicbrainzArtists: MusicbrainzArtist[]): ArtistArea[] {
 function convert(musicbrainzArtist: MusicbrainzArtist): ArtistArea {
   return {
     artist: musicbrainzArtist.name,
-    area: musicbrainzArtist.area.name,
+    area: musicbrainzArtist.area
+      ? musicbrainzArtist.area.name
+      : null,
   };
 }
 

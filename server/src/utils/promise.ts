@@ -26,3 +26,15 @@ export function delay(
     );
   });
 }
+
+export function sequence(promises: Array<Promise<any>>): Promise<any> {
+  const results: any[] = [];
+
+  function enqueuePromise(queue: Promise<any>, promise: Promise<any>) {
+    return queue
+      .then(() => (promise as any)().then((result: any) => results.push(result)));
+  }
+
+  return promises.reduce(enqueuePromise, Promise.resolve())
+    .then(() => results);
+}
