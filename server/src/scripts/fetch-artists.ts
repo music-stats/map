@@ -8,14 +8,15 @@ import {fetchLibraryArtists} from 'src/connectors/lastfm';
 
 const argv = process.argv.slice(2);
 const artistsCount = parseInt(argv[0], 10) || config.lastfm.artists.countDefault;
+const toBypassCache = argv.includes('--no-cache');
 
 if (artistsCount <= 0) {
   throw new Error(`Expected a number of artists greater then 0, got ${artistsCount}`);
 }
 
-function extract(count: number): Promise<LastfmArtist[]> {
-  console.log(`fetching ${count} artists from last.fm...`);
-  return fetchLibraryArtists(config.lastfm.username, count);
+function extract(): Promise<LastfmArtist[]> {
+  console.log(`fetching ${artistsCount} artists from last.fm...`);
+  return fetchLibraryArtists(config.lastfm.username, artistsCount, toBypassCache);
 }
 
 function transform(rawArtists: LastfmArtist[]): Artist[] {
@@ -39,7 +40,7 @@ function load(artists: Artist[]) {
   );
 }
 
-extract(artistsCount)
+extract()
   .then(transform)
   .then(load)
   .catch(console.error);

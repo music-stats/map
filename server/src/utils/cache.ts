@@ -2,10 +2,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import {ConnectorCacheConfig} from 'src/types/config';
-
 import log from 'src/utils/log';
 
-function getFilePath(dir: string, url: string, format: string = 'json'): string {
+function constructCacheFilePath(dir: string, url: string, format: string = 'json'): string {
   return path.resolve(dir, `${encodeURIComponent(url)}.${format}`);
 }
 
@@ -13,7 +12,7 @@ export function retrieveResponseDataCache<ResponseData>(
   url: string,
   connectorCacheConfig: ConnectorCacheConfig,
 ): Promise<ResponseData> {
-  const filePath = getFilePath(connectorCacheConfig.dir, url);
+  const filePath = constructCacheFilePath(connectorCacheConfig.dir, url);
 
   return new Promise((resolve, reject) => {
     fs.stat(filePath, (err, stats) => {
@@ -64,8 +63,8 @@ export function storeResponseDataCache<ResponseData>(
   url: string,
   responseData: ResponseData,
   connectorCacheConfig: ConnectorCacheConfig,
-): Promise<ResponseData> {
-  const filePath = getFilePath(connectorCacheConfig.dir, url);
+): Promise<string> {
+  const filePath = constructCacheFilePath(connectorCacheConfig.dir, url);
   const responseDataSerialized = JSON.stringify(responseData, null, 2);
 
   return new Promise((resolve, reject) => {
@@ -75,7 +74,11 @@ export function storeResponseDataCache<ResponseData>(
         return;
       }
 
-      resolve(responseData);
+      log(`
+        response cache is stored:
+        - file: ${filePath}
+      `);
+      resolve(filePath);
     });
   });
 }

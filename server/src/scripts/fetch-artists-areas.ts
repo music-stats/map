@@ -16,10 +16,10 @@ if (artistsCount <= 0) {
   throw new Error(`Expected a number of artists greater then 0, got ${artistsCount}`);
 }
 
-function extract(count: number): Promise<MusicbrainzArtist[]> {
+function extract(): Promise<MusicbrainzArtist[]> {
   return readFile(config.lastfm.outputFilePath)
     .then((data) => JSON.parse(data))
-    .then((lastfmArtists: LastfmArtist[]) => take(count, lastfmArtists))
+    .then((lastfmArtists: LastfmArtist[]) => take(artistsCount, lastfmArtists))
     .then((lastfmArtists) => lastfmArtists.map((lastfmArtist) => lastfmArtist.mbid))
     .then((mbids) => mbids.filter((mbid) => Boolean(mbid)))
     .then((mbids) => {
@@ -53,7 +53,7 @@ function load(artistsAreas: ArtistArea[]) {
   );
 }
 
-extract(artistsCount)
+extract()
   .then(transform)
   .then(load)
   .catch(console.error);

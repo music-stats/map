@@ -22,7 +22,11 @@ export function buildApiUrl(method: string, params = {}): string {
   })}`;
 }
 
-function fetchPage(username: string, pageNumber: number): Promise<LibraryResponseData> {
+function fetchPage(
+  username: string,
+  pageNumber: number,
+  toBypassCache: boolean,
+): Promise<LibraryResponseData> {
   const url = buildApiUrl('library.getartists', {
     user: username,
     page: pageNumber + 1, // bounds: 1-1000000
@@ -33,19 +37,21 @@ function fetchPage(username: string, pageNumber: number): Promise<LibraryRespons
 
   console.log(url);
 
-  function retrieveLastfmLibraryCache(): Promise<LibraryResponseData> {
-    return retrieveResponseDataCache<LibraryResponseData>(
-      url,
-      config.lastfm.cache,
-    );
+  if (toBypassCache) {
+    return new Promise((resolve, reject) => {
+      axios.get(url, {headers})
+        .then((response) => resolve(response.data))
+        .catch(reject);
+    });
   }
 
-  function storeLastfmLibraryCache(response: AxiosResponse): Promise<LibraryResponseData> {
-    return storeResponseDataCache<LibraryResponseData>(
-      url,
-      response.data,
-      config.lastfm.cache,
-    );
+  function retrieveLastfmLibraryCache(): Promise<LibraryResponseData> {
+    return retrieveResponseDataCache<LibraryResponseData>(url, config.lastfm.cache);
+  }
+
+  function storeLastfmLibraryCache(response: AxiosResponse): Promise<AxiosResponse> {
+    return storeResponseDataCache<LibraryResponseData>(url, response.data, config.lastfm.cache)
+      .then(() => response);
   }
 
   return new Promise((resolve, reject) => {
@@ -58,7 +64,7 @@ function fetchPage(username: string, pageNumber: number): Promise<LibraryRespons
 
         axios.get(url, {headers})
           .then(storeLastfmLibraryCache)
-          .then(resolve)
+          .then((response) => resolve(response.data))
           .catch(reject);
       })
       .catch(reject);
@@ -72,13 +78,17 @@ function concatPages(pagesData: LibraryResponseData[]): Artist[] {
   );
 }
 
-export function fetchLibraryArtists(username: string, artistsCount: number): Promise<Artist[]> {
+export function fetchLibraryArtists(
+  username: string,
+  artistsCount: number,
+  toBypassCache: boolean,
+): Promise<Artist[]> {
   const pagesCount = Math.min(
     Math.ceil(artistsCount / config.lastfm.artists.perPage),
     config.lastfm.artists.maxPageNumber,
   );
 
-  const fetchAllPages = times((pageNumber) => fetchPage(username, pageNumber), pagesCount);
+  const fetchAllPages = times((pageNumber) => fetchPage(username, pageNumber, toBypassCache), pagesCount);
   const cutExtraArtists = (rawArtists: Artist[]) => take(artistsCount, rawArtists);
 
   console.log('pages:', pagesCount);

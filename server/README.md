@@ -41,7 +41,7 @@ $ yarn build # yarn build:watch
 ### List top artists for a given last.fm user
 
 ```bash
-$ yarn script:fetch-artists [number=50] # username is set in "./src/config.js"
+$ yarn script:fetch-artists [50] [--no-color] [--no-cache] # username is set in "./src/config.js"
 ```
 
 Example output:
@@ -67,7 +67,7 @@ Example output:
 Expects an output of `script:fetch-artists` to be located at `config.lastfm.outputFilePath`.
 
 ```bash
-$ yarn script:fetch-artists-areas [number=10]
+$ yarn script:fetch-artists-areas [10]
 ```
 
 Example output:
