@@ -49,7 +49,7 @@ Example output:
 ```js
 [ { name: 'Dream Theater',
     playcount: 755,
-    mbid: '28503ab7-8bf2-4666-a7bd-2644bfc7cb1d' }, // musicbrainz id
+    mbid: '28503ab7-8bf2-4666-a7bd-2644bfc7cb1d' }, // MusicBrainz id
   { name: 'Queen',
     playcount: 738,
     mbid: '420ca290-76c5-41af-999e-564d7c71f1a7' },
@@ -78,4 +78,30 @@ Example output:
   ...
   { artist: 'Обійми Дощу', area: 'Ukraine' },
   { artist: 'Epica', area: 'Netherlands' } ]
+```
+
+### Merge results of two scripts above
+
+Expects both input files (`.json`) to be located at `tmp/`.
+
+```bash
+$ yarn script:merge-artists
+```
+
+Example output:
+
+```js
+[ { name: 'Dream Theater',
+    playcount: 755,
+    area: 'United States' },
+  { name: 'Queen',
+    playcount: 738,
+    area: 'United Kingdom' },
+  ...
+  { name: 'Обійми Дощу',
+    playcount: 199,
+    area: 'Ukraine' },
+  { name: 'Epica',
+    playcount: 197,
+    area: 'Netherlands' } ]
 ```

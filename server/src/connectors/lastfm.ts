@@ -73,7 +73,7 @@ function fetchPage(
 
 function concatPages(pagesData: LibraryResponseData[]): Artist[] {
   return pagesData.reduce(
-    (rawArtists: Artist[], pageData) => rawArtists.concat(pageData.artists.artist),
+    (rawArtistList: Artist[], pageData) => rawArtistList.concat(pageData.artists.artist),
     [],
   );
 }
@@ -87,9 +87,11 @@ export function fetchLibraryArtists(
     Math.ceil(artistsCount / config.lastfm.artists.perPage),
     config.lastfm.artists.maxPageNumber,
   );
-
-  const fetchAllPages = times((pageNumber) => fetchPage.bind(null, username, pageNumber, toBypassCache), pagesCount);
-  const cutExtraArtists = (rawArtists: Artist[]) => take(artistsCount, rawArtists);
+  const fetchAllPages = times(
+    (pageNumber) => fetchPage.bind(null, username, pageNumber, toBypassCache),
+    pagesCount,
+  );
+  const cutExtraArtists = (rawArtistList: Artist[]) => take(artistsCount, rawArtistList);
 
   console.log('pages:', pagesCount);
 

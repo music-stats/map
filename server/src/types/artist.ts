@@ -8,3 +8,9 @@ export interface ArtistArea {
   artist: string;
   area: string;
 }
+
+export interface MergedArtist {
+  name: string;
+  playcount: number;
+  area: string;
+}

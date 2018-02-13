@@ -29,10 +29,15 @@ interface MusicbrainzConfig extends ConnectorConfig {
   };
 }
 
+interface MergedArtistsConfig {
+  outputFilePath: string;
+}
+
 interface Config {
   userAgent: string;
   lastfm: LastfmConfig;
   musicbrainz: MusicbrainzConfig;
+  mergedArtists: MergedArtistsConfig;
 }
 
 export default Config;

@@ -13,7 +13,8 @@
     "build:watch": "tsc -w",
     "precommit": "yarn lint",
     "script:fetch-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/fetch-artists",
-    "script:fetch-artists-areas": "export NODE_PATH=./dist/ && node ./dist/src/scripts/fetch-artists-areas"
+    "script:fetch-artists-areas": "export NODE_PATH=./dist/ && node ./dist/src/scripts/fetch-artists-areas",
+    "script:merge-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/merge-artists"
   },
   "devDependencies": {
     "@types/colors": "1.1.3",

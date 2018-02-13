@@ -1,11 +1,23 @@
 import * as fs from 'fs';
 
-export function readFile(filePath: string): Promise<string> {
+export function readFile<DataType>(filePath: string): Promise<DataType> {
   return new Promise((resolve, reject) => {
     fs.readFile(
       filePath,
       'utf8',
       (err, data) => err
+        ? reject(err)
+        : resolve(JSON.parse(data)),
+    );
+  });
+}
+
+export function writeFile<DataType>(filePath: string, data: DataType): Promise<DataType> {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(
+      filePath,
+      JSON.stringify(data, null, 2),
+      (err) => err
         ? reject(err)
         : resolve(data),
     );

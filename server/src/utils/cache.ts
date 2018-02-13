@@ -49,7 +49,7 @@ export function retrieveResponseDataCache<ResponseData>(
         - file: ${filePath}
       `);
       readFile(filePath)
-        .then((data) => resolve(JSON.parse(data)))
+        .then(resolve)
         .catch(reject);
     });
   });

@@ -15,7 +15,7 @@ const config: Config = {
     },
     username: 'markhovskiy',
     artists: {
-      maxPageNumber: 5, // @see: https://www.last.fm/api/tos
+      maxPageNumber: 10, // @see: https://www.last.fm/api/tos
       perPage: 50,
       countDefault: 50,
     },
@@ -39,6 +39,10 @@ const config: Config = {
       ttl: 24 * 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'musicbrainz/'),
     },
+  },
+
+  mergedArtists: {
+    outputFilePath: path.resolve(tmpDir, 'merged-artists.json'),
   },
 };
 
