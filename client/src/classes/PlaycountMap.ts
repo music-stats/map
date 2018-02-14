@@ -3,18 +3,19 @@ import {GeoJsonTypes} from 'geojson';
 import * as d3Scale from 'd3-scale';
 import * as d3ScaleChromatic from 'd3-scale-chromatic';
 
-import {Artist, Area, AreaProperties, CustomControl} from 'src/types';
+import {Artist, Area, AreaProperties, CustomControl, Animation} from 'src/types';
 import config from 'src/config';
-import {getArtistsAreas, getAreaScrobbleCount} from 'src/utils/area';
+import {getArtistsAreas, getAreaArtistCount, getAreaScrobbleCount} from 'src/utils/area';
 
 import renderInfoBox from 'src/templates/InfoBox';
-import renderLegend from 'src/templates/Legend';
+import renderLegend, {AreaListItemProps, AreaListItemAnimatedProps} from 'src/templates/Legend';
 import renderLinksBox from 'src/templates/LinksBox';
 
 import 'leaflet/dist/leaflet.css';
 import './PlaycountMap.scss';
 
 type ColorScale = d3Scale.ScalePower<number, number>;
+type WidthPercentScale = d3Scale.ScaleLinear<number, number>;
 
 interface InfoBoxProps {
   area?: Area;
@@ -27,7 +28,11 @@ interface InfoBox extends CustomControl {
 class PlaycountMap {
   private areas: Area[];
   private totalScrobbleCount: number;
+
   private colorScale: ColorScale;
+  private artistCountBgWidthPercentScale: WidthPercentScale;
+  private scrobbleCountBgWidthPercentScale: WidthPercentScale;
+
   private geojson: L.GeoJSON<AreaProperties>;
 
   private infoBox: InfoBox;
@@ -39,6 +44,7 @@ class PlaycountMap {
     private artists: Artist[],
   ) {
     const areas = getArtistsAreas(this.artists);
+    const allArtistCounts = areas.map(getAreaArtistCount);
     const allScrobbleCounts = areas.map(getAreaScrobbleCount);
     const areasCollection = {
       type: 'FeatureCollection' as GeoJsonTypes,
@@ -47,7 +53,11 @@ class PlaycountMap {
 
     this.areas = areas;
     this.totalScrobbleCount = allScrobbleCounts.reduce((sum, areaScrobbleCount) => sum + areaScrobbleCount, 0);
+
     this.colorScale = this.getColorScale(allScrobbleCounts);
+    this.artistCountBgWidthPercentScale = this.getWidthPercentScale(allArtistCounts);
+    this.scrobbleCountBgWidthPercentScale = this.getWidthPercentScale(allScrobbleCounts);
+
     this.geojson = L.geoJSON(areasCollection, {
       style: this.getAreaStyle.bind(this),
       onEachFeature: (_, layer) => this.subscribeLayer(layer),
@@ -143,6 +153,20 @@ class PlaycountMap {
       ]);
   }
 
+  private getWidthPercentScale(counts: number[]): WidthPercentScale {
+    return d3Scale.scaleLinear()
+      .domain([0, Math.max(...counts)])
+      .range([0, 100]);
+  }
+
+  private getArtistCountBgWidthPercent(artistCount: number): number {
+    return this.artistCountBgWidthPercentScale(artistCount);
+  }
+
+  private getScrobbleCountBgWidthPercent(scrobbleCount: number): number {
+    return this.scrobbleCountBgWidthPercentScale(scrobbleCount);
+  }
+
   private getAreaColorString(scrobbleCount: number): string {
     return d3ScaleChromatic.interpolateBlues(this.colorScale(scrobbleCount));
   }
@@ -225,24 +249,46 @@ class PlaycountMap {
     return infoBox;
   }
 
+  private getAreaListItemProps(area: Area): AreaListItemProps {
+    const {name, artists} = area.properties;
+    const artistCount = artists.length;
+    const artistCountBgWidthPercent = this.getArtistCountBgWidthPercent(artistCount);
+    const scrobbleCount = getAreaScrobbleCount(area);
+    const scrobbleCountPercent = scrobbleCount / this.totalScrobbleCount * 100;
+    const scrobbleCountBgWidthPercent = this.getScrobbleCountBgWidthPercent(scrobbleCount);
+    const color = this.getAreaColorString(scrobbleCount);
+
+    return {
+      name,
+      artistCount,
+      artistCountBgWidthPercent,
+      scrobbleCount,
+      scrobbleCountPercent,
+      scrobbleCountBgWidthPercent,
+      color,
+    };
+  }
+
+  private addAnimation(areaListItemProps: AreaListItemProps, index: number): AreaListItemAnimatedProps {
+    const {duration, delay} = config.controls.legend.itemScaleAnimation;
+    const animation: Animation = {
+      duration,
+      delay: config.controls.toggleAnimationDuration + delay * index,
+    };
+
+    return {
+      ...areaListItemProps,
+      animation,
+    };
+  }
+
   private createLegend(options: L.ControlOptions): CustomControl {
     const legend: CustomControl = (L.control as any)(options);
 
-    const areaList = this.areas.map((area) => {
-      const {name, artists} = area.properties;
-      const artistCount = artists.length;
-      const scrobbleCount = getAreaScrobbleCount(area);
-      const scrobbleCountPersent = scrobbleCount / this.totalScrobbleCount * 100;
-      const color = this.getAreaColorString(scrobbleCount);
-
-      return {
-        name,
-        artistCount,
-        scrobbleCount,
-        scrobbleCountPersent,
-        color,
-      };
-    }).sort((a, b) => b.scrobbleCount - a.scrobbleCount);
+    const areaList = this.areas
+      .map((area) => this.getAreaListItemProps(area))
+      .sort((a, b) => b.scrobbleCount - a.scrobbleCount)
+      .map((areaListItemProps, index) => this.addAnimation(areaListItemProps, index));
 
     legend.onAdd = () => {
       legend.element = L.DomUtil.create('aside', 'PlaycountMap__control Legend');

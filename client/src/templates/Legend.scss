@@ -30,10 +30,13 @@
 }
 
 .Legend__area {
+  position: relative;
+
   display: flex;
   align-items: center;
 
   margin: 0.6em 0;
+  padding-right: 6px;
 
   cursor: default;
 
@@ -50,18 +53,62 @@
   }
 }
 
+@keyframes slideIn {
+  from {
+    right: 100%;
+  }
+
+  to {
+    right: 0;
+  }
+}
+
+.Legend__area-scale-container {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 18px;
+
+  .Legend:hover & {
+    animation-name: slideIn;
+    animation-fill-mode: forwards;
+  }
+
+  .Legend__area:hover & {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.Legend__area-scale {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  opacity: 0.4;
+
+  &--top {
+    bottom: 50%;
+  }
+
+  &--bottom {
+    top: 50%;
+  }
+}
+
 .Legend__area-color {
   box-sizing: border-box;
 
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
 
   margin-right: 0.4em;
 
   border: 2px solid #fff;
 
   .Legend__area:hover & {
-    border-color: #abc;
+    border-color: transparent;
   }
 }
 

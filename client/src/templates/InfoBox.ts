@@ -1,4 +1,5 @@
 import {Artist, AreaProperties} from 'src/types';
+import {trimExtraSpaces} from 'src/utils/render';
 
 import './InfoBox.scss';
 
@@ -60,7 +61,7 @@ export default function render({
   areaScrobbleCount,
   ...area,
 }: InfoBoxProps): string {
-  return `
+  return trimExtraSpaces(`
     <section
       class="InfoBox__section"
     >
@@ -148,5 +149,5 @@ export default function render({
         `
       }
     </section>
-  `;
+  `);
 }

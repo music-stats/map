@@ -1,3 +1,5 @@
+import {trimExtraSpaces} from 'src/utils/render';
+
 import './LinksBox.scss';
 
 interface Link {
@@ -38,7 +40,7 @@ export default function render({
   github,
   twitter,
 }: LinksBoxProps): string {
-  return `
+  return trimExtraSpaces(`
     <ul>
       ${renderLinkListItem({
         ...github,
@@ -50,5 +52,5 @@ export default function render({
         label: 'Twitter',
       })}
     </ul>
-  `;
+  `);
 }

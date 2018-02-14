@@ -18,3 +18,8 @@ export interface CustomControl extends L.Control {
 }
 
 export type Area = Feature<GeometryObject, AreaProperties>;
+
+export interface Animation {
+  duration: number;
+  delay: number;
+}

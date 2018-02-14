@@ -2,10 +2,17 @@ import * as L from 'leaflet';
 
 const config = {
   controls: {
-    toggleAnimationDuration: 200,
+    toggleAnimationDuration: 400,
 
     infoBox: {
       username: 'markhovskiy', // last.fm
+    },
+
+    legend: {
+      itemScaleAnimation: {
+        duration: 600,
+        delay: 120,
+      },
     },
 
     linksBox: {
@@ -63,7 +70,7 @@ const config = {
 
       fillColorScale: {
         powerExponent: 0.5,
-        minRange: 0.2,
+        minRange: 0.1,
         maxRange: 1,
       },
     },
