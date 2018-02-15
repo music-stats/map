@@ -1,14 +1,20 @@
-import * as L from 'leaflet';
+import {Config} from 'src/types/config';
 
-const config = {
+const config: Config = {
   controls: {
     toggleAnimationDuration: 400,
 
     infoBox: {
+      options: {
+        position: 'topright',
+      },
       username: 'markhovskiy', // last.fm
     },
 
     legend: {
+      options: {
+        position: 'bottomleft',
+      },
       itemScaleAnimation: {
         duration: 600,
         delay: 120,
@@ -16,6 +22,9 @@ const config = {
     },
 
     linksBox: {
+      options: {
+        position: 'bottomright',
+      },
       links: {
         github: {
           url: 'https://github.com/oleksmarkh/music-stats',
@@ -31,7 +40,7 @@ const config = {
 
   map: {
     defaultView: {
-      center: ([50.45, 30.52] as L.LatLngExpression), // Kyiv
+      center: [50.45, 30.52], // Kyiv
       zoom: 3,
     },
 

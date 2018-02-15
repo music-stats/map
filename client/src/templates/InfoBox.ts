@@ -1,4 +1,4 @@
-import {Artist, AreaProperties} from 'src/types';
+import {Artist, AreaProperties} from 'src/types/models';
 import {trimExtraSpaces} from 'src/utils/render';
 
 import './InfoBox.scss';

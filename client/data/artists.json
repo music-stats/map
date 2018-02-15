@@ -490,6 +490,11 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Рокаш",
+    "playcount": 96,
+    "area": "Belarus"
+  },
+  {
     "name": "Death",
     "playcount": 96,
     "area": "United States"
@@ -820,11 +825,6 @@
     "area": "United States"
   },
   {
-    "name": "Rokash",
-    "playcount": 56,
-    "area": "Belarus"
-  },
-  {
     "name": "Virgin Black",
     "playcount": 56,
     "area": "Australia"
@@ -1138,11 +1138,6 @@
     "name": "Мертвий Півень",
     "playcount": 40,
     "area": "Ukraine"
-  },
-  {
-    "name": "Рокаш",
-    "playcount": 40,
-    "area": "Belarus"
   },
   {
     "name": "Elend",

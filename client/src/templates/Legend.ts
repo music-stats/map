@@ -1,4 +1,4 @@
-import {Animation} from 'src/types';
+import {Animation} from 'src/types/elements';
 import {trimExtraSpaces} from 'src/utils/render';
 
 import './Legend.scss';

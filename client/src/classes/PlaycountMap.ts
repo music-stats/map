@@ -3,7 +3,9 @@ import {GeoJsonTypes} from 'geojson';
 import * as d3Scale from 'd3-scale';
 import * as d3ScaleChromatic from 'd3-scale-chromatic';
 
-import {Artist, Area, AreaProperties, CustomControl, Animation} from 'src/types';
+import {Artist, Area, AreaProperties} from 'src/types/models';
+import {CustomControl, Animation} from 'src/types/elements';
+
 import config from 'src/config';
 import {getArtistsAreas, getAreaArtistCount, getAreaScrobbleCount} from 'src/utils/area';
 
@@ -63,15 +65,9 @@ class PlaycountMap {
       onEachFeature: (_, layer) => this.subscribeLayer(layer),
     });
 
-    this.infoBox = this.createInfoBox({
-      position: 'topright',
-    });
-    this.legend = this.createLegend({
-      position: 'bottomleft',
-    });
-    this.linksBox = this.createLinksBox({
-      position: 'bottomright',
-    });
+    this.infoBox = this.createInfoBox(config.controls.infoBox.options);
+    this.legend = this.createLegend(config.controls.legend.options);
+    this.linksBox = this.createLinksBox(config.controls.linksBox.options);
   }
 
   public render() {
@@ -159,14 +155,6 @@ class PlaycountMap {
       .range([0, 100]);
   }
 
-  private getArtistCountBgWidthPercent(artistCount: number): number {
-    return this.artistCountBgWidthPercentScale(artistCount);
-  }
-
-  private getScrobbleCountBgWidthPercent(scrobbleCount: number): number {
-    return this.scrobbleCountBgWidthPercentScale(scrobbleCount);
-  }
-
   private getAreaColorString(scrobbleCount: number): string {
     return d3ScaleChromatic.interpolateBlues(this.colorScale(scrobbleCount));
   }
@@ -206,14 +194,14 @@ class PlaycountMap {
     const layer = e.target as L.Polyline;
     const area = layer.feature as Area;
 
-    this.geojson.getLayers().forEach((l: L.Polyline) => {
-      if (l.feature === area) {
+    this.geojson.getLayers().forEach((layer: L.Polyline) => {
+      if (layer.feature === area) {
         this.zoomToArea(e);
         this.highlightArea(e);
       } else {
         this.resetAreaHighlight({
           type: 'mouseleave',
-          target: l,
+          target: layer,
         });
       }
     });
@@ -252,10 +240,10 @@ class PlaycountMap {
   private getAreaListItemProps(area: Area): AreaListItemProps {
     const {name, artists} = area.properties;
     const artistCount = artists.length;
-    const artistCountBgWidthPercent = this.getArtistCountBgWidthPercent(artistCount);
+    const artistCountBgWidthPercent = this.artistCountBgWidthPercentScale(artistCount);
     const scrobbleCount = getAreaScrobbleCount(area);
     const scrobbleCountPercent = scrobbleCount / this.totalScrobbleCount * 100;
-    const scrobbleCountBgWidthPercent = this.getScrobbleCountBgWidthPercent(scrobbleCount);
+    const scrobbleCountBgWidthPercent = this.scrobbleCountBgWidthPercentScale(scrobbleCount);
     const color = this.getAreaColorString(scrobbleCount);
 
     return {
