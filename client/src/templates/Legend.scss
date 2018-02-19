@@ -4,6 +4,12 @@
 
   opacity: 0.8;
 
+  // overriding ".PlaycountMap__control" padding,
+  // because "em" values lead to subpixel offsets of children elements
+  &.leaflet-control {
+    padding: 12px;
+  }
+
   &:hover {
     transform: translate(0, 0);
 
