@@ -1,6 +1,4 @@
 .Legend {
-  max-height: calc(100vh - 140px);
-
   transition-property: opacity, transform;
   transform: translate(0, 80%);
 
@@ -33,6 +31,8 @@
 
 .Legend__area-list {
   overflow: auto;
+
+  max-height: calc(100vh - 140px);
 }
 
 .Legend__area {
