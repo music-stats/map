@@ -18,22 +18,18 @@ An API gateway between the front-end and various data providers.
 
 ## Setup
 
-### Install dependencies
-
-```bash
-$ yarn install
-```
-
-### Provide environment variables
+### Environment variables
 
 Create a `.env` file and fill its values according to [.env.template](.env.template):
 
 * `LASTFM_API_KEY` (see last.fm [docs](https://www.last.fm/api/authentication))
 
-### Build
+### Commands
 
 ```bash
-$ yarn build # yarn build:watch
+$ yarn install      # install deps
+$ yarn build        # compile TypeScript
+$ yarn build:watch  # compile with watch
 ```
 
 ## Scripts
