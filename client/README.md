@@ -4,20 +4,15 @@ https://oleksmarkh.github.io/music-stats
 
 ## Tech stack
 
-### dev deps
+dev deps:
+[`typescript`](https://www.typescriptlang.org/docs),
+[`webpack`](https://webpack.js.org/api),
+[`jest`](https://facebook.github.io/jest).
 
-- [x] [typescript](https://www.typescriptlang.org/docs)
-- [x] [webpack](https://webpack.js.org/api)
-- [x] [jest](https://facebook.github.io/jest)
-
-### deps
-
-- [ ] [vue](https://vuejs.org/v2/guide)
-- [ ] [normalizr](https://github.com/paularmstrong/normalizr)
-- [x] [leaflet](http://leafletjs.com)
-- [x] [d3-scale](https://github.com/d3/d3-scale)
-- [x] [d3-scale-chromatic](https://github.com/d3/d3-scale-chromatic)
-- [ ] [d3-color](https://github.com/d3/d3-color)
+deps:
+[`leaflet`](http://leafletjs.com),
+[`d3-scale`](https://github.com/d3/d3-scale),
+[`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic).
 
 ## Setup
 
