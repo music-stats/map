@@ -4,6 +4,10 @@ function log(message: string): void {
   return console.log(colors.grey(message.trim().replace(/\n\s+/g, '\n')));
 }
 
+export function warn(message: string): void {
+  return console.warn(colors.yellow(message));
+}
+
 export function logRequest(url: string): void {
   return console.log(`requesting ${colors.cyan(url)}`);
 }

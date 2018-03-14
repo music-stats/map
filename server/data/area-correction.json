@@ -1,4 +1,5 @@
 {
+  "Toronto": "Canada",
   "New York": "United States",
   "Lawrence": "United States",
   "Houston": "United States",
@@ -8,7 +9,9 @@
   "San Francisco": "United States",
   "Columbus": "United States",
   "San Antonio": "United States",
+  "Raleigh": "United States",
   "Dublin": "Ireland",
+  "Millbrook": "United Kingdom",
   "Notodden": "Norway",
   "Nodeland": "Norway",
   "Gothenburg": "Sweden",
@@ -16,8 +19,10 @@
   "Kotka": "Finland",
   "Weimar": "Germany",
   "Berlin": "Germany",
+  "Kraków": "Poland",
   "Minsk": "Belarus",
   "Kyïv": "Ukraine",
+  "Lviv": "Ukraine",
   "Tel Aviv": "Israel",
-  "Tokyo": "Japan",
+  "Tokyo": "Japan"
 }

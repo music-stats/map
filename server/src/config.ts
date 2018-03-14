@@ -3,6 +3,7 @@ import * as path from 'path';
 import Config from 'src/types/config';
 
 const rootDir = path.resolve(__dirname, '../../');
+const dataDir = path.resolve(rootDir, 'data/');
 const tmpDir = path.resolve(rootDir, 'tmp/');
 const cacheDir = path.resolve(rootDir, 'cache/');
 
@@ -36,12 +37,16 @@ const config: Config = {
     },
     outputFilePath: path.resolve(tmpDir, 'musicbrainz-artists-areas.json'),
     cache: {
-      ttl: 24 * 60 * 60 * 1000,
+      ttl: 30 * 24 * 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'musicbrainz/'),
     },
   },
 
   mergedArtists: {
+    correctionFilePaths: {
+      area: path.resolve(dataDir, 'area-correction.json'),
+      artistArea: path.resolve(dataDir, 'artist-area-correction.json'),
+    },
     outputFilePath: path.resolve(tmpDir, 'merged-artists.json'),
   },
 };
