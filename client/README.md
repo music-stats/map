@@ -12,7 +12,8 @@ dev deps:
 deps:
 [`leaflet`](http://leafletjs.com),
 [`d3-scale`](https://github.com/d3/d3-scale),
-[`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic).
+[`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic),
+[`d3-color`](https://github.com/d3/d3-color).
 
 ## Setup
 

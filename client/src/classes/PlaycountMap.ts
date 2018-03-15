@@ -2,6 +2,7 @@ import * as L from 'leaflet';
 import {GeoJsonTypes} from 'geojson';
 import * as d3Scale from 'd3-scale';
 import * as d3ScaleChromatic from 'd3-scale-chromatic';
+import * as d3Color from 'd3-color';
 
 import {Artist, Area, AreaProperties} from 'src/types/models';
 import {CustomControl, Animation} from 'src/types/elements';
@@ -244,7 +245,8 @@ class PlaycountMap {
     const scrobbleCount = getAreaScrobbleCount(area);
     const scrobbleCountPercent = scrobbleCount / this.totalScrobbleCount * 100;
     const scrobbleCountBgWidthPercent = this.scrobbleCountBgWidthPercentScale(scrobbleCount);
-    const color = this.getAreaColorString(scrobbleCount);
+    const color = d3Color.color(this.getAreaColorString(scrobbleCount));
+    const rankColor = color.darker(2);
 
     return {
       name,
@@ -253,7 +255,8 @@ class PlaycountMap {
       scrobbleCount,
       scrobbleCountPercent,
       scrobbleCountBgWidthPercent,
-      color,
+      color: color.toString(),
+      rankColor: rankColor.toString(),
     };
   }
 

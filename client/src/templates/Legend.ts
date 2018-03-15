@@ -11,22 +11,27 @@ export interface AreaListItemProps {
   scrobbleCountPercent: number;
   scrobbleCountBgWidthPercent: number;
   color: string;
+  rankColor: string;
 }
 
 export interface AreaListItemAnimatedProps extends AreaListItemProps {
   animation: Animation;
 }
 
-function renderAreaListItem({
-  name,
-  artistCount,
-  artistCountBgWidthPercent,
-  scrobbleCount,
-  scrobbleCountPercent,
-  scrobbleCountBgWidthPercent,
-  color,
-  animation,
-}: AreaListItemAnimatedProps): string {
+function renderAreaListItem(
+  {
+    name,
+    artistCount,
+    artistCountBgWidthPercent,
+    scrobbleCount,
+    scrobbleCountPercent,
+    scrobbleCountBgWidthPercent,
+    color,
+    rankColor,
+    animation,
+  }: AreaListItemAnimatedProps,
+  index: number,
+): string {
   // "data-name" is used for binding mouse events
   return `
     <li
@@ -60,12 +65,21 @@ function renderAreaListItem({
       </div>
 
       <div
-        class="Legend__area-color"
-        style="background-color: ${color}"
+        class="Legend__area-rank"
+        style="
+          color: ${rankColor};
+          background-color: ${color};
+        "
       >
+        #${index + 1}
       </div>
 
-      <span>
+      <span
+        class="Legend__area-name"
+        style="
+          color: ${rankColor};
+        "
+      >
         ${name}&nbsp;
       </span>
 
