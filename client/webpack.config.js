@@ -99,14 +99,6 @@ plugins.html = new HtmlWebpackPlugin({
   favicon: '../assets/favicon/favicon.ico',
 });
 
-plugins.commonsChunk = new webpack.optimize.CommonsChunkPlugin({
-  name: 'vendor',
-  minChunks: ({context}) => {
-    return context && context.includes('node_modules') && !context.includes('leaflet/dist');
-  },
-  filename: `vendor${IS_PROD ? '-[hash].min' : ''}.js`,
-});
-
 plugins.extractText = new ExtractTextPlugin({
   filename: `styles${IS_PROD ? '-[hash].min' : ''}.css`,
 });
@@ -118,17 +110,13 @@ plugins.copy = new CopyWebpackPlugin([
   },
 ]);
 
-plugins.uglifyJs = new webpack.optimize.UglifyJsPlugin({
-  compress: {
-    warnings: false,
-  },
-});
-
-plugins.namedModules = new webpack.NamedModulesPlugin();
-
 plugins.hotModuleReplacement = new webpack.HotModuleReplacementPlugin();
 
 const config = {
+  mode: IS_PROD
+    ? 'production'
+    : 'development',
+
   context: SRC_DIR,
 
   entry: [
@@ -169,18 +157,27 @@ const config = {
   plugins: [
     plugins.define,
     plugins.html,
-    plugins.commonsChunk,
     plugins.extractText,
     plugins.copy,
   ].concat(IS_PROD
-    ? [
-      plugins.uglifyJs,
-    ]
+    ? []
     : [
-      plugins.namedModules,
       plugins.hotModuleReplacement,
-    ]
+    ],
   ),
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendors: {
+          // Prevents ".css" files from being extracted into a chunk.
+          // Should be checked with a new version of "ExtractTextPlugin" and removed, if not needed.
+          test: /[\\/]node_modules[\\/].*\.js$/,
+        },
+      },
+    },
+  },
 
   devServer: {
     contentBase: DIST_DIR,

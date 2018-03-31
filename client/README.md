@@ -27,8 +27,9 @@ Create a `.env` file and fill its values according to [.env.template](.env.templ
 
 ```bash
 $ yarn install     # install deps
-$ yarn run:dev     # run a local dev server
+$ yarn lint        # lint scripts and styles
 $ yarn test        # run unit tests
+$ yarn run:dev     # run a local dev server
 $ yarn build:prod  # produce a build artifact
 $ yarn deploy      # deploy to GitHub pages
 ```
