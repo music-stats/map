@@ -1,5 +1,5 @@
 import {Artist, AreaProperties} from 'src/types/models';
-import {trimExtraSpaces} from 'src/utils/render';
+import {trimExtraSpaces, replaceSpaces} from 'src/utils/render';
 
 import './InfoBox.scss';
 
@@ -26,7 +26,7 @@ function renderArtistListItem({
         class="InfoBox__artist-playcount"
       >
         <a
-          href="https://www.last.fm/user/${username}/library/music/${artist.name}"
+          href="https://www.last.fm/user/${username}/library/music/${replaceSpaces(artist.name)}"
           target="_blank"
         >
           ${artist.playcount}
@@ -35,7 +35,7 @@ function renderArtistListItem({
 
       <td>
         <a
-          href="https://www.last.fm/music/${artist.name}"
+          href="https://www.last.fm/music/${replaceSpaces(artist.name)}"
           target="_blank"
         >
           ${artist.name}

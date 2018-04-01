@@ -6,3 +6,7 @@ export function trimExtraSpaces(template: string): string {
     .replace(/="\s+/g, '="')
     .replace(/\s+"/g, '"');
 }
+
+export function replaceSpaces(value: string): string {
+  return value.replace(/\s/g, '+');
+}
