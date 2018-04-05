@@ -20,6 +20,7 @@ deps:
 - [ ] [spotify](https://developer.spotify.com/web-api/endpoint-reference)
 - [ ] [songkick](https://www.songkick.com/developer/upcoming-events)
 - [ ] [FMA (Free Music Archive)](https://github.com/mdeff/fma)
+- [ ] [DuckDuckGo Instant Answers](https://duckduckgo.com/api)
 
 ## Setup
 
