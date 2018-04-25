@@ -17,13 +17,13 @@
     "script:merge-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/merge-artists"
   },
   "devDependencies": {
-    "@types/dotenv": "4.0.2",
-    "@types/node": "9.6.1",
-    "@types/ramda": "0.25.21",
+    "@types/dotenv": "4.0.3",
+    "@types/node": "9.6.6",
+    "@types/ramda": "0.25.24",
     "husky": "0.14.3",
     "tslint": "5.9.1",
     "tslint-eslint-rules": "5.1.0",
-    "typescript": "2.8.1"
+    "typescript": "2.8.3"
   },
   "dependencies": {
     "axios": "0.18.0",
