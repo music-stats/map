@@ -1,7 +1,7 @@
 [
   {
     "name": "Dream Theater",
-    "playcount": 755,
+    "playcount": 760,
     "area": "United States"
   },
   {
@@ -36,7 +36,12 @@
   },
   {
     "name": "Korn",
-    "playcount": 492,
+    "playcount": 502,
+    "area": "United States"
+  },
+  {
+    "name": "Deftones",
+    "playcount": 470,
     "area": "United States"
   },
   {
@@ -45,13 +50,8 @@
     "area": "Finland"
   },
   {
-    "name": "Deftones",
-    "playcount": 459,
-    "area": "United States"
-  },
-  {
     "name": "Marilyn Manson",
-    "playcount": 433,
+    "playcount": 444,
     "area": "United States"
   },
   {
@@ -110,6 +110,11 @@
     "area": "Russia"
   },
   {
+    "name": "Linkin Park",
+    "playcount": 309,
+    "area": "United States"
+  },
+  {
     "name": "Deep Purple",
     "playcount": 303,
     "area": "United Kingdom"
@@ -128,11 +133,6 @@
     "name": "Therion",
     "playcount": 286,
     "area": "Sweden"
-  },
-  {
-    "name": "Linkin Park",
-    "playcount": 285,
-    "area": "United States"
   },
   {
     "name": "Riverside",
@@ -176,7 +176,7 @@
   },
   {
     "name": "Oomph!",
-    "playcount": 239,
+    "playcount": 243,
     "area": "Germany"
   },
   {
@@ -310,6 +310,11 @@
     "area": "United Kingdom"
   },
   {
+    "name": "A Perfect Circle",
+    "playcount": 148,
+    "area": "United States"
+  },
+  {
     "name": "Antimatter",
     "playcount": 146,
     "area": "United Kingdom"
@@ -327,6 +332,11 @@
   {
     "name": "W.A.S.P.",
     "playcount": 145,
+    "area": "United States"
+  },
+  {
+    "name": "Norma Jean",
+    "playcount": 144,
     "area": "United States"
   },
   {
@@ -363,16 +373,6 @@
     "name": "Amorphis",
     "playcount": 138,
     "area": "Finland"
-  },
-  {
-    "name": "Norma Jean",
-    "playcount": 137,
-    "area": "United States"
-  },
-  {
-    "name": "A Perfect Circle",
-    "playcount": 136,
-    "area": "United States"
   },
   {
     "name": "O.Torvald",
@@ -455,6 +455,16 @@
     "area": "Ukraine"
   },
   {
+    "name": "Тінь Сонця",
+    "playcount": 108,
+    "area": "Ukraine"
+  },
+  {
+    "name": "God Is An Astronaut",
+    "playcount": 106,
+    "area": "Ireland"
+  },
+  {
     "name": "Blind Guardian",
     "playcount": 105,
     "area": "Germany"
@@ -462,11 +472,6 @@
   {
     "name": "Веремій",
     "playcount": 105,
-    "area": "Ukraine"
-  },
-  {
-    "name": "Тінь Сонця",
-    "playcount": 104,
     "area": "Ukraine"
   },
   {
@@ -523,11 +528,6 @@
     "name": "Lunatic Soul",
     "playcount": 95,
     "area": "Poland"
-  },
-  {
-    "name": "God Is An Astronaut",
-    "playcount": 93,
-    "area": "Ireland"
   },
   {
     "name": "The 3rd and the Mortal",
@@ -675,6 +675,11 @@
     "area": "Finland"
   },
   {
+    "name": "Crematory",
+    "playcount": 70,
+    "area": "Germany"
+  },
+  {
     "name": "Estatic Fear",
     "playcount": 70,
     "area": "Austria"
@@ -765,6 +770,16 @@
     "area": "United States"
   },
   {
+    "name": "Be'lakor",
+    "playcount": 63,
+    "area": "Australia"
+  },
+  {
+    "name": "Inner Maze",
+    "playcount": 63,
+    "area": "Ukraine"
+  },
+  {
     "name": "Queensrÿche",
     "playcount": 63,
     "area": "United States"
@@ -795,11 +810,6 @@
     "area": "United Kingdom"
   },
   {
-    "name": "Inner Maze",
-    "playcount": 61,
-    "area": "Ukraine"
-  },
-  {
     "name": "The 69 Eyes",
     "playcount": 61,
     "area": "Finland"
@@ -810,19 +820,14 @@
     "area": "Ukraine"
   },
   {
-    "name": "Be'lakor",
-    "playcount": 59,
-    "area": "Australia"
-  },
-  {
     "name": "Sonata Arctica",
     "playcount": 58,
     "area": "Finland"
   },
   {
-    "name": "Crematory",
+    "name": "Asking Alexandria",
     "playcount": 57,
-    "area": "Germany"
+    "area": "United Kingdom"
   },
   {
     "name": "Darkest Hour",
@@ -873,6 +878,11 @@
     "name": "Moonspell",
     "playcount": 55,
     "area": "Portugal"
+  },
+  {
+    "name": "Bring Me the Horizon",
+    "playcount": 54,
+    "area": "United Kingdom"
   },
   {
     "name": "Limp Bizkit",
@@ -1035,11 +1045,6 @@
     "area": "Australia"
   },
   {
-    "name": "Asking Alexandria",
-    "playcount": 45,
-    "area": "United Kingdom"
-  },
-  {
     "name": "Nine Inch Nails",
     "playcount": 45,
     "area": "United States"
@@ -1100,11 +1105,6 @@
     "area": "United Kingdom"
   },
   {
-    "name": "Bring Me the Horizon",
-    "playcount": 42,
-    "area": "United Kingdom"
-  },
-  {
     "name": "Gorod",
     "playcount": 42,
     "area": "France"
@@ -1148,6 +1148,11 @@
     "name": "Pianoбой",
     "playcount": 41,
     "area": "Ukraine"
+  },
+  {
+    "name": "Rush",
+    "playcount": 41,
+    "area": "Canada"
   },
   {
     "name": "While She Sleeps",
@@ -1251,11 +1256,6 @@
   },
   {
     "name": "Miles Davis",
-    "playcount": 36,
-    "area": "United States"
-  },
-  {
-    "name": "Rush",
     "playcount": 36,
     "area": "United States"
   },
@@ -1985,12 +1985,27 @@
     "area": "United States"
   },
   {
+    "name": "Rishloo",
+    "playcount": 18,
+    "area": "United States"
+  },
+  {
     "name": "The Safety Fire",
     "playcount": 18,
     "area": "United Kingdom"
   },
   {
+    "name": "Скрябін",
+    "playcount": 18,
+    "area": "Ukraine"
+  },
+  {
     "name": "Agalloch",
+    "playcount": 17,
+    "area": "United States"
+  },
+  {
+    "name": "Angel Olsen",
     "playcount": 17,
     "area": "United States"
   },
@@ -2870,11 +2885,6 @@
     "area": "United States"
   },
   {
-    "name": "Angel Olsen",
-    "playcount": 9,
-    "area": "United States"
-  },
-  {
     "name": "Autumn Tears",
     "playcount": 9,
     "area": "United States"
@@ -2985,11 +2995,6 @@
     "area": "Russia"
   },
   {
-    "name": "Rishloo",
-    "playcount": 9,
-    "area": "United States"
-  },
-  {
     "name": "Sergei Prokofiev",
     "playcount": 9,
     "area": "Russia"
@@ -3065,6 +3070,11 @@
     "area": "Italy"
   },
   {
+    "name": "Arkona",
+    "playcount": 8,
+    "area": "Poland"
+  },
+  {
     "name": "Before the Dawn",
     "playcount": 8,
     "area": "Finland"
@@ -3125,6 +3135,11 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Helroth",
+    "playcount": 8,
+    "area": "Poland"
+  },
+  {
     "name": "Henrik Freischlader",
     "playcount": 8,
     "area": "Germany"
@@ -3158,6 +3173,11 @@
     "name": "Nick Drake",
     "playcount": 8,
     "area": "United Kingdom"
+  },
+  {
+    "name": "Piano",
+    "playcount": 8,
+    "area": "Ukraine"
   },
   {
     "name": "Ramones",
@@ -3198,5 +3218,35 @@
     "name": "Stahlmann",
     "playcount": 8,
     "area": "Germany"
+  },
+  {
+    "name": "Starring Janet Leigh",
+    "playcount": 8,
+    "area": "Canada"
+  },
+  {
+    "name": "Temperance",
+    "playcount": 8,
+    "area": "Italy"
+  },
+  {
+    "name": "The Pretty Reckless",
+    "playcount": 8,
+    "area": "United States"
+  },
+  {
+    "name": "Toundra",
+    "playcount": 8,
+    "area": "Spain"
+  },
+  {
+    "name": "Virvum",
+    "playcount": 8,
+    "area": "Switzerland"
+  },
+  {
+    "name": "НастяЗникає",
+    "playcount": 8,
+    "area": "Ukraine"
   }
 ]
