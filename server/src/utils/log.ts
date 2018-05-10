@@ -4,8 +4,8 @@ function log(...messages: string[]): void {
   return console.log(...messages.map((m) => colors.grey(m.trim().replace(/\n\s+/g, '\n'))));
 }
 
-export function warn(message: string): void {
-  return console.warn(colors.yellow(message));
+export function warn(...messages: string[]): void {
+  return console.warn(...messages.map((m) => colors.yellow(m)));
 }
 
 export function logRequest(url: string): void {

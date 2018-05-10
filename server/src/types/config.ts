@@ -31,6 +31,7 @@ interface MusicbrainzConfig extends ConnectorConfig {
 
 interface MergedArtistsConfig {
   correctionFilePaths: {
+    artist: string;
     area: string;
     artistArea: string;
   };

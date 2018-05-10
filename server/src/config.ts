@@ -44,6 +44,7 @@ const config: Config = {
 
   mergedArtists: {
     correctionFilePaths: {
+      artist: path.resolve(dataDir, 'artist-correction.json'),
       area: path.resolve(dataDir, 'area-correction.json'),
       artistArea: path.resolve(dataDir, 'artist-area-correction.json'),
     },
