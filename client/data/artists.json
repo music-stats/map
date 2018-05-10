@@ -175,6 +175,11 @@
     "area": "United States"
   },
   {
+    "name": "ТНМК",
+    "playcount": 252,
+    "area": "Ukraine"
+  },
+  {
     "name": "Oomph!",
     "playcount": 243,
     "area": "Germany"
@@ -193,11 +198,6 @@
     "name": "Anathema",
     "playcount": 236,
     "area": "United Kingdom"
-  },
-  {
-    "name": "ТНМК",
-    "playcount": 226,
-    "area": "Ukraine"
   },
   {
     "name": "Wolverine",
@@ -1548,11 +1548,6 @@
     "name": "Vicious Crusade",
     "playcount": 26,
     "area": "Belarus"
-  },
-  {
-    "name": "Мaco Слобожанський",
-    "playcount": 26,
-    "area": "Ukraine"
   },
   {
     "name": "Burden of Grief",
