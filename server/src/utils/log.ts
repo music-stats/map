@@ -1,7 +1,7 @@
 import * as colors from 'colors/safe';
 
-function log(message: string): void {
-  return console.log(colors.grey(message.trim().replace(/\n\s+/g, '\n')));
+function log(...messages: string[]): void {
+  return console.log(...messages.map((m) => colors.grey(m.trim().replace(/\n\s+/g, '\n'))));
 }
 
 export function warn(message: string): void {

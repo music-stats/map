@@ -5,7 +5,7 @@ import {Artist} from 'src/types/musicbrainz';
 
 import config from 'src/config';
 import {delay} from 'src/utils/promise';
-import {logRequest} from 'src/utils/log';
+import log, {logRequest} from 'src/utils/log';
 import {retrieveResponseDataCache, storeResponseDataCache} from 'src/utils/cache';
 
 type ArtistResponse = AxiosResponse<Artist>;
@@ -42,6 +42,9 @@ export function fetchArtist(mbid: string, toBypassCache: boolean): Promise<Artis
     return requestMusicbrainzArtist()
       .then((response) => response.data);
   }
+
+  log();
+  log(`fetching MusicBrainz artist "${mbid}"`);
 
   return retrieveMusicbrainzArtistCache()
     .then((artistCache) => {

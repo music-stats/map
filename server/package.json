@@ -18,16 +18,16 @@
   },
   "devDependencies": {
     "@types/dotenv": "4.0.3",
-    "@types/node": "9.6.6",
-    "@types/ramda": "0.25.24",
+    "@types/node": "10.0.6",
+    "@types/ramda": "0.25.27",
     "husky": "0.14.3",
-    "tslint": "5.9.1",
-    "tslint-eslint-rules": "5.1.0",
+    "tslint": "5.10.0",
+    "tslint-eslint-rules": "5.2.0",
     "typescript": "2.8.3"
   },
   "dependencies": {
     "axios": "0.18.0",
-    "colors": "1.2.1",
+    "colors": "1.2.4",
     "dotenv": "5.0.1",
     "ramda": "0.25.0"
   }

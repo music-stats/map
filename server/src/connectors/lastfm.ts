@@ -7,7 +7,7 @@ import {LibraryResponseData, Artist} from 'src/types/lastfm';
 
 import config from 'src/config';
 import {sequence} from 'src/utils/promise';
-import {logRequest} from 'src/utils/log';
+import log, {logRequest} from 'src/utils/log';
 import {retrieveResponseDataCache, storeResponseDataCache} from 'src/utils/cache';
 
 const {parsed: {LASTFM_API_KEY}} = dotenv.config();
@@ -58,6 +58,9 @@ function fetchPage(
     return requestLastfmLibrary()
       .then((response) => response.data);
   }
+
+  log();
+  log(`fetching last.fm page #${pageNumber + 1}`);
 
   return retrieveLastfmLibraryCache()
     .then((libraryCache) => {
