@@ -18,7 +18,7 @@ export function buildApiLookupUrl(entity: string, mbid: string): string {
   return `${config.musicbrainz.api.root}/${entity}/${mbid}?${querystring.stringify(params)}`;
 }
 
-export function fetchArtist(mbid: string, toBypassCache: boolean): Promise<Artist> {
+export function fetchArtist(mbid: string, index: number, count: number, toBypassCache: boolean): Promise<Artist> {
   const url = buildApiLookupUrl('artist', mbid);
   const headers = {
     'User-Agent': config.userAgent,
@@ -44,7 +44,7 @@ export function fetchArtist(mbid: string, toBypassCache: boolean): Promise<Artis
   }
 
   log();
-  log(`fetching MusicBrainz artist "${mbid}"`);
+  log(`fetching MusicBrainz artist "${mbid}" (${index}/${count})`);
 
   return retrieveMusicbrainzArtistCache()
     .then((artistCache) => {

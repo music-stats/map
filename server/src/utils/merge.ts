@@ -2,7 +2,7 @@ import {Artist, ArtistArea, MergedArtist} from 'src/types/artist';
 
 import config from 'src/config';
 import {readFile} from 'src/utils/promise';
-import log, {warn} from 'src/utils/log';
+import log, {warn, stripMultiline} from 'src/utils/log';
 
 interface ArtistCorrection {
   [name: string]: string;
@@ -57,10 +57,18 @@ function deduplicateArtists(
 
       correctArtist.playcount += playcount;
 
-      log(`merged "${name}" into "${correctName}", increased playcount by ${playcount}`);
+      log(stripMultiline(`
+        merged "${name}" into "${correctName}",
+        increased playcount by ${playcount}
+        (total: ${correctArtist.playcount})
+      `));
 
       if (mbid && mbid !== correctArtist.mbid) {
-        warn(`mbid mismatch: ("${name}" - "${mbid}"), ("${correctName}" - "${correctArtist.mbid}")`);
+        warn(stripMultiline(`
+          mbid mismatch:
+          ("${name}" - "${mbid}"),
+          ("${correctName}" - "${correctArtist.mbid}")
+        `));
       }
     } else {
       artistLookup[correctName] = {

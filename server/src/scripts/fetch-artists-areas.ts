@@ -28,7 +28,13 @@ function extract(): Promise<MusicbrainzArtist[]> {
     .then(pluck('mbid'))
     .then((mbids) => mbids.filter((mbid) => Boolean(mbid))) // "mbid" is missing for some artists
     .then(proxyLogMbids)
-    .then((mbids) => sequence(mbids.map((mbid) => fetchArtist.bind(null, mbid, toBypassCache))));
+    .then((mbids) => sequence(mbids.map((mbid, index) => fetchArtist.bind(
+      null,
+      mbid,
+      index,
+      mbids.length,
+      toBypassCache,
+    ))));
 }
 
 function transform(musicbrainzArtistList: MusicbrainzArtist[]): ArtistArea[] {
