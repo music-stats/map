@@ -87,7 +87,7 @@ function renderAreaListItem(
         class="Legend__area-stats"
       >
         <span>
-          ${scrobbleCountPercent.toFixed(1)}%
+          ${scrobbleCountPercent.toFixed(2)}%
         </span>
 
         <sup title="artists">
