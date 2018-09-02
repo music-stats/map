@@ -1,11 +1,12 @@
-import {take, pluck} from 'ramda';
+import {take} from 'ramda';
 
 import {Artist as LastfmArtist} from 'src/types/lastfm';
 import {Artist as MusicbrainzArtist} from 'src/types/musicbrainz';
 import {ArtistArea} from 'src/types/artist';
 
 import config from 'src/config';
-import {readFile, writeFile, sequence} from 'src/utils/promise';
+import {sequence} from 'src/utils/promise';
+import {readFile, writeFile} from 'src/utils/file';
 import {proxyLog} from 'src/utils/log';
 import {fetchArtist} from 'src/connectors/musicbrainz';
 
@@ -17,22 +18,22 @@ if (artistsCount <= 0) {
   throw new Error(`Expected a number of artists greater then 0, got ${artistsCount}`);
 }
 
-function proxyLogMbids(mbids: string[]): string[] {
-  console.log(`fetching ${mbids.length} artists from MusicBrainz...`);
-  return mbids;
+function proxyLogArtistsCount(artists: LastfmArtist[]): LastfmArtist[] {
+  console.log(`fetching ${artists.length} artists from MusicBrainz...`);
+  return artists;
 }
 
 function extract(): Promise<MusicbrainzArtist[]> {
   return readFile<LastfmArtist[]>(config.lastfm.outputFilePath)
     .then(take(artistsCount))
-    .then(pluck('mbid'))
-    .then((mbids) => mbids.filter((mbid) => Boolean(mbid))) // "mbid" is missing for some artists
-    .then(proxyLogMbids)
-    .then((mbids) => sequence(mbids.map((mbid, index) => fetchArtist.bind(
+    .then((artists) => artists.filter(({mbid}) => Boolean(mbid))) // "mbid" is missing for some artists
+    .then(proxyLogArtistsCount)
+    .then((artists) => sequence(artists.map(({name, mbid}, index) => fetchArtist.bind(
       null,
+      name,
       mbid,
       index,
-      mbids.length,
+      artists.length,
       toBypassCache,
     ))));
 }

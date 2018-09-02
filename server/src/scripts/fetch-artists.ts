@@ -2,7 +2,7 @@ import {Artist as LastfmArtist} from 'src/types/lastfm';
 import {Artist} from 'src/types/artist';
 
 import config from 'src/config';
-import {writeFile} from 'src/utils/promise';
+import {writeFile} from 'src/utils/file';
 import {proxyLog} from 'src/utils/log';
 import {fetchLibraryArtists} from 'src/connectors/lastfm';
 

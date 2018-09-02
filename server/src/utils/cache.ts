@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import {ConnectorCacheConfig} from 'src/types/config';
-import {readFile} from 'src/utils/promise';
+import {readFile, writeFile} from 'src/utils/file';
 import log from 'src/utils/log';
 
 function constructCacheFilePath(dir: string, url: string, format: string = 'json'): string {
@@ -30,8 +30,6 @@ export function retrieveResponseDataCache<ResponseData>(
         reject(err);
         return;
       }
-
-      // console.log(stats);
 
       if (Date.now() - stats.mtimeMs > connectorCacheConfig.ttl) {
         log(`
@@ -61,20 +59,11 @@ export function storeResponseDataCache<ResponseData>(
   connectorCacheConfig: ConnectorCacheConfig,
 ): Promise<string> {
   const filePath = constructCacheFilePath(connectorCacheConfig.dir, url);
-  const responseDataSerialized = JSON.stringify(responseData, null, 2);
 
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, responseDataSerialized, (err) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      log(`
-        response cache is stored:
-        - file: ${filePath}
-      `);
-      resolve(filePath);
-    });
-  });
+  return writeFile(filePath, responseData)
+    .then(() => log(`
+      response cache is stored:
+      - file: ${filePath}
+    `))
+    .then(() => filePath);
 }

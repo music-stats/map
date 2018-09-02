@@ -30,6 +30,7 @@ export function buildApiUrl(method: string, params = {}): string {
 function fetchPage(
   username: string,
   pageNumber: number,
+  pagesCount: number,
   toBypassCache: boolean,
 ): Promise<LibraryResponseData> {
   const url = buildApiUrl('library.getartists', {
@@ -60,7 +61,7 @@ function fetchPage(
   }
 
   log();
-  log(`fetching last.fm page #${pageNumber + 1}`);
+  log(`fetching last.fm page #${pageNumber + 1}/${pagesCount}`);
 
   return retrieveLastfmLibraryCache()
     .then((libraryCache) => {
@@ -91,7 +92,7 @@ export function fetchLibraryArtists(
     config.lastfm.artists.maxPageNumber,
   );
   const fetchAllPages = times(
-    (pageNumber) => fetchPage.bind(null, username, pageNumber, toBypassCache),
+    (pageNumber) => fetchPage.bind(null, username, pageNumber, pagesCount, toBypassCache),
     pagesCount,
   );
   const cutExtraArtists = (rawArtistList: Artist[]) => take(artistsCount, rawArtistList);

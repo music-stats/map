@@ -1,7 +1,7 @@
 import {Artist, ArtistArea, MergedArtist} from 'src/types/artist';
 
 import config from 'src/config';
-import {readFile} from 'src/utils/promise';
+import {readFile} from 'src/utils/file';
 import log, {warn, stripMultiline} from 'src/utils/log';
 
 interface ArtistCorrection {
@@ -135,7 +135,7 @@ function getArtistArea(
     return area;
   }
 
-  // @todo: add a check against registered areas (countries), to avoid unknown areas and cities/regions
+  // @todo: add a check against registered areas (countries), to highlight unknown cities/regions
   warn(`area not found: ${artist}`);
 
   return null;

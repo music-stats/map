@@ -8,7 +8,7 @@ dev deps:
 [`typescript`](https://www.typescriptlang.org/docs).
 
 deps:
-[`node`](https://nodejs.org/dist/latest-v9.x/docs/api),
+[`node`](https://nodejs.org/dist/latest/docs/api) (at least v10, since experimental [`fs.promises` API](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html#fs_fs_promises_api) is used),
 [`ramda`](http://ramdajs.com/docs),
 [`axios`](https://github.com/axios/axios),
 [`koa`](http://koajs.com/#application).

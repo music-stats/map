@@ -1,7 +1,7 @@
 import {Artist, ArtistArea, MergedArtist} from 'src/types/artist';
 
 import config from 'src/config';
-import {readFile, writeFile} from 'src/utils/promise';
+import {readFile, writeFile} from 'src/utils/file';
 import {proxyLog} from 'src/utils/log';
 import {loadCorrections, merge} from 'src/utils/merge';
 
