@@ -17,7 +17,11 @@ function renderArtistListItem({
       class="InfoBox__artist"
     >
       <td
-        class="InfoBox__artist-rank"
+        class="InfoBox__artist-rank ${
+          artist.rank <= 3
+            ? `InfoBox__artist-rank--medal InfoBox__artist-rank--medal-${artist.rank}`
+            : ''
+        }"
       >
         #${artist.rank}
       </td>

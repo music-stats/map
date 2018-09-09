@@ -40,6 +40,7 @@
 
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   margin: 0.6em 0;
   padding-right: 6px;
@@ -71,6 +72,7 @@
 
 .Legend__area-scale-container {
   position: absolute;
+  z-index: 1; // keeping ".Legend__area-rank" below, important for ignoring its border
   top: 2px;
   bottom: 2px;
   left: 26px;
@@ -103,9 +105,26 @@
   }
 }
 
+@mixin Ledend__area-rank-medal($color) {
+  position: absolute;
+  top: calc(-20% - 2px);
+  left: calc(-20% - 2px);
+
+  width: 40%;
+  height: 40%;
+
+  content: '';
+
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: $color;
+}
+
 .Legend__area-rank {
   font-size: 10px;
   line-height: 24px;
+
+  position: relative;
 
   box-sizing: border-box;
 
@@ -117,15 +136,34 @@
 
   text-align: right;
 
-  border: 2px solid #fff;
+  border: 2px solid white;
+
+  .Legend__area:nth-child(1) & {
+    &::before {
+      @include Ledend__area-rank-medal(gold);
+    }
+  }
+
+  .Legend__area:nth-child(2) & {
+    &::before {
+      @include Ledend__area-rank-medal(silver);
+    }
+  }
+
+  .Legend__area:nth-child(3) & {
+    &::before {
+      @include Ledend__area-rank-medal(#8c7853);
+    }
+  }
 
   .Legend__area:hover & {
     border-color: transparent;
   }
 }
 
-.Legend__area-name {
-  z-index: 1;
+.Legend__area-name,
+.Legend__area-stats {
+  z-index: 2; // keeping ".Legend__area-scale-container" below, important for text color and "title" attribute
 }
 
 .Legend__area-stats {

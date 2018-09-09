@@ -28,12 +28,42 @@
 .InfoBox__artist-rank {
   font-size: 10px;
 
+  position: relative;
+
   text-align: right;
 
   color: #888;
 
   .InfoBox__artist:hover & {
     color: #444;
+  }
+}
+
+.InfoBox__artist-rank--medal {
+  &::before {
+    position: absolute;
+    top: calc(50% - 6px);
+    left: 0;
+
+    width: 7px;
+    height: 7px;
+
+    content: '';
+
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+
+  &-1::before {
+    background-color: gold;
+  }
+
+  &-2::before {
+    background-color: silver;
+  }
+
+  &-3::before {
+    background-color: #8c7853;
   }
 }
 
