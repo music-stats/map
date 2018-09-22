@@ -37,7 +37,9 @@ function renderArtistListItem({
         </a>
       </td>
 
-      <td>
+      <td
+        class="InfoBox__artist-name"
+      >
         <a
           href="https://www.last.fm/music/${replaceSpaces(artist.name)}"
           target="_blank"

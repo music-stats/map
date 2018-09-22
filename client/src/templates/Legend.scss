@@ -33,6 +33,7 @@
   overflow: auto;
 
   max-height: calc(100vh - 140px);
+  padding-right: 1em; // compensates the scrollbar
 }
 
 .Legend__area {
@@ -56,7 +57,7 @@
   }
 
   .Legend[disabled] & {
-    pointer-events: none;
+    pointer-events: none; // prevents from highlighting many countries while the cursor stays but the legend moves
   }
 }
 
@@ -129,9 +130,8 @@
   box-sizing: border-box;
 
   width: 28px;
+  min-width: 28px;
   height: 28px;
-
-  margin-right: 0.4em;
   padding-right: 0.2em;
 
   text-align: right;
@@ -164,9 +164,15 @@
 .Legend__area-name,
 .Legend__area-stats {
   z-index: 2; // keeping ".Legend__area-scale-container" below, important for text color and "title" attribute
+
+  margin: 0 0.4em;
+
+  white-space: nowrap;
 }
 
 .Legend__area-stats {
+  margin-right: 1em;
+
   color: #888;
 
   .Legend__area:hover & {

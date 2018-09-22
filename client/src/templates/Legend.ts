@@ -80,7 +80,7 @@ function renderAreaListItem(
           color: ${rankColor};
         "
       >
-        ${name}&nbsp;
+        ${name}
       </span>
 
       <span

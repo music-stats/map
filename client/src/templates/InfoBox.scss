@@ -18,11 +18,12 @@
 
 .InfoBox__artist-list {
   display: block;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   max-height: calc(100vh - 340px);
-
   margin-top: 1em;
+  padding-right: 1em; // compensates the scrollbar
 }
 
 .InfoBox__artist-rank {
@@ -69,4 +70,8 @@
 
 .InfoBox__artist-playcount {
   text-align: right;
+}
+
+.InfoBox__artist-name {
+  white-space: nowrap;
 }
