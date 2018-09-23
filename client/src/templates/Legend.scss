@@ -161,6 +161,28 @@
   }
 }
 
+.Legend__area-flag {
+  position: absolute;
+  bottom: calc(-20% - 2px);
+  left: calc(-20% - 2px);
+
+  width: 40%;
+  height: 40%;
+
+  border: 2px solid white;
+  border-radius: 50%;
+
+  .Legend__area:hover & {
+    bottom: -4px;
+    left: -4px;
+
+    width: 50%;
+    height: 50%;
+
+    border-radius: 0;
+  }
+}
+
 .Legend__area-name,
 .Legend__area-stats {
   z-index: 2; // keeping ".Legend__area-scale-container" below, important for text color and "title" attribute

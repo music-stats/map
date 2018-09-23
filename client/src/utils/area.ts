@@ -41,6 +41,7 @@ export function getArtistsAreas(artists: Artist[]): Area[] {
       ...area,
       properties: {
         ...artistsAreas[area.properties.name],
+        iso_a2: area.properties.iso_a2,
       },
     }));
 }

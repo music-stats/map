@@ -15,6 +15,8 @@ deps:
 [`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic),
 [`d3-color`](https://github.com/d3/d3-color).
 
+Flags (1x1) are taken from [flag-icon-css](https://github.com/lipis/flag-icon-css/tree/master/flags/1x1).
+
 ## Setup
 
 ### Environment variables

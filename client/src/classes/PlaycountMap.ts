@@ -239,7 +239,7 @@ class PlaycountMap {
   }
 
   private getAreaListItemProps(area: Area): AreaListItemProps {
-    const {name, artists} = area.properties;
+    const {name, iso_a2, artists} = area.properties;
     const artistCount = artists.length;
     const artistCountBgWidthPercent = this.artistCountBgWidthPercentScale(artistCount);
     const scrobbleCount = getAreaScrobbleCount(area);
@@ -250,6 +250,7 @@ class PlaycountMap {
 
     return {
       name,
+      iso_a2,
       artistCount,
       artistCountBgWidthPercent,
       scrobbleCount,

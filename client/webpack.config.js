@@ -84,6 +84,11 @@ loaders.scss = {
   }),
 };
 
+loaders.url = {
+  test: /\.svg$/,
+  loader: 'url-loader',
+};
+
 loaders.files = {
   test: /\.(png|woff)$/,
   loader: 'file-loader',
@@ -140,6 +145,7 @@ const config = {
       '.ts',
       '.css',
       '.scss',
+      '.svg',
       '.json',
     ],
   },
@@ -150,6 +156,7 @@ const config = {
       loaders.ts,
       loaders.css,
       loaders.scss,
+      loaders.url,
       loaders.files,
     ],
   },
