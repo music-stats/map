@@ -5,7 +5,7 @@
 
 A playground for fetching and rendering music-related data.
 
-![music-stats-client-screenshot](https://user-images.githubusercontent.com/2470363/39891429-d6b570e0-549d-11e8-8c7f-7349dbced7e4.png)
+![music-stats-client-screenshot](https://user-images.githubusercontent.com/2470363/45943866-67d30280-bfe8-11e8-8c52-bd8db634b23b.png)
 
 ## front-end
 
