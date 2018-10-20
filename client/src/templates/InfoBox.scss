@@ -73,5 +73,10 @@
 }
 
 .InfoBox__artist-name {
+  overflow: hidden;
+
+  max-width: 16em;
+
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
