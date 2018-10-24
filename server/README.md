@@ -15,10 +15,15 @@ deps:
 
 ## APIs, datasets
 
+### In use
+
 - [x] [last.fm](https://www.last.fm/api/intro)
-- [x] [musicbrainz](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2)
-- [ ] [spotify](https://developer.spotify.com/web-api/endpoint-reference)
-- [ ] [songkick](https://www.songkick.com/developer/upcoming-events)
+- [x] [MusicBrainz](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2)
+
+### To consider
+
+- [ ] [Spotify](https://developer.spotify.com/documentation/web-api/reference/) (only [Personalization API](https://developer.spotify.com/documentation/web-api/reference/personalization) is available now (among other endpoints, but that's the only section about the user's listening habits), restricting to top 50 artists/tracks)
+- [ ] [Songkick](https://www.songkick.com/developer/upcoming-events)
 - [ ] [FMA (Free Music Archive)](https://github.com/mdeff/fma)
 - [ ] [DuckDuckGo Instant Answers](https://duckduckgo.com/api)
 
