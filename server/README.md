@@ -22,7 +22,7 @@ deps:
 
 ### To consider
 
-- [ ] [Spotify](https://developer.spotify.com/documentation/web-api/reference/) (only [Personalization API](https://developer.spotify.com/documentation/web-api/reference/personalization) is available now (among other endpoints, but that's the only section about the user's listening habits), restricting to top 50 artists/tracks)
+- [ ] [Spotify](https://developer.spotify.com/documentation/web-api/reference/) Only [Personalization API](https://developer.spotify.com/documentation/web-api/reference/personalization) is available now (among other endpoints, but that's the only section about the user's listening habits), restricting to top 50 artists/tracks. And it doesn't provide any measurable metric except "popularity" which is some abstract (i.e. calculated) affinity level. Geo data (e.g. country) is also not there.
 - [ ] [Songkick](https://www.songkick.com/developer/upcoming-events)
 - [ ] [FMA (Free Music Archive)](https://github.com/mdeff/fma)
 - [ ] [DuckDuckGo Instant Answers](https://duckduckgo.com/api)
