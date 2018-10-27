@@ -8,6 +8,31 @@
   &:last-of-type {
     margin-bottom: 0;
   }
+
+  &--header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.InfoBox__close-button-container {
+  margin-right: -0.4em;
+  margin-left: 1em;
+  padding: 0 0.4em;
+}
+
+.InfoBox__close-button {
+  font: inherit;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .InfoBox__header {

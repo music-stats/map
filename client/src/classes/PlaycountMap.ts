@@ -86,6 +86,14 @@ class PlaycountMap {
     });
   }
 
+  private subscribeInfoBoxCloseButton(infoBoxCloseButton: HTMLButtonElement) {
+    const onClick = () => {
+      this.infoBox.render();
+    };
+
+    infoBoxCloseButton.addEventListener('click', onClick);
+  }
+
   private subscribeLegendElement(legendElement: HTMLElement) {
     const onMouseEnter = () => {
       setTimeout(() => {
@@ -192,8 +200,7 @@ class PlaycountMap {
   }
 
   private selectArea(e: L.LeafletEvent) {
-    const layer = e.target as L.Polyline;
-    const area = layer.feature as Area;
+    const area = (e.target as L.Polyline).feature as Area;
 
     this.geojson.getLayers().forEach((layer: L.Polyline) => {
       if (layer.feature === area) {
@@ -233,6 +240,10 @@ class PlaycountMap {
           ? area.properties
           : null),
       });
+
+      if (area) {
+        this.subscribeInfoBoxCloseButton(infoBox.element.querySelector('.InfoBox__close-button'));
+      }
     };
 
     return infoBox;

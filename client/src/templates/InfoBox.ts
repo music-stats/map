@@ -69,17 +69,35 @@ export default function render({
 }: InfoBoxProps): string {
   return trimExtraSpaces(`
     <section
-      class="InfoBox__section"
+      class="InfoBox__section InfoBox__section--header"
     >
-      <span>
-        last.fm user:
-      </span>
-      <a
-        href="https://www.last.fm/user/${username}"
-        target="_blank"
+      <div>
+        <span>
+          last.fm user:
+        </span>
+        <a
+          href="https://www.last.fm/user/${username}"
+          target="_blank"
+        >
+          ${username}
+        </a>
+      </div>
+
+      <aside
+        class="InfoBox__close-button-container"
       >
-        ${username}
-      </a>
+        ${area.name
+          ? `
+            <button
+              class="InfoBox__close-button"
+              title="close"
+            >
+              &times;
+            </button>
+          `
+          : ``
+        }
+      </aside>
     </section>
 
     <section
