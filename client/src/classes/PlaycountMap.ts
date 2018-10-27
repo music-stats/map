@@ -76,6 +76,21 @@ class PlaycountMap {
     this.infoBox.addTo(this.map);
     this.legend.addTo(this.map);
     this.linksBox.addTo(this.map);
+
+    this.subscribe();
+  }
+
+  private subscribe() {
+    const onKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        this.infoBox.render();
+      }
+    };
+
+    // using "document" instead of "this.map.getContainer()"
+    // because the latter will only catch events when the map is active,
+    // i.e. when the map was just loaded and user hadn't clicked yet, events won't be caught
+    document.addEventListener('keydown', onKeyPress);
   }
 
   private subscribeLayer(layer: L.Layer) {
