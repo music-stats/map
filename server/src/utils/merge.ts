@@ -50,7 +50,19 @@ function deduplicateArtists(
   artistList.forEach((artist) => artistLookup[artist.name] = artist);
 
   Object.entries(artistCorrection).forEach(([name, correctName]) => {
-    const {playcount, mbid} = artistLookup[name];
+    const artist = artistLookup[name];
+
+    // it could be that artist name appears in the correction list
+    // but doesn't appear in the artist list (e.g. a known correction for future or simply removes artist)
+    if (!artist) {
+      warn(stripMultiline(`
+        merge correction not needed: "${name}" -> "${correctName}"
+        (artist not found in the playcount list)
+      `));
+      return;
+    }
+
+    const {playcount, mbid} = artist;
 
     if (correctName in artistLookup) {
       const correctArtist = artistLookup[correctName];
