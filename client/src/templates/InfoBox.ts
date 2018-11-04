@@ -65,7 +65,7 @@ export default function render({
   totalScrobbleCount,
   totalArtistCount,
   areaScrobbleCount,
-  ...area,
+  ...area
 }: InfoBoxProps): string {
   return trimExtraSpaces(`
     <section

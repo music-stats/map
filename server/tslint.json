@@ -8,6 +8,12 @@
       "single",
       "avoid-escape"
     ],
+    "trailing-comma": [
+      true,
+      {
+        "esSpecCompliant": true
+      }
+    ],
     "no-var-requires": false,
     "arrow-parens": false,
     "only-arrow-functions": false,
