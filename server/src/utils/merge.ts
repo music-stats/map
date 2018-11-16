@@ -66,13 +66,13 @@ function deduplicateArtists(
 
     if (correctName in artistLookup) {
       const correctArtist = artistLookup[correctName];
+      const oldPlaycount = correctArtist.playcount;
 
       correctArtist.playcount += playcount;
 
       log(stripMultiline(`
-        merged "${name}" into "${correctName}",
-        increased playcount by ${playcount}
-        (total: ${correctArtist.playcount})
+        merged "${name}" into "${correctName}"
+        (${oldPlaycount} + ${playcount} = ${correctArtist.playcount})
       `));
 
       if (mbid && mbid !== correctArtist.mbid) {
@@ -89,7 +89,7 @@ function deduplicateArtists(
         mbid,
       };
 
-      log(`renamed "${name}" to "${correctName}"`);
+      log(`renamed "${name}" to "${correctName}" (${playcount})`);
     }
 
     delete artistLookup[name];
@@ -117,6 +117,7 @@ export function merge(
     playcount,
     area: getArtistArea(
       name,
+      playcount,
       artistAreaLookup,
       areaCorrection,
       artistAreaCorrection,
@@ -126,6 +127,7 @@ export function merge(
 
 function getArtistArea(
   artist: string,
+  playcount: number,
   artistAreaLookup: ArtistAreaLookup,
   areaCorrection: AreaCorrection,
   artistAreaCorrection: ArtistAreaCorrection,
@@ -148,7 +150,7 @@ function getArtistArea(
   }
 
   // @todo: add a check against registered areas (countries), to highlight unknown cities/regions
-  warn(`area not found: ${artist}`);
+  warn(`area not found: ${artist} (${playcount})`);
 
   return null;
 }

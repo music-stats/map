@@ -48,7 +48,7 @@ $ yarn build:watch  # compile with watch
 ### List top artists for a given last.fm user
 
 ```bash
-$ yarn script:fetch-artists [50] [--no-color] [--no-cache] # username is set in "./src/config.js"
+$ yarn script:1-fetch-artists [50] [--no-color] [--no-cache] # username is set in "./src/config.js"
 ```
 
 Example output:
@@ -74,7 +74,7 @@ Example output:
 Expects an output of `script:fetch-artists` to be located at `config.lastfm.outputFilePath`.
 
 ```bash
-$ yarn script:fetch-artists-areas [10] [--no-color] [--no-cache]
+$ yarn script:2-fetch-artists-areas [10] [--no-color] [--no-cache]
 ```
 
 Example output:
@@ -93,7 +93,7 @@ Expects both input files (`.json`) to be located at `tmp/`.
 Blends them together, applying three stages of corrections (see `data/`).
 
 ```bash
-$ yarn script:merge-artists
+$ yarn script:3-merge-artists
 ```
 
 Example output:

@@ -14,10 +14,13 @@ const map = L.map('map').setView(
   config.map.defaultView.zoom,
 );
 
-const tileLayer = L.tileLayer(config.map.tileLayer.urlTemplate, {
-  ...config.map.tileLayer.options,
-  accessToken,
-});
+const tileLayer = L.tileLayer(
+  config.map.tileLayer.urlTemplate,
+  {
+    ...config.map.tileLayer.options,
+    accessToken,
+  }
+);
 
 const playcountMap = new PlaycountMap(map, artists as any);
 

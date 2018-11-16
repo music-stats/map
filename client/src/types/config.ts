@@ -33,6 +33,10 @@ interface ControlsConfig {
   linksBox: LinksBoxConfig;
 }
 
+interface TileLayerOptions extends L.TileLayerOptions {
+  id: string;
+}
+
 interface MapConfig {
   defaultView: {
     center: L.LatLngExpression;
@@ -40,7 +44,7 @@ interface MapConfig {
   };
   tileLayer: {
     urlTemplate: string;
-    options: L.TileLayerOptions;
+    options: TileLayerOptions;
   };
   area: {
     style: {

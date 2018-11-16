@@ -1,7 +1,7 @@
 {
   "name": "music-stats-server",
   "version": "0.0.0",
-  "description": "an API gateway between the front-end and various data providers",
+  "description": "SHOULD become an API gateway between the front-end and various data providers, currently a set of scripts",
   "author": "Oleksii Markhovskyi",
   "license": "MIT",
   "scripts": {
@@ -11,15 +11,15 @@
     "prebuild": "yarn clean:dist",
     "build": "tsc",
     "build:watch": "tsc -w",
-    "script:fetch-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/fetch-artists",
-    "script:fetch-artists-areas": "export NODE_PATH=./dist/ && node ./dist/src/scripts/fetch-artists-areas",
-    "script:merge-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/merge-artists"
+    "script:1-fetch-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/1-fetch-artists",
+    "script:2-fetch-artists-areas": "export NODE_PATH=./dist/ && node ./dist/src/scripts/2-fetch-artists-areas",
+    "script:3-merge-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/3-merge-artists"
   },
   "devDependencies": {
-    "@types/dotenv": "4.0.3",
-    "@types/node": "10.12.2",
+    "@types/dotenv": "6.1.0",
+    "@types/node": "10.12.9",
     "@types/ramda": "0.26.0",
-    "husky": "1.1.3",
+    "husky": "1.1.4",
     "tslint": "5.11.0",
     "tslint-eslint-rules": "5.4.0",
     "typescript": "3.1.6"

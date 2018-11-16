@@ -20,7 +20,7 @@ const config: Config = {
       perPage: 50,
       countDefault: 50,
     },
-    outputFilePath: path.resolve(tmpDir, 'lastfm-user-library.json'),
+    outputFilePath: path.resolve(tmpDir, '1-lastfm-user-library.json'),
     cache: {
       ttl: 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'lastfm/'),
@@ -35,7 +35,7 @@ const config: Config = {
     artists: {
       countDefault: 10,
     },
-    outputFilePath: path.resolve(tmpDir, 'musicbrainz-artists-areas.json'),
+    outputFilePath: path.resolve(tmpDir, '2-musicbrainz-artists-areas.json'),
     cache: {
       ttl: 30 * 24 * 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'musicbrainz/'),
@@ -48,7 +48,7 @@ const config: Config = {
       area: path.resolve(dataDir, 'area-correction.json'),
       artistArea: path.resolve(dataDir, 'artist-area-correction.json'),
     },
-    outputFilePath: path.resolve(tmpDir, 'merged-artists.json'),
+    outputFilePath: path.resolve(tmpDir, '3-merged-artists.json'),
   },
 };
 
