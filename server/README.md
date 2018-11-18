@@ -1,6 +1,6 @@
 # music-stats back-end
 
-An API gateway between the front-end and various data providers.
+SHOULD become an API gateway between the front-end and various data providers, currently a set of scripts.
 
 ## Tech stack
 

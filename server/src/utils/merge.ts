@@ -18,8 +18,8 @@ interface ArtistAreaCorrection {
 
 interface Corrections {
   artistCorrection: ArtistCorrection;
-  areaCorrection: AreaCorrection;
   artistAreaCorrection: ArtistAreaCorrection;
+  areaCorrection: AreaCorrection;
 }
 
 type CorrectionsList = [ArtistCorrection, AreaCorrection, ArtistAreaCorrection];
@@ -27,13 +27,13 @@ type CorrectionsList = [ArtistCorrection, AreaCorrection, ArtistAreaCorrection];
 export function loadCorrections(): Promise<Corrections> {
   return Promise.all([
     config.mergedArtists.correctionFilePaths.artist,
-    config.mergedArtists.correctionFilePaths.area,
     config.mergedArtists.correctionFilePaths.artistArea,
+    config.mergedArtists.correctionFilePaths.area,
   ].map(readFile))
-    .then(([artistCorrection, areaCorrection, artistAreaCorrection]: CorrectionsList) => ({
+    .then(([artistCorrection, artistAreaCorrection, areaCorrection]: CorrectionsList) => ({
       artistCorrection,
-      areaCorrection,
       artistAreaCorrection,
+      areaCorrection,
     }));
 }
 
@@ -107,7 +107,7 @@ export function merge(
   artistAreaList: ArtistArea[],
   corrections: Corrections,
 ): MergedArtist[] {
-  const {artistCorrection, areaCorrection, artistAreaCorrection} = corrections;
+  const {artistCorrection, artistAreaCorrection, areaCorrection} = corrections;
   const artistAreaLookup: ArtistAreaLookup = {};
 
   artistAreaList.forEach(({artist, area}) => artistAreaLookup[artist] = area);
@@ -119,8 +119,8 @@ export function merge(
       name,
       playcount,
       artistAreaLookup,
-      areaCorrection,
       artistAreaCorrection,
+      areaCorrection,
     ),
   }));
 }
@@ -129,8 +129,8 @@ function getArtistArea(
   artist: string,
   playcount: number,
   artistAreaLookup: ArtistAreaLookup,
-  areaCorrection: AreaCorrection,
   artistAreaCorrection: ArtistAreaCorrection,
+  areaCorrection: AreaCorrection,
 ): string {
   const correctArtistArea = artistAreaCorrection[artist];
 
