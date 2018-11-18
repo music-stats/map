@@ -3,19 +3,9 @@ import {trimExtraSpaces} from 'src/utils/render';
 
 import './Legend.scss';
 
-// @see: https://webpack.js.org/guides/dependency-management/#require-context
-const svgContext = require.context('src/../assets/flags/1x1/', false, /\.svg$/);
-const svgContextKeys = svgContext.keys();
-const svgDataUrls = svgContextKeys.map(svgContext);
-const svgDict: {[key: string]: string} = {};
-
-svgContextKeys.forEach((key, index) => {
-  svgDict[key.slice(2, 4)] = (svgDataUrls as [string])[index];
-});
-
 export interface AreaListItemProps {
   name: string;
-  iso_a2: string;
+  flagDataUrl: string;
   artistCount: number;
   artistCountBgWidthPercent: number;
   scrobbleCount: number;
@@ -32,7 +22,7 @@ export interface AreaListItemAnimatedProps extends AreaListItemProps {
 function renderAreaListItem(
   {
     name,
-    iso_a2,
+    flagDataUrl,
     artistCount,
     artistCountBgWidthPercent,
     scrobbleCount,
@@ -86,7 +76,7 @@ function renderAreaListItem(
         <div
           class="Legend__area-flag"
           style="
-            background-image: url('${svgDict[iso_a2.toLowerCase()]}');
+            background-image: url('${flagDataUrl}');
           "
         >
         </div>

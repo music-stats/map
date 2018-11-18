@@ -38,7 +38,22 @@
 .InfoBox__header {
   font-weight: bold;
 
+  display: flex;
+  align-items: center;
+
   color: #444;
+}
+
+.InfoBox__area-flag {
+  // Size should be at least integer, better a common multiple of 2 and 3,
+  // since many flags consist of 2 or 3 equally sized horizontal or vertical bands.
+  // Otherwise SVG looks blurry (a browser tries to map colors to pixels).
+
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+
+  background-repeat: no-repeat;
 }
 
 .InfoBox__artist-list {

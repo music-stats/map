@@ -57,6 +57,7 @@ interface InfoBoxProps extends AreaProperties {
   totalArtistCount: number;
   totalScrobbleCount: number;
   areaScrobbleCount: number;
+  areaFlagDataUrl: string;
 }
 
 export default function render({
@@ -65,6 +66,7 @@ export default function render({
   totalScrobbleCount,
   totalArtistCount,
   areaScrobbleCount,
+  areaFlagDataUrl,
   ...area
 }: InfoBoxProps): string {
   return trimExtraSpaces(`
@@ -146,7 +148,17 @@ export default function render({
           <header
             class="InfoBox__header"
           >
-            ${area.name}
+            <div
+              class="InfoBox__area-flag"
+              style="
+                background-image: url('${areaFlagDataUrl}');
+              "
+            >
+            </div>
+
+            <span>
+              ${area.name}
+            </span>
           </header>
 
           <p>

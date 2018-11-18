@@ -17,8 +17,15 @@ import renderLinksBox from 'src/templates/LinksBox';
 import 'leaflet/dist/leaflet.css';
 import './PlaycountMap.scss';
 
+// @see: https://webpack.js.org/guides/dependency-management/#require-context
+const flagSvgContext = require.context('src/../assets/flags/1x1/', false, /\.svg$/);
+
 type ColorScale = d3Scale.ScalePower<number, number>;
 type WidthPercentScale = d3Scale.ScaleLinear<number, number>;
+
+interface FlagDataUrlDict {
+  [key: string]: string;
+}
 
 interface InfoBoxProps {
   area?: Area;
@@ -37,6 +44,7 @@ class PlaycountMap {
   private scrobbleCountBgWidthPercentScale: WidthPercentScale;
 
   private geojson: L.GeoJSON<AreaProperties>;
+  private areaFlagDataUrlDict: FlagDataUrlDict;
 
   private infoBox: InfoBox;
   private legend: CustomControl;
@@ -65,6 +73,7 @@ class PlaycountMap {
       style: this.getAreaStyle.bind(this),
       onEachFeature: (_, layer) => this.subscribeLayer(layer),
     });
+    this.areaFlagDataUrlDict = this.getAreaFlagDataUrlDict();
 
     this.infoBox = this.createInfoBox(config.controls.infoBox.options);
     this.legend = this.createLegend(config.controls.legend.options);
@@ -152,6 +161,21 @@ class PlaycountMap {
     legendListItemElement.addEventListener('mouseenter', onMouseEnter);
     legendListItemElement.addEventListener('mouseleave', onMouseLeave);
     legendListItemElement.addEventListener('click', onClick);
+  }
+
+  private getAreaFlagDataUrlDict(): FlagDataUrlDict {
+    const flagContextKeys = flagSvgContext.keys();
+    const flagDataUrls = flagContextKeys.map(flagSvgContext) as [string];
+    const flagContextKeyReducer = (flagDataUrlDict: FlagDataUrlDict, key: string, index: number) => {
+      flagDataUrlDict[key.slice(2, 4)] = flagDataUrls[index];
+      return flagDataUrlDict;
+    };
+
+    return flagContextKeys.reduce(flagContextKeyReducer, {});
+  }
+
+  private getAreaFlagDataUrl(area: Area): string {
+    return this.areaFlagDataUrlDict[area.properties.iso_a2.toLowerCase()];
   }
 
   private getAreaLayer(areaName: string): L.Layer {
@@ -251,6 +275,9 @@ class PlaycountMap {
         areaScrobbleCount: area
           ? getAreaScrobbleCount(area)
           : null,
+        areaFlagDataUrl: area
+          ? this.getAreaFlagDataUrl(area)
+          : null,
         ...(area
           ? area.properties
           : null),
@@ -265,7 +292,8 @@ class PlaycountMap {
   }
 
   private getAreaListItemProps(area: Area): AreaListItemProps {
-    const {name, iso_a2, artists} = area.properties;
+    const {name, artists} = area.properties;
+    const flagDataUrl = this.getAreaFlagDataUrl(area);
     const artistCount = artists.length;
     const artistCountBgWidthPercent = this.artistCountBgWidthPercentScale(artistCount);
     const scrobbleCount = getAreaScrobbleCount(area);
@@ -276,7 +304,7 @@ class PlaycountMap {
 
     return {
       name,
-      iso_a2,
+      flagDataUrl,
       artistCount,
       artistCountBgWidthPercent,
       scrobbleCount,
