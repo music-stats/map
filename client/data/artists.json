@@ -26,7 +26,7 @@
   },
   {
     "name": "Opeth",
-    "playcount": 613,
+    "playcount": 623,
     "area": "Sweden"
   },
   {
@@ -55,6 +55,16 @@
     "area": "Finland"
   },
   {
+    "name": "The Gathering",
+    "playcount": 438,
+    "area": "Netherlands"
+  },
+  {
+    "name": "Between the Buried and Me",
+    "playcount": 434,
+    "area": "United States"
+  },
+  {
     "name": "Iron Maiden",
     "playcount": 433,
     "area": "United Kingdom"
@@ -63,16 +73,6 @@
     "name": "Tool",
     "playcount": 432,
     "area": "United States"
-  },
-  {
-    "name": "Between the Buried and Me",
-    "playcount": 431,
-    "area": "United States"
-  },
-  {
-    "name": "The Gathering",
-    "playcount": 429,
-    "area": "Netherlands"
   },
   {
     "name": "Океан Ельзи",
@@ -95,14 +95,14 @@
     "area": "United States"
   },
   {
+    "name": "ТНМК",
+    "playcount": 372,
+    "area": "Ukraine"
+  },
+  {
     "name": "The Offspring",
     "playcount": 367,
     "area": "United States"
-  },
-  {
-    "name": "ТНМК",
-    "playcount": 367,
-    "area": "Ukraine"
   },
   {
     "name": "Lacrimosa",
@@ -130,14 +130,19 @@
     "area": "United Kingdom"
   },
   {
-    "name": "Scorpions",
-    "playcount": 305,
+    "name": "Tenhi",
+    "playcount": 316,
+    "area": "Finland"
+  },
+  {
+    "name": "Die Apokalyptischen Reiter",
+    "playcount": 306,
     "area": "Germany"
   },
   {
-    "name": "Tenhi",
+    "name": "Scorpions",
     "playcount": 305,
-    "area": "Finland"
+    "area": "Germany"
   },
   {
     "name": "The Beatles",
@@ -150,9 +155,9 @@
     "area": "Sweden"
   },
   {
-    "name": "Die Apokalyptischen Reiter",
-    "playcount": 295,
-    "area": "Germany"
+    "name": "Atreyu",
+    "playcount": 285,
+    "area": "United States"
   },
   {
     "name": "Pain of Salvation",
@@ -165,9 +170,9 @@
     "area": "Poland"
   },
   {
-    "name": "Atreyu",
-    "playcount": 280,
-    "area": "United States"
+    "name": "Helloween",
+    "playcount": 279,
+    "area": "Germany"
   },
   {
     "name": "Guano Apes",
@@ -175,8 +180,8 @@
     "area": "Germany"
   },
   {
-    "name": "Helloween",
-    "playcount": 274,
+    "name": "Caliban",
+    "playcount": 269,
     "area": "Germany"
   },
   {
@@ -195,11 +200,6 @@
     "area": "United States"
   },
   {
-    "name": "Caliban",
-    "playcount": 248,
-    "area": "Germany"
-  },
-  {
     "name": "Anathema",
     "playcount": 236,
     "area": "United Kingdom"
@@ -210,19 +210,24 @@
     "area": "Ukraine"
   },
   {
+    "name": "Flёur",
+    "playcount": 229,
+    "area": "Ukraine"
+  },
+  {
     "name": "Wolverine",
     "playcount": 226,
+    "area": "Sweden"
+  },
+  {
+    "name": "Lake of Tears",
+    "playcount": 223,
     "area": "Sweden"
   },
   {
     "name": "Portishead",
     "playcount": 215,
     "area": "United Kingdom"
-  },
-  {
-    "name": "Lake of Tears",
-    "playcount": 214,
-    "area": "Sweden"
   },
   {
     "name": "Ayreon",
@@ -233,11 +238,6 @@
     "name": "Metallica",
     "playcount": 207,
     "area": "United States"
-  },
-  {
-    "name": "Flёur",
-    "playcount": 203,
-    "area": "Ukraine"
   },
   {
     "name": "Vivienne Mort",
@@ -260,19 +260,24 @@
     "area": "Russia"
   },
   {
+    "name": "Полинове Поле",
+    "playcount": 194,
+    "area": "Ukraine"
+  },
+  {
     "name": "Godsmack",
     "playcount": 193,
     "area": "United States"
   },
   {
-    "name": "Полинове Поле",
-    "playcount": 190,
-    "area": "Ukraine"
-  },
-  {
     "name": "Воплі Відоплясова",
     "playcount": 187,
     "area": "Ukraine"
+  },
+  {
+    "name": "Evanescence",
+    "playcount": 186,
+    "area": "United States"
   },
   {
     "name": "In Extremo",
@@ -295,9 +300,9 @@
     "area": "Finland"
   },
   {
-    "name": "Evanescence",
-    "playcount": 176,
-    "area": "United States"
+    "name": "Heaven Shall Burn",
+    "playcount": 175,
+    "area": "Germany"
   },
   {
     "name": "Тінь Сонця",
@@ -320,9 +325,19 @@
     "area": "Ukraine"
   },
   {
-    "name": "Heaven Shall Burn",
-    "playcount": 164,
-    "area": "Germany"
+    "name": "Amorphis",
+    "playcount": 163,
+    "area": "Finland"
+  },
+  {
+    "name": "Norma Jean",
+    "playcount": 162,
+    "area": "United States"
+  },
+  {
+    "name": "Led Zeppelin",
+    "playcount": 161,
+    "area": "United Kingdom"
   },
   {
     "name": "A Perfect Circle",
@@ -335,11 +350,6 @@
     "area": "Russia"
   },
   {
-    "name": "Amorphis",
-    "playcount": 155,
-    "area": "Finland"
-  },
-  {
     "name": "Mudvayne",
     "playcount": 155,
     "area": "United States"
@@ -350,19 +360,14 @@
     "area": "United States"
   },
   {
-    "name": "Led Zeppelin",
-    "playcount": 154,
-    "area": "United Kingdom"
-  },
-  {
     "name": "Machine Head",
     "playcount": 154,
     "area": "United States"
   },
   {
-    "name": "Norma Jean",
-    "playcount": 153,
-    "area": "United States"
+    "name": "Бумбокс",
+    "playcount": 154,
+    "area": "Ukraine"
   },
   {
     "name": "Porcupine Tree",
@@ -395,6 +400,11 @@
     "area": "United States"
   },
   {
+    "name": "Animals as Leaders",
+    "playcount": 141,
+    "area": "United States"
+  },
+  {
     "name": "Gazpacho",
     "playcount": 139,
     "area": "Norway"
@@ -415,19 +425,14 @@
     "area": "Sweden"
   },
   {
-    "name": "BoomBox",
-    "playcount": 132,
-    "area": "Ukraine"
-  },
-  {
     "name": "Веремій",
     "playcount": 132,
     "area": "Ukraine"
   },
   {
-    "name": "Animals as Leaders",
+    "name": "God Is An Astronaut",
     "playcount": 131,
-    "area": "United States"
+    "area": "Ireland"
   },
   {
     "name": "After Forever",
@@ -470,11 +475,6 @@
     "area": "Germany"
   },
   {
-    "name": "God Is An Astronaut",
-    "playcount": 121,
-    "area": "Ireland"
-  },
-  {
     "name": "Within Temptation",
     "playcount": 120,
     "area": "Netherlands"
@@ -485,14 +485,14 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Ensiferum",
+    "playcount": 117,
+    "area": "Finland"
+  },
+  {
     "name": "Slipknot",
     "playcount": 114,
     "area": "United States"
-  },
-  {
-    "name": "Ensiferum",
-    "playcount": 113,
-    "area": "Finland"
   },
   {
     "name": "Rainbow",
@@ -515,6 +515,11 @@
     "area": "Ukraine"
   },
   {
+    "name": "65daysofstatic",
+    "playcount": 107,
+    "area": "United Kingdom"
+  },
+  {
     "name": "Крихітка",
     "playcount": 107,
     "area": "Ukraine"
@@ -523,6 +528,11 @@
     "name": "Tristania",
     "playcount": 106,
     "area": "Norway"
+  },
+  {
+    "name": "Lacrimas Profundere",
+    "playcount": 103,
+    "area": "Germany"
   },
   {
     "name": "Rage",
@@ -538,6 +548,11 @@
     "name": "Vàli",
     "playcount": 103,
     "area": "Norway"
+  },
+  {
+    "name": "Rokash",
+    "playcount": 103,
+    "area": "Belarus"
   },
   {
     "name": "Stream of Passion",
@@ -575,21 +590,6 @@
     "area": "United States"
   },
   {
-    "name": "Lacrimas Profundere",
-    "playcount": 96,
-    "area": "Germany"
-  },
-  {
-    "name": "Rokash",
-    "playcount": 96,
-    "area": "Belarus"
-  },
-  {
-    "name": "65daysofstatic",
-    "playcount": 95,
-    "area": "United Kingdom"
-  },
-  {
     "name": "Katatonia",
     "playcount": 95,
     "area": "Sweden"
@@ -613,6 +613,11 @@
     "name": "Boston",
     "playcount": 93,
     "area": "United States"
+  },
+  {
+    "name": "Empyrium",
+    "playcount": 93,
+    "area": "Germany"
   },
   {
     "name": "Iced Earth",
@@ -653,11 +658,6 @@
     "name": "Apocalyptica",
     "playcount": 84,
     "area": "Finland"
-  },
-  {
-    "name": "Empyrium",
-    "playcount": 84,
-    "area": "Germany"
   },
   {
     "name": "Gojira",
@@ -805,6 +805,11 @@
     "area": "United States"
   },
   {
+    "name": "Darkest Hour",
+    "playcount": 67,
+    "area": "United States"
+  },
+  {
     "name": "Liquid Tension Experiment",
     "playcount": 67,
     "area": "United States"
@@ -875,6 +880,11 @@
     "area": "Finland"
   },
   {
+    "name": "вагоновожатые",
+    "playcount": 62,
+    "area": "Ukraine"
+  },
+  {
     "name": "August Burns Red",
     "playcount": 61,
     "area": "United States"
@@ -905,6 +915,11 @@
     "area": "Ukraine"
   },
   {
+    "name": "In This Moment",
+    "playcount": 60,
+    "area": "United States"
+  },
+  {
     "name": "Amatory",
     "playcount": 59,
     "area": "Russia"
@@ -930,14 +945,14 @@
     "area": "Ukraine"
   },
   {
-    "name": "Darkest Hour",
-    "playcount": 56,
-    "area": "United States"
-  },
-  {
     "name": "Muse",
     "playcount": 56,
     "area": "United Kingdom"
+  },
+  {
+    "name": "Vildhjarta",
+    "playcount": 56,
+    "area": "Sweden"
   },
   {
     "name": "Virgin Black",
@@ -980,11 +995,6 @@
     "area": "United States"
   },
   {
-    "name": "In This Moment",
-    "playcount": 54,
-    "area": "United States"
-  },
-  {
     "name": "Limp Bizkit",
     "playcount": 54,
     "area": "United States"
@@ -1015,11 +1025,6 @@
     "area": "Italy"
   },
   {
-    "name": "вагоновожатые",
-    "playcount": 53,
-    "area": "Ukraine"
-  },
-  {
     "name": "Etwas Unders",
     "playcount": 53,
     "area": "Ukraine"
@@ -1043,11 +1048,6 @@
     "name": "Trail of Tears",
     "playcount": 52,
     "area": "Norway"
-  },
-  {
-    "name": "Vildhjarta",
-    "playcount": 52,
-    "area": "Sweden"
   },
   {
     "name": "Dream Evil",
@@ -1185,6 +1185,11 @@
     "area": "United States"
   },
   {
+    "name": "Mono",
+    "playcount": 43,
+    "area": "Japan"
+  },
+  {
     "name": "Yngwie Malmsteen",
     "playcount": 43,
     "area": "Sweden"
@@ -1250,6 +1255,11 @@
     "area": "United States"
   },
   {
+    "name": "Merva",
+    "playcount": 41,
+    "area": "Ukraine"
+  },
+  {
     "name": "Pianoбой",
     "playcount": 41,
     "area": "Ukraine"
@@ -1313,11 +1323,6 @@
     "name": "Elend",
     "playcount": 39,
     "area": "France"
-  },
-  {
-    "name": "Mono",
-    "playcount": 39,
-    "area": "Japan"
   },
   {
     "name": "Pagan's Mind",
@@ -1410,11 +1415,6 @@
     "area": "Czech Republic"
   },
   {
-    "name": "Merva",
-    "playcount": 34,
-    "area": "Ukraine"
-  },
-  {
     "name": "Ohm",
     "playcount": 34,
     "area": "United States"
@@ -1483,6 +1483,11 @@
     "name": "Massive Attack",
     "playcount": 31,
     "area": "United Kingdom"
+  },
+  {
+    "name": "The Gitas",
+    "playcount": 31,
+    "area": "United States"
   },
   {
     "name": "The Sins of Thy Beloved",
@@ -1620,11 +1625,6 @@
     "area": "Ukraine"
   },
   {
-    "name": "The Gitas",
-    "playcount": 27,
-    "area": "United States"
-  },
-  {
     "name": "Yes",
     "playcount": 27,
     "area": "United Kingdom"
@@ -1668,6 +1668,11 @@
     "name": "Maurice Ravel",
     "playcount": 26,
     "area": "France"
+  },
+  {
+    "name": "Plini",
+    "playcount": 26,
+    "area": "Australia"
   },
   {
     "name": "Primus",
@@ -1770,6 +1775,11 @@
     "area": "Russia"
   },
   {
+    "name": "Kraamola",
+    "playcount": 24,
+    "area": "Ukraine"
+  },
+  {
     "name": "The Police",
     "playcount": 24,
     "area": "United Kingdom"
@@ -1855,11 +1865,6 @@
     "area": "United Kingdom"
   },
   {
-    "name": "Kraamola",
-    "playcount": 22,
-    "area": "Ukraine"
-  },
-  {
     "name": "Louna",
     "playcount": 22,
     "area": "Russia"
@@ -1885,11 +1890,6 @@
     "area": "United States"
   },
   {
-    "name": "Plini",
-    "playcount": 22,
-    "area": "Australia"
-  },
-  {
     "name": "Red Sparowes",
     "playcount": 22,
     "area": "United States"
@@ -1910,9 +1910,19 @@
     "area": "Ukraine"
   },
   {
+    "name": "Христина Соловій",
+    "playcount": 22,
+    "area": "Ukraine"
+  },
+  {
     "name": "Рэспубліка Паліна",
     "playcount": 22,
     "area": "Belarus"
+  },
+  {
+    "name": "Franz Liszt",
+    "playcount": 21,
+    "area": "Hungary"
   },
   {
     "name": "Gentle Giant",
@@ -1928,6 +1938,11 @@
     "name": "In Mourning",
     "playcount": 21,
     "area": "Sweden"
+  },
+  {
+    "name": "Onuka",
+    "playcount": 21,
+    "area": "Ukraine"
   },
   {
     "name": "Our Last Night",
@@ -2035,6 +2050,11 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Yuko",
+    "playcount": 20,
+    "area": "Ukraine"
+  },
+  {
     "name": "Машина времени",
     "playcount": 20,
     "area": "Russia"
@@ -2100,11 +2120,6 @@
     "area": "United States"
   },
   {
-    "name": "Onuka",
-    "playcount": 19,
-    "area": "Ukraine"
-  },
-  {
     "name": "Slade",
     "playcount": 19,
     "area": "United Kingdom"
@@ -2158,6 +2173,11 @@
     "name": "Bud Powell",
     "playcount": 18,
     "area": "United States"
+  },
+  {
+    "name": "Darkwood",
+    "playcount": 18,
+    "area": "Germany"
   },
   {
     "name": "Edge of Sanity",
@@ -2300,11 +2320,6 @@
     "area": "United States"
   },
   {
-    "name": "Yuko",
-    "playcount": 17,
-    "area": "Ukraine"
-  },
-  {
     "name": "Árstíðir",
     "playcount": 17,
     "area": "Iceland"
@@ -2313,11 +2328,6 @@
     "name": "Петля Пристрастия",
     "playcount": 17,
     "area": "Belarus"
-  },
-  {
-    "name": "Христина Соловій",
-    "playcount": 17,
-    "area": "Ukraine"
   },
   {
     "name": "НастяЗникає",
@@ -2353,6 +2363,11 @@
     "name": "Jordan Rudess",
     "playcount": 16,
     "area": "United States"
+  },
+  {
+    "name": "Neun Welten",
+    "playcount": 16,
+    "area": "Germany"
   },
   {
     "name": "Ordo Rosarius Equilibrio",
@@ -2465,11 +2480,6 @@
     "area": "Russia"
   },
   {
-    "name": "Бумбокс",
-    "playcount": 15,
-    "area": "Ukraine"
-  },
-  {
     "name": "Галактика",
     "playcount": 15,
     "area": "Ukraine"
@@ -2523,6 +2533,11 @@
     "name": "Izzy Stradlin",
     "playcount": 14,
     "area": "United States"
+  },
+  {
+    "name": "Jinjer",
+    "playcount": 14,
+    "area": "Ukraine"
   },
   {
     "name": "John Petrucci & Jordan Rudess",
@@ -2715,7 +2730,7 @@
     "area": "United Kingdom"
   },
   {
-    "name": "Dz'ob",
+    "name": "DZ'OB",
     "playcount": 12,
     "area": "Ukraine"
   },
@@ -2723,11 +2738,6 @@
     "name": "Eva Cassidy",
     "playcount": 12,
     "area": "United States"
-  },
-  {
-    "name": "Franz Liszt",
-    "playcount": 12,
-    "area": "Hungary"
   },
   {
     "name": "Good Charlotte",
@@ -3020,11 +3030,6 @@
     "area": "Norway"
   },
   {
-    "name": "Darkwood",
-    "playcount": 10,
-    "area": "Germany"
-  },
-  {
     "name": "David Arkenstone",
     "playcount": 10,
     "area": "United States"
@@ -3120,11 +3125,6 @@
     "area": "Canada"
   },
   {
-    "name": "Neun Welten",
-    "playcount": 10,
-    "area": "Germany"
-  },
-  {
     "name": "Novembers Doom",
     "playcount": 10,
     "area": "United States"
@@ -3160,6 +3160,11 @@
     "area": "Canada"
   },
   {
+    "name": "Space of Variations",
+    "playcount": 10,
+    "area": "Ukraine"
+  },
+  {
     "name": "Subway to Sally",
     "playcount": 10,
     "area": "Germany"
@@ -3181,6 +3186,11 @@
   },
   {
     "name": "Катя Chilly",
+    "playcount": 10,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Легендарные Пластилиновые Ноги",
     "playcount": 10,
     "area": "Ukraine"
   },
@@ -3520,11 +3530,6 @@
     "area": "Germany"
   },
   {
-    "name": "Jinjer",
-    "playcount": 8,
-    "area": "Ukraine"
-  },
-  {
     "name": "Kasper Bjørke",
     "playcount": 8,
     "area": "Denmark"
@@ -3690,6 +3695,11 @@
     "area": "Germany"
   },
   {
+    "name": "Every Time I Die",
+    "playcount": 7,
+    "area": "United States"
+  },
+  {
     "name": "Falloch",
     "playcount": 7,
     "area": "Glasgow"
@@ -3708,6 +3718,11 @@
     "name": "Hargos",
     "playcount": 7,
     "area": "Brazil"
+  },
+  {
+    "name": "Holy Blood",
+    "playcount": 7,
+    "area": "Ukraine"
   },
   {
     "name": "Iron Savior",
@@ -3998,6 +4013,11 @@
     "name": "Yussef Kamaal",
     "playcount": 6,
     "area": "United Kingdom"
+  },
+  {
+    "name": "Pulatova",
+    "playcount": 6,
+    "area": "Ukraine"
   },
   {
     "name": "SPOOL スプール",
@@ -4703,6 +4723,11 @@
     "name": "Philip Sayce Group",
     "playcount": 3,
     "area": null
+  },
+  {
+    "name": "Poison the Well",
+    "playcount": 3,
+    "area": "United States"
   },
   {
     "name": "Richie Kotzen",
@@ -6888,5 +6913,475 @@
     "name": "Mitski",
     "playcount": 1,
     "area": "United States"
+  },
+  {
+    "name": "Moby",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Monica Heldal",
+    "playcount": 1,
+    "area": "Dundalk"
+  },
+  {
+    "name": "Monk",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Morgenstern",
+    "playcount": 1,
+    "area": "Bad Salzungen"
+  },
+  {
+    "name": "Mount Moriah",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Moura Lympany",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Mr. Scruff",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "MS MR",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "mt. fujitive",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Musk Ox",
+    "playcount": 1,
+    "area": "Ottawa"
+  },
+  {
+    "name": "Nathaniel Rateliff & the Night Sweats",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Natolich",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Neal Morse",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Nhor",
+    "playcount": 1,
+    "area": "Herefordshire"
+  },
+  {
+    "name": "Nicholas Payton",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Nils Petter Molvær",
+    "playcount": 1,
+    "area": "Norway"
+  },
+  {
+    "name": "NO SINNER",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Noah Gundersen",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Ocean Colour Scene",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Old Crow Medicine Show",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Oli Brown",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Oliver Nelson",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Omega Virus",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Omit",
+    "playcount": 1,
+    "area": "Norway"
+  },
+  {
+    "name": "Oscar Peterson Trio",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Palmo X",
+    "playcount": 1,
+    "area": "Ukraine"
+  },
+  {
+    "name": "Paradox",
+    "playcount": 1,
+    "area": "Germany"
+  },
+  {
+    "name": "Parov Stelar Trio",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Patrick Rapold",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Patty Griffin",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Paul Desmond",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Paul Stanley",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Pebblee Poo",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Peter Criss",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Phat Phunktion",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Phil Woods",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Philip Glass",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Philip Sayce",
+    "playcount": 1,
+    "area": "Canada"
+  },
+  {
+    "name": "Phineas Newborn",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Phosphorescent",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Pietro Antonio Locatelli",
+    "playcount": 1,
+    "area": "Italy"
+  },
+  {
+    "name": "Pistol Annies",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Portico Quartet",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Pravada",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Preparation X",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Psychotic Waltz",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Pulp",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Qasim Naqvi",
+    "playcount": 1,
+    "area": "Brooklyn"
+  },
+  {
+    "name": "Quincy Jones",
+    "playcount": 1,
+    "area": "Bel Air"
+  },
+  {
+    "name": "Ra Ra Raj",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Rae Morris",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Rammellzee",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Ray Bryant",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Ray LaMontagne",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Raymond Fol",
+    "playcount": 1,
+    "area": "France"
+  },
+  {
+    "name": "Recondite",
+    "playcount": 1,
+    "area": "Germany"
+  },
+  {
+    "name": "Regina Carter",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Renee Olstead",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Reuben Bidez",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Revolution Void",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Rhiannon Giddens",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Rhodes",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Richard Ashcroft",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Richard Thompson",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Rival Consoles",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Rob Scallon",
+    "playcount": 1,
+    "area": "Chicago"
+  },
+  {
+    "name": "Robert Johnson",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Robert Randolph & The Family Band",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Roberto Jonata",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Rodrigo y Gabriela",
+    "playcount": 1,
+    "area": "Mexico"
+  },
+  {
+    "name": "Rory Gallagher",
+    "playcount": 1,
+    "area": "Ireland"
+  },
+  {
+    "name": "Rosario Giuliani",
+    "playcount": 1,
+    "area": "Italy"
+  },
+  {
+    "name": "Rose Funeral",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Ross Hammond",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Rough Silk",
+    "playcount": 1,
+    "area": "Germany"
+  },
+  {
+    "name": "Ruelle",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Ruston Kelly",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Saint Jude",
+    "playcount": 1,
+    "area": "United Kingdom"
+  },
+  {
+    "name": "Saito",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Saltatio Mortis",
+    "playcount": 1,
+    "area": "Germany"
+  },
+  {
+    "name": "Sam Beam",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Sarah Jarosz",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Sasha Siem",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Scars of Life",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Sean Harris",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Sean McConnell",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Selfieman",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Shamrain",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Shannon Curfman",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Shovels & Rope",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
+    "name": "Siv Jakobsen",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Skalpel",
+    "playcount": 1,
+    "area": "Poland"
+  },
+  {
+    "name": "Sleater-Kinney",
+    "playcount": 1,
+    "area": null
+  },
+  {
+    "name": "Motanka",
+    "playcount": 1,
+    "area": "Ukraine"
   }
 ]

@@ -37,7 +37,7 @@ const config: Config = {
     },
     outputFilePath: path.resolve(tmpDir, '2-musicbrainz-artists-areas.json'),
     cache: {
-      ttl: 30 * 24 * 60 * 60 * 1000,
+      ttl: 365 * 24 * 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'musicbrainz/'),
     },
   },
