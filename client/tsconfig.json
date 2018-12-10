@@ -20,11 +20,6 @@
       "src/*": ["./src/*"]
     }
   },
-  "awesomeTypescriptLoaderOptions": {
-    "useBabel": true,
-    "useCache": true,
-    "emitRequireType": false
-  },
   "exclude": [
     "node_modules",
     "dist"

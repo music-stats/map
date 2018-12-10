@@ -48,19 +48,7 @@ loaders.tslint = {
 
 loaders.ts = {
   test: /\.ts$/,
-  use: [
-    {
-      loader: 'awesome-typescript-loader',
-      options: {
-        useCache: true,
-        useBabel: true,
-        babelOptions: {
-          babelrc: true,
-          compact: true,
-        },
-      },
-    },
-  ],
+  loader: 'ts-loader',
   exclude: NODE_MODULES_DIR,
 };
 
@@ -125,7 +113,6 @@ const config = {
   context: SRC_DIR,
 
   entry: [
-    'babel-polyfill',
     './app.ts',
   ],
 
