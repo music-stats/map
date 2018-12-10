@@ -112,17 +112,19 @@ export function merge(
 
   artistAreaList.forEach(({artist, area}) => artistAreaLookup[artist] = area);
 
-  return deduplicateArtists(artistList, artistCorrection).map(({name, playcount}) => ({
-    name,
-    playcount,
-    area: getArtistArea(
+  return deduplicateArtists(artistList, artistCorrection)
+    .map(({name, playcount}) => ({
       name,
       playcount,
-      artistAreaLookup,
-      artistAreaCorrection,
-      areaCorrection,
-    ),
-  }));
+      area: getArtistArea(
+        name,
+        playcount,
+        artistAreaLookup,
+        artistAreaCorrection,
+        areaCorrection,
+      ),
+    }))
+    .filter(({area}) => Boolean(area));
 }
 
 function getArtistArea(
