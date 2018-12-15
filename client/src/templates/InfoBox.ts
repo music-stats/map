@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import {Artist, AreaProperties} from 'src/types/models';
 import {html, url} from 'src/utils/render';
 
@@ -17,11 +19,15 @@ function renderArtistListItem({
       class="InfoBox__artist"
     >
       <td
-        class="InfoBox__artist-rank ${
-          artist.rank <= 3
-            ? `InfoBox__artist-rank--medal InfoBox__artist-rank--medal-${artist.rank}`
-            : ''
-        }"
+        class="${classNames(
+          'InfoBox__artist-rank',
+          {
+            [classNames(
+              'InfoBox__artist-rank--medal',
+              `InfoBox__artist-rank--medal-${artist.rank}`,
+            )]: artist.rank <= 3
+          }
+        )}"
       >
         #${artist.rank}
       </td>
@@ -135,7 +141,7 @@ export default function render({
           href="https://www.last.fm/user/${username}/library"
           target="_blank"
         >
-           ${totalScrobbleCount.toLocaleString()}
+          ${totalScrobbleCount.toLocaleString()}
         </a>
       </p>
     </section>
