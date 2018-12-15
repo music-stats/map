@@ -1,5 +1,5 @@
 import {Artist, AreaProperties} from 'src/types/models';
-import {trimExtraSpaces, replaceSpaces} from 'src/utils/render';
+import {html, url} from 'src/utils/render';
 
 import './InfoBox.scss';
 
@@ -30,10 +30,10 @@ function renderArtistListItem({
         class="InfoBox__artist-playcount"
       >
         <a
-          href="https://www.last.fm/user/${username}/library/music/${replaceSpaces(artist.name)}"
+          href="${url`https://www.last.fm/user/${username}/library/music/${artist.name}`}"
           target="_blank"
         >
-          ${artist.playcount}
+          ${artist.playcount.toLocaleString()}
         </a>
       </td>
 
@@ -41,7 +41,7 @@ function renderArtistListItem({
         class="InfoBox__artist-name"
       >
         <a
-          href="https://www.last.fm/music/${replaceSpaces(artist.name)}"
+          href="${url`https://www.last.fm/music/${artist.name}`}"
           target="_blank"
         >
           ${artist.name}
@@ -69,13 +69,13 @@ export default function render({
   areaFlagDataUrl,
   ...area
 }: InfoBoxProps): string {
-  return trimExtraSpaces(`
+  return html`
     <section
       class="InfoBox__section InfoBox__section--header"
     >
       <div>
         <span>
-          last.fm user:
+          last.fm user:&nbsp;
         </span>
         <a
           href="https://www.last.fm/user/${username}"
@@ -117,25 +117,25 @@ export default function render({
 
       <p>
         <span>
-          artists:
+          artists:&nbsp;
         </span>
         <a
           href="https://www.last.fm/user/${username}/library/artists"
           target="_blank"
         >
-          ${totalArtistCount}
+          ${totalArtistCount.toLocaleString()}
         </a>
       </p>
 
       <p>
         <span>
-          scrobbles:
+          scrobbles:&nbsp;
         </span>
         <a
           href="https://www.last.fm/user/${username}/library"
           target="_blank"
         >
-           ${totalScrobbleCount}
+           ${totalScrobbleCount.toLocaleString()}
         </a>
       </p>
     </section>
@@ -162,11 +162,11 @@ export default function render({
           </header>
 
           <p>
-            artists: ${area.artists.length}
+            artists: ${area.artists.length.toLocaleString()}
           </p>
 
           <p>
-            scrobbles: ${areaScrobbleCount}
+            scrobbles: ${areaScrobbleCount.toLocaleString()}
           </p>
 
           <table
@@ -185,5 +185,5 @@ export default function render({
         `
       }
     </section>
-  `);
+  `;
 }

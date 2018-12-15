@@ -188,17 +188,29 @@
 .Legend__area-stats {
   z-index: 2; // keeping ".Legend__area-scale-container" below, important for text color and "title" attribute
 
-  margin: 0 0.4em;
-
   white-space: nowrap;
 }
 
-.Legend__area-stats {
-  margin-right: 1em;
+.Legend__area-name {
+  margin: 0 10px;
+}
 
+.Legend__area-stats {
   color: #888;
 
   .Legend__area:hover & {
     color: #444;
+  }
+
+  > * {
+    margin: 0 4px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

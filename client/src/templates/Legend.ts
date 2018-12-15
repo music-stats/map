@@ -1,5 +1,5 @@
 import {Animation} from 'src/types/elements';
-import {trimExtraSpaces} from 'src/utils/render';
+import {html} from 'src/utils/render';
 
 import './Legend.scss';
 
@@ -100,11 +100,11 @@ function renderAreaListItem(
         </span>
 
         <sup title="artists">
-          ${artistCount}
+          ${artistCount.toLocaleString()}
         </sup>
 
         <sub title="scrobbles">
-          ${scrobbleCount}
+          ${scrobbleCount.toLocaleString()}
         </sub>
       </span>
     </li>
@@ -118,11 +118,11 @@ interface LegendProps {
 export default function render({
   areaList,
 }: LegendProps): string {
-  return trimExtraSpaces(`
+  return html`
     <ul
       class="Legend__area-list"
     >
       ${areaList.map(renderAreaListItem).join('')}
     </ul>
-  `);
+  `;
 }

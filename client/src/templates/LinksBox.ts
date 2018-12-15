@@ -1,4 +1,4 @@
-import {trimExtraSpaces} from 'src/utils/render';
+import {html} from 'src/utils/render';
 
 import './LinksBox.scss';
 
@@ -19,7 +19,7 @@ function renderLinkListItem({
   return `
     <li>
       <span>
-        ${label}:
+        ${label}:&nbsp;
       </span>
       <a
         href="${url}"
@@ -40,7 +40,7 @@ export default function render({
   github,
   twitter,
 }: LinksBoxProps): string {
-  return trimExtraSpaces(`
+  return html`
     <ul>
       ${renderLinkListItem({
         ...github,
@@ -52,5 +52,5 @@ export default function render({
         label: 'Twitter',
       })}
     </ul>
-  `);
+  `;
 }
