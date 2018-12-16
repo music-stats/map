@@ -29,11 +29,21 @@ interface MusicbrainzConfig extends ConnectorConfig {
   };
 }
 
+export enum CorrectionDataType {
+  JsonFile = 'JsonFile',
+  TxtFolder = 'TxtFolder',
+}
+
+export interface Correction {
+  dataType: CorrectionDataType;
+  filePath: string;
+}
+
 interface MergedArtistsConfig {
-  correctionFilePaths: {
-    artist: string;
-    artistArea: string;
-    area: string;
+  corrections: {
+    artistName: Correction;
+    artistArea: Correction;
+    area: Correction;
   };
   outputFilePath: string;
 }

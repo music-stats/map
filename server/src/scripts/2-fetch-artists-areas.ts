@@ -6,7 +6,7 @@ import {ArtistArea} from 'src/types/artist';
 
 import config from 'src/config';
 import {sequence} from 'src/utils/promise';
-import {readFile, writeFile} from 'src/utils/file';
+import {readJsonFile, writeFile} from 'src/utils/file';
 import {proxyLog} from 'src/utils/log';
 import {fetchArtist} from 'src/connectors/musicbrainz';
 
@@ -24,7 +24,7 @@ function proxyLogArtistsCount(artists: LastfmArtist[]): LastfmArtist[] {
 }
 
 function extract(): Promise<MusicbrainzArtist[]> {
-  return readFile<LastfmArtist[]>(config.lastfm.outputFilePath)
+  return readJsonFile<LastfmArtist[]>(config.lastfm.outputFilePath)
     .then(take(artistsCount))
     .then((artists) => artists.filter(({mbid}) => Boolean(mbid))) // "mbid" is missing for some artists
     .then(proxyLogArtistsCount)

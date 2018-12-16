@@ -1,9 +1,9 @@
 import {Artist, ArtistArea, MergedArtist} from 'src/types/artist';
 
 import config from 'src/config';
-import {readFile, writeFile} from 'src/utils/file';
+import {readJsonFile, writeFile} from 'src/utils/file';
 import {proxyLog} from 'src/utils/log';
-import {loadCorrections, merge} from 'src/utils/merge';
+import {loadAllCorrections, merge} from 'src/utils/merge';
 
 interface InputLists {
   artistList: Artist[];
@@ -14,7 +14,7 @@ function extract(): Promise<InputLists> {
   return Promise.all([
     config.lastfm.outputFilePath,
     config.musicbrainz.outputFilePath,
-  ].map(readFile))
+  ].map(readJsonFile))
     .then(([artistList, artistAreaList]: [Artist[], ArtistArea[]]) => ({
       artistList,
       artistAreaList,
@@ -22,7 +22,7 @@ function extract(): Promise<InputLists> {
 }
 
 function transform({artistList, artistAreaList}: InputLists): Promise<MergedArtist[]> {
-  return loadCorrections()
+  return loadAllCorrections()
     .then((corrections) => merge(artistList, artistAreaList, corrections));
 }
 

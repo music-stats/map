@@ -1,10 +1,11 @@
 import {Artist, ArtistArea, MergedArtist} from 'src/types/artist';
+import {Correction, CorrectionDataType} from 'src/types/config';
 
 import config from 'src/config';
-import {readFile} from 'src/utils/file';
+import {readJsonFile, readTxtMultilineFolder, TxtMultilineFolderContent} from 'src/utils/file';
 import log, {warn, stripMultiline} from 'src/utils/log';
 
-interface ArtistCorrection {
+interface ArtistNameCorrection {
   [name: string]: string;
 }
 
@@ -16,22 +17,57 @@ interface ArtistAreaCorrection {
   [artist: string]: string;
 }
 
-interface Corrections {
-  artistCorrection: ArtistCorrection;
+interface ParsedCorrections {
+  artistNameCorrection: ArtistNameCorrection;
   artistAreaCorrection: ArtistAreaCorrection;
   areaCorrection: AreaCorrection;
 }
 
-type CorrectionsList = [ArtistCorrection, AreaCorrection, ArtistAreaCorrection];
+type AnyParsedCorrection = ArtistNameCorrection | AreaCorrection | ArtistAreaCorrection;
+type ParsedCorrectionsList = [ArtistNameCorrection, AreaCorrection, ArtistAreaCorrection];
 
-export function loadCorrections(): Promise<Corrections> {
+function upperCaseFirstLetter(value: string): string {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+// Converts "united-states" to "United States".
+function convertFileNameToArea(fileName: string): string {
+  return fileName.split('-').map(upperCaseFirstLetter).join(' ');
+}
+
+function convertTxtMultilineFolderContentToCorrection(folderContent: TxtMultilineFolderContent): AnyParsedCorrection {
+  const correction: AnyParsedCorrection = {};
+
+  Object.entries(folderContent).forEach(([fileName, fileContent]) => {
+    const area = convertFileNameToArea(fileName);
+
+    fileContent.forEach((fileString) => correction[fileString] = area);
+  });
+
+  return correction;
+}
+
+function loadCorrection({dataType, filePath}: Correction): Promise<AnyParsedCorrection> {
+  if (dataType === CorrectionDataType.JsonFile) {
+    return readJsonFile(filePath);
+  }
+
+  if (dataType === CorrectionDataType.TxtFolder) {
+    return readTxtMultilineFolder(filePath)
+      .then(convertTxtMultilineFolderContentToCorrection);
+  }
+
+  return Promise.reject('Data type is not supported');
+}
+
+export function loadAllCorrections(): Promise<ParsedCorrections> {
   return Promise.all([
-    config.mergedArtists.correctionFilePaths.artist,
-    config.mergedArtists.correctionFilePaths.artistArea,
-    config.mergedArtists.correctionFilePaths.area,
-  ].map(readFile))
-    .then(([artistCorrection, artistAreaCorrection, areaCorrection]: CorrectionsList) => ({
-      artistCorrection,
+    config.mergedArtists.corrections.artistName,
+    config.mergedArtists.corrections.artistArea,
+    config.mergedArtists.corrections.area,
+  ].map(loadCorrection))
+    .then(([artistNameCorrection, artistAreaCorrection, areaCorrection]: ParsedCorrectionsList) => ({
+      artistNameCorrection,
       artistAreaCorrection,
       areaCorrection,
     }));
@@ -43,13 +79,13 @@ interface ArtistLookup {
 
 function deduplicateArtists(
   artistList: Artist[],
-  artistCorrection: ArtistCorrection,
+  artistNameCorrection: ArtistNameCorrection,
 ): Artist[] {
   const artistLookup: ArtistLookup = {};
 
   artistList.forEach((artist) => artistLookup[artist.name] = artist);
 
-  Object.entries(artistCorrection).forEach(([name, correctName]) => {
+  Object.entries(artistNameCorrection).forEach(([name, correctName]) => {
     const artist = artistLookup[name];
 
     // it could be that artist name appears in the correction list
@@ -105,14 +141,14 @@ interface ArtistAreaLookup {
 export function merge(
   artistList: Artist[],
   artistAreaList: ArtistArea[],
-  corrections: Corrections,
+  corrections: ParsedCorrections,
 ): MergedArtist[] {
-  const {artistCorrection, artistAreaCorrection, areaCorrection} = corrections;
+  const {artistNameCorrection, artistAreaCorrection, areaCorrection} = corrections;
   const artistAreaLookup: ArtistAreaLookup = {};
 
   artistAreaList.forEach(({artist, area}) => artistAreaLookup[artist] = area);
 
-  return deduplicateArtists(artistList, artistCorrection)
+  return deduplicateArtists(artistList, artistNameCorrection)
     .map(({name, playcount}) => ({
       name,
       playcount,

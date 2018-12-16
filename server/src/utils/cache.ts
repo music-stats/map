@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import {ConnectorCacheConfig} from 'src/types/config';
-import {readFile, writeFile} from 'src/utils/file';
+import {readJsonFile, writeFile} from 'src/utils/file';
 import log from 'src/utils/log';
 
 function constructCacheFilePath(dir: string, url: string, format: string = 'json'): string {
@@ -46,7 +46,7 @@ export function retrieveResponseDataCache<ResponseData>(
         response cache is valid:
         - file: ${filePath}
       `);
-      readFile(filePath)
+      readJsonFile(filePath)
         .then(resolve)
         .catch(reject);
     });

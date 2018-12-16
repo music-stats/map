@@ -90,7 +90,7 @@ Example output:
 ### Merge results of two scripts above
 
 Expects both input files (`.json`) to be located at `tmp/`.
-Blends them together, applying three stages of corrections (see `data/`).
+Blends them together, applying three stages of corrections (see `data/corrections/`).
 
 ```bash
 $ yarn script:3-merge-artists

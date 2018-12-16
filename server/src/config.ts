@@ -1,9 +1,9 @@
 import * as path from 'path';
 
-import Config from 'src/types/config';
+import Config, {CorrectionDataType} from 'src/types/config';
 
 const rootDir = path.resolve(__dirname, '../../');
-const dataDir = path.resolve(rootDir, 'data/');
+const correctionsDir = path.resolve(rootDir, 'data/corrections/');
 const tmpDir = path.resolve(rootDir, 'tmp/');
 const cacheDir = path.resolve(rootDir, 'cache/');
 
@@ -43,10 +43,19 @@ const config: Config = {
   },
 
   mergedArtists: {
-    correctionFilePaths: {
-      artist: path.resolve(dataDir, '1-artist-correction.json'),
-      artistArea: path.resolve(dataDir, '2-artist-area-correction.json'),
-      area: path.resolve(dataDir, '3-area-correction.json'),
+    corrections: {
+      artistName: {
+        dataType: CorrectionDataType.JsonFile,
+        filePath: path.resolve(correctionsDir, '1-artist-name.json'),
+      },
+      artistArea: {
+        dataType: CorrectionDataType.TxtFolder,
+        filePath: path.resolve(correctionsDir, '2-artist-area/'),
+      },
+      area: {
+        dataType: CorrectionDataType.TxtFolder,
+        filePath: path.resolve(correctionsDir, '3-area/'),
+      },
     },
     outputFilePath: path.resolve(tmpDir, '3-merged-artists.json'),
   },
