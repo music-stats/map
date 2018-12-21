@@ -12,26 +12,25 @@
   &--header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
-}
-
-.InfoBox__close-button-container {
-  margin-right: -0.4em;
-  margin-left: 1em;
-  padding: 0 0.4em;
 }
 
 .InfoBox__close-button {
   font: inherit;
+  line-height: 1em;
 
+  margin-left: 1em;
   padding: 0;
+
+  transform: scale(1.2);
 
   border: none;
   outline: none;
   background-color: transparent;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.4);
   }
 }
 

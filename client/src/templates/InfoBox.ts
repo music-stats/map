@@ -91,21 +91,17 @@ export default function render({
         </a>
       </div>
 
-      <aside
-        class="InfoBox__close-button-container"
-      >
-        ${area.name
-          ? `
-            <button
-              class="InfoBox__close-button"
-              title="close"
-            >
-              &times;
-            </button>
-          `
-          : ``
-        }
-      </aside>
+      ${area.name
+        ? `
+          <button
+            class="InfoBox__close-button"
+            title="close"
+          >
+            &times;
+          </button>
+        `
+        : ``
+      }
     </section>
 
     <section
