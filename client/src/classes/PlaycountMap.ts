@@ -255,6 +255,10 @@ class PlaycountMap {
   }
 
   private createInfoBox(options: L.ControlOptions): InfoBox {
+    // @todo: Derive components for each control,
+    //        pass props to them (in a React-like manner).
+    //        The "src/classes/" folder should be renamed to "src/components/".
+    //        Layout code from "src/templates/" should also move there.
     const infoBox: InfoBox = (L.control as any)(options);
 
     infoBox.onAdd = () => {
@@ -267,6 +271,9 @@ class PlaycountMap {
     };
 
     infoBox.render = ({area} = {}) => {
+      // @todo: Cache HTML on the object,
+      //        no need to call "renderInfoBox()" every time
+      //        (it's a rather expensive templating, i.e. string concatenation).
       infoBox.element.innerHTML = renderInfoBox({
         username: config.controls.infoBox.username,
         totalCountriesCount: this.areas.length,
