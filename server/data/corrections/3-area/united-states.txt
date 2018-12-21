@@ -1,6 +1,9 @@
 Allentown
+Bel Air
+Brooklyn
 Columbus
 Detroit
+Groveland
 Houston
 Illinois
 Lawrence
@@ -12,3 +15,4 @@ Oakland
 Raleigh
 San Antonio
 San Francisco
+Stanley
