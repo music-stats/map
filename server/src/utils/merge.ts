@@ -31,7 +31,7 @@ function upperCaseFirstLetter(value: string): string {
 }
 
 // Converts "united-states" to "United States".
-function convertFileNameToArea(fileName: string): string {
+function convertFileBaseNameToArea(fileName: string): string {
   return fileName.split('-').map(upperCaseFirstLetter).join(' ');
 }
 
@@ -39,7 +39,7 @@ function convertTxtMultilineFolderContentToCorrection(folderContent: TxtMultilin
   const correction: AnyParsedCorrection = {};
 
   Object.entries(folderContent).forEach(([fileName, fileContent]) => {
-    const area = convertFileNameToArea(fileName);
+    const area = convertFileBaseNameToArea(fileName);
 
     fileContent.forEach((fileString) => correction[fileString] = area);
   });

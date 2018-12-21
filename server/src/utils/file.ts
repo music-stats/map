@@ -36,7 +36,7 @@ export function readTxtMultilineFolder(folderPath: string): Promise<TxtMultiline
 
   function appendTxtMultiliteFileContent(fileName: string): Promise<TxtMultilineFileContent> {
     return readTxtMultilineFile(path.resolve(folderPath, fileName))
-      .then((fileContent) => folderContent[fileName] = fileContent);
+      .then((fileContent) => folderContent[path.basename(fileName, '.txt')] = fileContent);
   }
 
   return fs.promises.readdir(folderPath)
