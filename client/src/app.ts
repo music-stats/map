@@ -2,8 +2,7 @@ import * as L from 'leaflet';
 
 import * as artists from 'data/artists.json';
 import config from 'src/config';
-
-import PlaycountMap from 'src/classes/PlaycountMap';
+import PlaycountMap from 'src/components/PlaycountMap';
 
 import 'src/app.scss';
 

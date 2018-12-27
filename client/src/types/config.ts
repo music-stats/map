@@ -19,11 +19,13 @@ interface LegendControlConfig extends ControlConfig {
   itemScaleAnimation: Animation;
 }
 
+export interface LinksBoxLinks {
+  github: LinkConfig;
+  twitter: LinkConfig;
+}
+
 interface LinksBoxConfig extends ControlConfig {
-  links: {
-    github: LinkConfig;
-    twitter: LinkConfig;
-  };
+  links: LinksBoxLinks;
 }
 
 interface ControlsConfig {

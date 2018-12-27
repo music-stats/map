@@ -5,14 +5,14 @@ import * as d3ScaleChromatic from 'd3-scale-chromatic';
 import * as d3Color from 'd3-color';
 
 import {Artist, Area, AreaProperties} from 'src/types/models';
-import {CustomControl, Animation} from 'src/types/elements';
+import {Animation} from 'src/types/elements';
 
 import config from 'src/config';
 import {getArtistsAreas, getAreaArtistCount, getAreaScrobbleCount} from 'src/utils/area';
 
-import renderInfoBox from 'src/templates/InfoBox';
-import renderLegend, {AreaListItemProps, AreaListItemAnimatedProps} from 'src/templates/Legend';
-import renderLinksBox from 'src/templates/LinksBox';
+import InfoBox from 'src/components/controls/InfoBox';
+import Legend, {AreaListItemProps, AreaListItemAnimatedProps} from 'src/components/controls/Legend';
+import LinksBox from 'src/components/controls/LinksBox';
 
 import 'leaflet/dist/leaflet.css';
 import './PlaycountMap.scss';
@@ -27,15 +27,7 @@ interface FlagDataUrlDict {
   [key: string]: string;
 }
 
-interface InfoBoxProps {
-  area?: Area;
-}
-
-interface InfoBox extends CustomControl {
-  render: (props?: InfoBoxProps) => void;
-}
-
-class PlaycountMap {
+export default class PlaycountMap {
   private areas: Area[];
   private totalScrobbleCount: number;
 
@@ -47,8 +39,8 @@ class PlaycountMap {
   private areaFlagDataUrlDict: FlagDataUrlDict;
 
   private infoBox: InfoBox;
-  private legend: CustomControl;
-  private linksBox: CustomControl;
+  private legend: Legend;
+  private linksBox: LinksBox;
 
   constructor(
     private map: L.Map,
@@ -69,15 +61,18 @@ class PlaycountMap {
     this.artistCountBgWidthPercentScale = this.getWidthPercentScale(allArtistCounts);
     this.scrobbleCountBgWidthPercentScale = this.getWidthPercentScale(allScrobbleCounts);
 
-    this.geojson = L.geoJSON(areasCollection, {
-      style: this.getAreaStyle.bind(this),
-      onEachFeature: (_, layer) => this.subscribeLayer(layer),
-    });
+    this.geojson = L.geoJSON(
+      areasCollection,
+      {
+        style: this.getAreaStyle.bind(this),
+        onEachFeature: (_, layer) => this.subscribeLayer(layer),
+      }
+    );
     this.areaFlagDataUrlDict = this.getAreaFlagDataUrlDict();
 
-    this.infoBox = this.createInfoBox(config.controls.infoBox.options);
-    this.legend = this.createLegend(config.controls.legend.options);
-    this.linksBox = this.createLinksBox(config.controls.linksBox.options);
+    this.infoBox = this.createInfoBox();
+    this.legend = this.createLegend();
+    this.linksBox = this.createLinksBox();
   }
 
   public render() {
@@ -85,21 +80,6 @@ class PlaycountMap {
     this.infoBox.addTo(this.map);
     this.legend.addTo(this.map);
     this.linksBox.addTo(this.map);
-
-    this.subscribe();
-  }
-
-  private subscribe() {
-    const onKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        this.infoBox.render();
-      }
-    };
-
-    // using "document" instead of "this.map.getContainer()"
-    // because the latter will only catch events when the map is active,
-    // i.e. when the map was just loaded and user hadn't clicked yet, events won't be caught
-    document.addEventListener('keydown', onKeyPress);
   }
 
   private subscribeLayer(layer: L.Layer) {
@@ -108,59 +88,6 @@ class PlaycountMap {
       mouseout: this.resetAreaHighlight.bind(this),
       click: this.selectArea.bind(this),
     });
-  }
-
-  private subscribeInfoBoxCloseButton(infoBoxCloseButton: HTMLButtonElement) {
-    const onClick = () => {
-      this.infoBox.render();
-    };
-
-    infoBoxCloseButton.addEventListener('click', onClick);
-  }
-
-  private subscribeLegendElement(legendElement: HTMLElement) {
-    const onMouseEnter = () => {
-      setTimeout(() => {
-        legendElement.removeAttribute('disabled');
-      }, config.controls.toggleAnimationDuration);
-    };
-
-    const onMouseLeave = () => {
-      legendElement.setAttribute('disabled', 'disabled');
-    };
-
-    legendElement.addEventListener('mouseenter', onMouseEnter);
-    legendElement.addEventListener('mouseleave', onMouseLeave);
-  }
-
-  private subscribeLegendListItemElement(legendListItemElement: HTMLElement) {
-    const {name: areaName} = legendListItemElement.dataset;
-    const areaLayer = this.getAreaLayer(areaName);
-
-    const onMouseEnter = () => {
-      this.highlightArea({
-        type: 'mouseenter',
-        target: areaLayer,
-      });
-    };
-
-    const onMouseLeave = () => {
-      this.resetAreaHighlight({
-        type: 'mouseleave',
-        target: areaLayer,
-      });
-    };
-
-    const onClick = () => {
-      this.selectArea({
-        type: 'click',
-        target: areaLayer,
-      });
-    };
-
-    legendListItemElement.addEventListener('mouseenter', onMouseEnter);
-    legendListItemElement.addEventListener('mouseleave', onMouseLeave);
-    legendListItemElement.addEventListener('click', onClick);
   }
 
   private getAreaFlagDataUrlDict(): FlagDataUrlDict {
@@ -223,8 +150,10 @@ class PlaycountMap {
     layer.setStyle(config.map.area.style.highlight);
     layer.bringToFront();
 
-    this.infoBox.render({
-      area,
+    this.infoBox.setState({
+      areaScrobbleCount: getAreaScrobbleCount(area),
+      areaFlagDataUrl: this.getAreaFlagDataUrl(area),
+      areaProperties: area.properties,
     });
   }
 
@@ -252,50 +181,6 @@ class PlaycountMap {
         });
       }
     });
-  }
-
-  private createInfoBox(options: L.ControlOptions): InfoBox {
-    // @todo: Derive components for each control,
-    //        pass props to them (in a React-like manner).
-    //        The "src/classes/" folder should be renamed to "src/components/".
-    //        Layout code from "src/templates/" should also move there.
-    const infoBox: InfoBox = (L.control as any)(options);
-
-    infoBox.onAdd = () => {
-      infoBox.element = L.DomUtil.create('article', 'PlaycountMap__control');
-      infoBox.render();
-
-      L.DomEvent.disableScrollPropagation(infoBox.element);
-
-      return infoBox.element;
-    };
-
-    infoBox.render = ({area} = {}) => {
-      // @todo: Cache HTML on the object,
-      //        no need to call "renderInfoBox()" every time
-      //        (it's a rather expensive templating, i.e. string concatenation).
-      infoBox.element.innerHTML = renderInfoBox({
-        username: config.controls.infoBox.username,
-        totalCountriesCount: this.areas.length,
-        totalScrobbleCount: this.totalScrobbleCount,
-        totalArtistCount: this.artists.length,
-        areaScrobbleCount: area
-          ? getAreaScrobbleCount(area)
-          : null,
-        areaFlagDataUrl: area
-          ? this.getAreaFlagDataUrl(area)
-          : null,
-        ...(area
-          ? area.properties
-          : null),
-      });
-
-      if (area) {
-        this.subscribeInfoBoxCloseButton(infoBox.element.querySelector('.InfoBox__close-button'));
-      }
-    };
-
-    return infoBox;
   }
 
   private getAreaListItemProps(area: Area): AreaListItemProps {
@@ -335,52 +220,56 @@ class PlaycountMap {
     };
   }
 
-  private createLegend(options: L.ControlOptions): CustomControl {
-    const legend: CustomControl = (L.control as any)(options);
-
-    const areaList = this.areas
-      .map((area) => this.getAreaListItemProps(area))
-      .sort((a, b) => b.scrobbleCount - a.scrobbleCount)
-      .map((areaListItemProps, index) => this.addAnimation(areaListItemProps, index));
-
-    legend.onAdd = () => {
-      legend.element = L.DomUtil.create('aside', 'PlaycountMap__control Legend');
-      legend.element.innerHTML = renderLegend({
-        areaList,
-      });
-
-      legend.element.style.transitionDuration = `${config.controls.toggleAnimationDuration}ms`;
-      legend.element.setAttribute('disabled', 'disabled');
-      this.subscribeLegendElement(legend.element);
-      L.DomEvent.disableScrollPropagation(legend.element);
-
-      Array.prototype.forEach.call(
-        legend.element.querySelectorAll('.Legend__area'),
-        this.subscribeLegendListItemElement.bind(this),
-      );
-
-      return legend.element;
-    };
-
-    return legend;
+  private createInfoBox(): InfoBox {
+    return new InfoBox(
+      config.controls.infoBox.options,
+      'article',
+      'PlaycountMap__control',
+      {
+        username: config.controls.infoBox.username,
+        totalAreaCount: this.areas.length,
+        totalScrobbleCount: this.totalScrobbleCount,
+        totalArtistCount: this.artists.length,
+      },
+    );
   }
 
-  private createLinksBox(options: L.ControlOptions): CustomControl {
-    const linksBox: CustomControl = (L.control as any)(options);
+  private createLegend(): Legend {
+    return new Legend(
+      config.controls.legend.options,
+      'aside',
+      'PlaycountMap__control Legend',
+      {
+        areaList: this.areas
+          .map((area) => this.getAreaListItemProps(area))
+          .sort((a, b) => b.scrobbleCount - a.scrobbleCount)
+          .map((areaListItemProps, index) => this.addAnimation(areaListItemProps, index)),
+        toggleAnimationDuration: config.controls.toggleAnimationDuration,
+        onListItemMouseEnter: (areaName) => this.highlightArea({
+          type: 'mouseenter',
+          target: this.getAreaLayer(areaName),
+        }),
+        onListItemMouseLeave: (areaName) => this.resetAreaHighlight({
+          type: 'mouseleave',
+          target: this.getAreaLayer(areaName),
+        }),
+        onListItemMouseClick: (areaName) => this.selectArea({
+          type: 'click',
+          target: this.getAreaLayer(areaName),
+        }),
+      }
+    );
+  }
 
-    linksBox.onAdd = () => {
-      linksBox.element = L.DomUtil.create('aside', 'PlaycountMap__control LinksBox');
-      linksBox.element.innerHTML = renderLinksBox({
-        ...config.controls.linksBox.links,
-      });
-
-      linksBox.element.style.transitionDuration = `${config.controls.toggleAnimationDuration}ms`;
-
-      return linksBox.element;
-    };
-
-    return linksBox;
+  private createLinksBox(): LinksBox {
+    return new LinksBox(
+      config.controls.linksBox.options,
+      'aside',
+      'PlaycountMap__control LinksBox',
+      {
+        links: config.controls.linksBox.links,
+        toggleAnimationDuration: config.controls.toggleAnimationDuration,
+      }
+    );
   }
 }
-
-export default PlaycountMap;
