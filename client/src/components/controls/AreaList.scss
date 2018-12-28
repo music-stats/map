@@ -1,4 +1,4 @@
-.Legend {
+.AreaList {
   transition-property: opacity, transform;
   transform: translate(0, 80%);
 
@@ -29,14 +29,14 @@
   }
 }
 
-.Legend__area-list {
+.AreaList__area-list {
   overflow: auto;
 
   max-height: calc(100vh - 140px);
   padding-right: 1em; // compensates the scrollbar
 }
 
-.Legend__area {
+.AreaList__area {
   position: relative;
 
   display: flex;
@@ -56,7 +56,7 @@
     margin-bottom: 0;
   }
 
-  .Legend[disabled] & {
+  .AreaList[disabled] & {
     pointer-events: none; // prevents from highlighting many countries while the cursor stays but the legend moves
   }
 }
@@ -71,25 +71,25 @@
   }
 }
 
-.Legend__area-scale-container {
+.AreaList__area-scale-container {
   position: absolute;
-  z-index: 1; // keeping ".Legend__area-rank" below, important for ignoring its border
+  z-index: 1; // keeping ".AreaList__area-rank" below, important for ignoring its border
   top: 2px;
   bottom: 2px;
   left: 26px;
 
-  .Legend:hover & {
+  .AreaList:hover & {
     animation-name: slideIn;
     animation-fill-mode: forwards;
   }
 
-  .Legend__area:hover & {
+  .AreaList__area:hover & {
     top: 0;
     bottom: 0;
   }
 }
 
-.Legend__area-scale {
+.AreaList__area-scale {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -121,7 +121,7 @@
   background-color: $color;
 }
 
-.Legend__area-rank {
+.AreaList__area-rank {
   font-size: 10px;
   line-height: 24px;
 
@@ -138,30 +138,30 @@
 
   border: 2px solid white;
 
-  .Legend__area:nth-child(1) & {
+  .AreaList__area:nth-child(1) & {
     &::before {
       @include Ledend__area-rank-medal(gold);
     }
   }
 
-  .Legend__area:nth-child(2) & {
+  .AreaList__area:nth-child(2) & {
     &::before {
       @include Ledend__area-rank-medal(silver);
     }
   }
 
-  .Legend__area:nth-child(3) & {
+  .AreaList__area:nth-child(3) & {
     &::before {
       @include Ledend__area-rank-medal(#8c7853);
     }
   }
 
-  .Legend__area:hover & {
+  .AreaList__area:hover & {
     border-color: transparent;
   }
 }
 
-.Legend__area-flag {
+.AreaList__area-flag {
   position: absolute;
   bottom: calc(-20% - 2px);
   left: calc(-20% - 2px);
@@ -173,7 +173,7 @@
   border-radius: 50%;
   background-repeat: no-repeat;
 
-  .Legend__area:hover & {
+  .AreaList__area:hover & {
     bottom: -4px;
     left: -4px;
 
@@ -184,21 +184,21 @@
   }
 }
 
-.Legend__area-name,
-.Legend__area-stats {
-  z-index: 2; // keeping ".Legend__area-scale-container" below, important for text color and "title" attribute
+.AreaList__area-name,
+.AreaList__area-stats {
+  z-index: 2; // keeping ".AreaList__area-scale-container" below, important for text color and "title" attribute
 
   white-space: nowrap;
 }
 
-.Legend__area-name {
+.AreaList__area-name {
   margin: 0 10px;
 }
 
-.Legend__area-stats {
+.AreaList__area-stats {
   color: #888;
 
-  .Legend__area:hover & {
+  .AreaList__area:hover & {
     color: #444;
   }
 

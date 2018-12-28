@@ -4,32 +4,36 @@ const config: Config = {
   controls: {
     toggleAnimationDuration: 400,
 
-    infoBox: {
+    areaInfo: {
       options: {
         position: 'topright',
       },
+
       username: 'markhovskiy', // last.fm
     },
 
-    legend: {
+    areaList: {
       options: {
         position: 'bottomleft',
       },
+
       itemScaleAnimation: {
         duration: 600,
         delay: 120,
       },
     },
 
-    linksBox: {
+    externalLinkList: {
       options: {
         position: 'bottomright',
       },
+
       links: {
         github: {
           url: 'https://github.com/oleksmarkh/music-stats',
           text: 'music-stats',
         },
+
         twitter: {
           url: 'https://twitter.com/oleksmarkh',
           text: '@oleksmarkh',
@@ -52,9 +56,9 @@ const config: Config = {
         maxZoom: 6,
         id: 'mapbox.light',
         attribution: [
-          'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-          '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-          'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+          'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+          '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+          'Imagery &copy; <a href="https://mapbox.com">Mapbox</a>',
         ].join(', '),
       },
     },

@@ -5,33 +5,33 @@ import {CustomControl} from 'src/types/elements';
 import {Artist, AreaProperties} from 'src/types/models';
 import {html, url} from 'src/utils/render';
 
-import './InfoBox.scss';
+import './AreaInfo.scss';
 
-interface InfoBoxProps {
+interface AreaInfoProps {
   username: string;
   totalAreaCount: number;
   totalArtistCount: number;
   totalScrobbleCount: number;
 }
 
-interface InfoBoxState {
+interface AreaInfoState {
   areaScrobbleCount: number;
   areaFlagDataUrl: string;
   areaProperties: AreaProperties;
 }
 
-export default class InfoBox extends L.Control implements CustomControl {
+export default class AreaInfo extends L.Control implements CustomControl {
   element: HTMLElement;
   tagName: string;
   className: string;
-  private props: InfoBoxProps;
-  private state: InfoBoxState;
+  private props: AreaInfoProps;
+  private state: AreaInfoState;
 
   constructor(
     options: L.ControlOptions,
     tagName: string,
     className: string,
-    props: InfoBoxProps,
+    props: AreaInfoProps,
   ) {
     super(options);
 
@@ -39,6 +39,8 @@ export default class InfoBox extends L.Control implements CustomControl {
     this.className = className;
     this.props = props;
     this.state = this.getDefaultState();
+
+    this.renderArtistListItem = this.renderArtistListItem.bind(this);
   }
 
   public onAdd() {
@@ -51,7 +53,7 @@ export default class InfoBox extends L.Control implements CustomControl {
     return this.element;
   }
 
-  public setState(state?: InfoBoxState) {
+  public setState(state?: AreaInfoState) {
     this.state = state
       ? state
       : this.getDefaultState();
@@ -59,7 +61,7 @@ export default class InfoBox extends L.Control implements CustomControl {
     this.rerender();
   }
 
-  private getDefaultState(): InfoBoxState {
+  private getDefaultState(): AreaInfoState {
     return {
       areaScrobbleCount: null,
       areaFlagDataUrl: null,
@@ -77,7 +79,7 @@ export default class InfoBox extends L.Control implements CustomControl {
   private subscribe() {
     // the close button is only shown when an area is highlighted
     if (this.state.areaProperties) {
-      const closeButton = this.element.querySelector('.InfoBox__close-button');
+      const closeButton = this.element.querySelector('.AreaInfo__close-button');
       closeButton.addEventListener('click', this.handleCloseButtonClick.bind(this));
     }
   }
@@ -97,59 +99,13 @@ export default class InfoBox extends L.Control implements CustomControl {
     this.subscribe();
   }
 
-  private renderArtistListItem(artist: Artist): string {
+  private renderHeader(): string {
     const {username} = this.props;
+    const {areaProperties} = this.state;
 
     return `
-      <tr
-        class="InfoBox__artist"
-      >
-        <td
-          class="${classNames(
-            'InfoBox__artist-rank',
-            {
-              [classNames(
-                'InfoBox__artist-rank--medal',
-                `InfoBox__artist-rank--medal-${artist.rank}`,
-              )]: artist.rank <= 3
-            }
-          )}"
-        >
-          #${artist.rank}
-        </td>
-
-        <td
-          class="InfoBox__artist-playcount"
-        >
-          <a
-            href="${url`https://www.last.fm/user/${username}/library/music/${artist.name}`}"
-            target="_blank"
-          >
-            ${artist.playcount.toLocaleString()}
-          </a>
-        </td>
-
-        <td
-          class="InfoBox__artist-name"
-        >
-          <a
-            href="${url`https://www.last.fm/music/${artist.name}`}"
-            target="_blank"
-          >
-            ${artist.name}
-          </a>
-        </td>
-      </tr>
-    `;
-  }
-
-  private render(): string {
-    const {username, totalAreaCount, totalArtistCount, totalScrobbleCount} = this.props;
-    const {areaScrobbleCount, areaFlagDataUrl, areaProperties} = this.state;
-
-    return html`
       <section
-        class="InfoBox__section InfoBox__section--header"
+        class="AreaInfo__section AreaInfo__section--header"
       >
         <div>
           <span>
@@ -166,7 +122,7 @@ export default class InfoBox extends L.Control implements CustomControl {
         ${areaProperties
           ? `
             <button
-              class="InfoBox__close-button"
+              class="AreaInfo__close-button"
               title="close"
             >
               &times;
@@ -175,12 +131,18 @@ export default class InfoBox extends L.Control implements CustomControl {
           : ``
         }
       </section>
+    `;
+  }
 
+  private renderSummary(): string {
+    const {username, totalAreaCount, totalArtistCount, totalScrobbleCount} = this.props;
+
+    return `
       <section
-        class="InfoBox__section"
+        class="AreaInfo__section"
       >
         <header
-          class="InfoBox__header"
+          class="AreaInfo__header"
         >
           Total
         </header>
@@ -213,17 +175,23 @@ export default class InfoBox extends L.Control implements CustomControl {
           </a>
         </p>
       </section>
+    `;
+  }
 
+  private renderArtistList(): string {
+    const {areaScrobbleCount, areaFlagDataUrl, areaProperties} = this.state;
+
+    return `
       <section
-        class="InfoBox__section"
+        class="AreaInfo__section"
       >
         ${areaProperties
           ? `
             <header
-              class="InfoBox__header"
+              class="AreaInfo__header"
             >
               <div
-                class="InfoBox__area-flag"
+                class="AreaInfo__area-flag"
                 style="
                   background-image: url('${areaFlagDataUrl}');
                 "
@@ -244,9 +212,9 @@ export default class InfoBox extends L.Control implements CustomControl {
             </p>
 
             <table
-              class="InfoBox__artist-list"
+              class="AreaInfo__artist-list"
             >
-              ${areaProperties.artists.map((artist) => this.renderArtistListItem(artist)).join('')}
+              ${areaProperties.artists.map(this.renderArtistListItem).join('')}
             </table>
           `
           : `
@@ -256,6 +224,60 @@ export default class InfoBox extends L.Control implements CustomControl {
           `
         }
       </section>
+    `;
+  }
+
+  private renderArtistListItem(artist: Artist): string {
+    const {username} = this.props;
+
+    return `
+      <tr
+        class="AreaInfo__artist"
+      >
+        <td
+          class="${classNames(
+            'AreaInfo__artist-rank',
+            {
+              [classNames(
+                'AreaInfo__artist-rank--medal',
+                `AreaInfo__artist-rank--medal-${artist.rank}`,
+              )]: artist.rank <= 3
+            }
+          )}"
+        >
+          #${artist.rank}
+        </td>
+
+        <td
+          class="AreaInfo__artist-playcount"
+        >
+          <a
+            href="${url`https://www.last.fm/user/${username}/library/music/${artist.name}`}"
+            target="_blank"
+          >
+            ${artist.playcount.toLocaleString()}
+          </a>
+        </td>
+
+        <td
+          class="AreaInfo__artist-name"
+        >
+          <a
+            href="${url`https://www.last.fm/music/${artist.name}`}"
+            target="_blank"
+          >
+            ${artist.name}
+          </a>
+        </td>
+      </tr>
+    `;
+  }
+
+  private render(): string {
+    return html`
+      ${this.renderHeader()}
+      ${this.renderSummary()}
+      ${this.renderArtistList()}
     `;
   }
 }

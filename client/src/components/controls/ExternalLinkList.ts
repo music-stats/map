@@ -1,27 +1,27 @@
 import * as L from 'leaflet';
 
-import {LinksBoxLinks} from 'src/types/config';
+import {ExternalLinkListConfig} from 'src/types/config';
 import {CustomControl} from 'src/types/elements';
 import {html} from 'src/utils/render';
 
-import './LinksBox.scss';
+import './ExternalLinkList.scss';
 
-interface LinksBoxProps {
-  links: LinksBoxLinks;
+interface ExternalLinkListProps {
+  links: ExternalLinkListConfig;
   toggleAnimationDuration: number;
 }
 
-export default class LinksBox extends L.Control implements CustomControl {
+export default class ExternalLinkList extends L.Control implements CustomControl {
   element: HTMLElement;
   tagName: string;
   className: string;
-  props: LinksBoxProps;
+  props: ExternalLinkListProps;
 
   constructor(
     options: L.ControlOptions,
     tagName: string,
     className: string,
-    props: LinksBoxProps,
+    props: ExternalLinkListProps,
   ) {
     super(options);
 

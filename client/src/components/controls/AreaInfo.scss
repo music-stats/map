@@ -1,4 +1,4 @@
-.InfoBox__section {
+.AreaInfo__section {
   margin: 1em 0;
 
   &:first-of-type {
@@ -16,7 +16,7 @@
   }
 }
 
-.InfoBox__close-button {
+.AreaInfo__close-button {
   font: inherit;
   line-height: 1em;
 
@@ -34,7 +34,7 @@
   }
 }
 
-.InfoBox__header {
+.AreaInfo__header {
   font-weight: bold;
 
   display: flex;
@@ -43,7 +43,7 @@
   color: #444;
 }
 
-.InfoBox__area-flag {
+.AreaInfo__area-flag {
   // Size should be at least integer, better a common multiple of 2 and 3,
   // since many flags consist of 2 or 3 equally sized horizontal or vertical bands.
   // Otherwise SVG looks blurry (a browser tries to map colors to pixels).
@@ -55,7 +55,7 @@
   background-repeat: no-repeat;
 }
 
-.InfoBox__artist-list {
+.AreaInfo__artist-list {
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
@@ -65,7 +65,7 @@
   padding-right: 1em; // compensates the scrollbar
 }
 
-.InfoBox__artist-rank {
+.AreaInfo__artist-rank {
   font-size: 10px;
 
   position: relative;
@@ -74,12 +74,12 @@
 
   color: #888;
 
-  .InfoBox__artist:hover & {
+  .AreaInfo__artist:hover & {
     color: #444;
   }
 }
 
-.InfoBox__artist-rank--medal {
+.AreaInfo__artist-rank--medal {
   &::before {
     position: absolute;
     top: calc(50% - 6px);
@@ -107,11 +107,11 @@
   }
 }
 
-.InfoBox__artist-playcount {
+.AreaInfo__artist-playcount {
   text-align: right;
 }
 
-.InfoBox__artist-name {
+.AreaInfo__artist-name {
   overflow: hidden;
 
   max-width: 16em;

@@ -3,7 +3,7 @@ import * as L from 'leaflet';
 import {CustomControl, Animation} from 'src/types/elements';
 import {html} from 'src/utils/render';
 
-import './Legend.scss';
+import './AreaList.scss';
 
 export interface AreaListItemProps {
   name: string;
@@ -21,7 +21,7 @@ export interface AreaListItemAnimatedProps extends AreaListItemProps {
   animation: Animation;
 }
 
-interface LegendProps {
+interface AreaListProps {
   areaList: AreaListItemProps[];
   toggleAnimationDuration: number;
   onListItemMouseEnter: (areaName: string) => void;
@@ -29,17 +29,17 @@ interface LegendProps {
   onListItemMouseClick: (areaName: string) => void;
 }
 
-export default class Legend extends L.Control implements CustomControl {
+export default class AreaList extends L.Control implements CustomControl {
   element: HTMLElement;
   tagName: string;
   className: string;
-  private props: LegendProps;
+  private props: AreaListProps;
 
   constructor(
     options: L.ControlOptions,
     tagName: string,
     className: string,
-    props: LegendProps,
+    props: AreaListProps,
   ) {
     super(options);
 
@@ -67,7 +67,7 @@ export default class Legend extends L.Control implements CustomControl {
     this.element.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
 
     Array.prototype.forEach.call(
-      this.element.querySelectorAll('.Legend__area'),
+      this.element.querySelectorAll('.AreaList__area'),
       this.subscribeListItemElement.bind(this),
     );
   }
@@ -116,18 +116,18 @@ export default class Legend extends L.Control implements CustomControl {
     // "data-name" is used for binding mouse events
     return `
       <li
-        class="Legend__area"
+        class="AreaList__area"
         data-name="${name}"
       >
         <div
-          class="Legend__area-scale-container"
+          class="AreaList__area-scale-container"
           style="
             animation-duration: ${animation.duration}ms;
             animation-delay: ${animation.delay}ms;
           "
         >
           <div
-            class="Legend__area-scale Legend__area-scale--top"
+            class="AreaList__area-scale AreaList__area-scale--top"
             style="
               width: ${artistCountBgWidthPercent}%;
               background-color: ${color};
@@ -136,7 +136,7 @@ export default class Legend extends L.Control implements CustomControl {
           </div>
 
           <div
-            class="Legend__area-scale Legend__area-scale--bottom"
+            class="AreaList__area-scale AreaList__area-scale--bottom"
             style="
               width: ${scrobbleCountBgWidthPercent}%;
               background-color: ${color};
@@ -146,14 +146,14 @@ export default class Legend extends L.Control implements CustomControl {
         </div>
 
         <div
-          class="Legend__area-rank"
+          class="AreaList__area-rank"
           style="
             color: ${rankColor};
             background-color: ${color};
           "
         >
           <div
-            class="Legend__area-flag"
+            class="AreaList__area-flag"
             style="
               background-image: url('${flagDataUrl}');
             "
@@ -163,7 +163,7 @@ export default class Legend extends L.Control implements CustomControl {
         </div>
 
         <span
-          class="Legend__area-name"
+          class="AreaList__area-name"
           style="
             color: ${rankColor};
           "
@@ -172,7 +172,7 @@ export default class Legend extends L.Control implements CustomControl {
         </span>
 
         <span
-          class="Legend__area-stats"
+          class="AreaList__area-stats"
         >
           <span>
             ${scrobbleCountPercent.toFixed(2)}%
@@ -195,7 +195,7 @@ export default class Legend extends L.Control implements CustomControl {
 
     return html`
       <ul
-        class="Legend__area-list"
+        class="AreaList__area-list"
       >
         ${areaList.map(this.renderAreaListItem).join('')}
       </ul>

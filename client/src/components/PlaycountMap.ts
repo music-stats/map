@@ -10,9 +10,9 @@ import {Animation} from 'src/types/elements';
 import config from 'src/config';
 import {getArtistsAreas, getAreaArtistCount, getAreaScrobbleCount} from 'src/utils/area';
 
-import InfoBox from 'src/components/controls/InfoBox';
-import Legend, {AreaListItemProps, AreaListItemAnimatedProps} from 'src/components/controls/Legend';
-import LinksBox from 'src/components/controls/LinksBox';
+import AreaInfo from 'src/components/controls/AreaInfo';
+import AreaList, {AreaListItemProps, AreaListItemAnimatedProps} from 'src/components/controls/AreaList';
+import ExternalLinkList from 'src/components/controls/ExternalLinkList';
 
 import 'leaflet/dist/leaflet.css';
 import './PlaycountMap.scss';
@@ -38,9 +38,9 @@ export default class PlaycountMap {
   private geojson: L.GeoJSON<AreaProperties>;
   private areaFlagDataUrlDict: FlagDataUrlDict;
 
-  private infoBox: InfoBox;
-  private legend: Legend;
-  private linksBox: LinksBox;
+  private areaInfo: AreaInfo;
+  private areaList: AreaList;
+  private externalLinkList: ExternalLinkList;
 
   constructor(
     private map: L.Map,
@@ -70,16 +70,16 @@ export default class PlaycountMap {
     );
     this.areaFlagDataUrlDict = this.getAreaFlagDataUrlDict();
 
-    this.infoBox = this.createInfoBox();
-    this.legend = this.createLegend();
-    this.linksBox = this.createLinksBox();
+    this.areaInfo = this.createAreaInfo();
+    this.areaList = this.createAreaList();
+    this.externalLinkList = this.createExternalLinkList();
   }
 
   public render() {
     this.geojson.addTo(this.map);
-    this.infoBox.addTo(this.map);
-    this.legend.addTo(this.map);
-    this.linksBox.addTo(this.map);
+    this.areaInfo.addTo(this.map);
+    this.areaList.addTo(this.map);
+    this.externalLinkList.addTo(this.map);
   }
 
   private subscribeLayer(layer: L.Layer) {
@@ -150,7 +150,7 @@ export default class PlaycountMap {
     layer.setStyle(config.map.area.style.highlight);
     layer.bringToFront();
 
-    this.infoBox.setState({
+    this.areaInfo.setState({
       areaScrobbleCount: getAreaScrobbleCount(area),
       areaFlagDataUrl: this.getAreaFlagDataUrl(area),
       areaProperties: area.properties,
@@ -208,7 +208,7 @@ export default class PlaycountMap {
   }
 
   private addAnimation(areaListItemProps: AreaListItemProps, index: number): AreaListItemAnimatedProps {
-    const {duration, delay} = config.controls.legend.itemScaleAnimation;
+    const {duration, delay} = config.controls.areaList.itemScaleAnimation;
     const animation: Animation = {
       duration,
       delay: config.controls.toggleAnimationDuration + delay * index,
@@ -220,13 +220,13 @@ export default class PlaycountMap {
     };
   }
 
-  private createInfoBox(): InfoBox {
-    return new InfoBox(
-      config.controls.infoBox.options,
+  private createAreaInfo(): AreaInfo {
+    return new AreaInfo(
+      config.controls.areaInfo.options,
       'article',
       'PlaycountMap__control',
       {
-        username: config.controls.infoBox.username,
+        username: config.controls.areaInfo.username,
         totalAreaCount: this.areas.length,
         totalScrobbleCount: this.totalScrobbleCount,
         totalArtistCount: this.artists.length,
@@ -234,11 +234,11 @@ export default class PlaycountMap {
     );
   }
 
-  private createLegend(): Legend {
-    return new Legend(
-      config.controls.legend.options,
+  private createAreaList(): AreaList {
+    return new AreaList(
+      config.controls.areaList.options,
       'aside',
-      'PlaycountMap__control Legend',
+      'PlaycountMap__control AreaList',
       {
         areaList: this.areas
           .map((area) => this.getAreaListItemProps(area))
@@ -261,13 +261,13 @@ export default class PlaycountMap {
     );
   }
 
-  private createLinksBox(): LinksBox {
-    return new LinksBox(
-      config.controls.linksBox.options,
+  private createExternalLinkList(): ExternalLinkList {
+    return new ExternalLinkList(
+      config.controls.externalLinkList.options,
       'aside',
-      'PlaycountMap__control LinksBox',
+      'PlaycountMap__control ExternalLinkList',
       {
-        links: config.controls.linksBox.links,
+        links: config.controls.externalLinkList.links,
         toggleAnimationDuration: config.controls.toggleAnimationDuration,
       }
     );
