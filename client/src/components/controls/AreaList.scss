@@ -1,13 +1,15 @@
+@import '../../app-consts';
+
 .AreaList {
   transition-property: opacity, transform;
   transform: translate(0, 80%);
 
   opacity: 0.8;
 
-  // overriding ".PlaycountMap__control" padding,
-  // because "em" values lead to subpixel offsets of children elements
+  // overriding ".PlaycountMap__control" padding with only the "vertical" value,
+  // because its immediate children are rectangular blocks (not plain text) so it looks better symmetrically
   &.leaflet-control {
-    padding: 12px;
+    padding: $leaflet-control-padding-vertical-block;
   }
 
   &:hover {
@@ -23,7 +25,7 @@
     right: 0;
     left: 0;
 
-    height: 10px; // ".leaflet-control" offset
+    height: $leaflet-control-margin;
 
     content: '';
   }
@@ -32,8 +34,8 @@
 .AreaList__area-list {
   overflow: auto;
 
-  max-height: calc(100vh - 140px);
-  padding-right: 1em; // compensates the scrollbar
+  max-height: calc(100vh - #{$leaflet-control-zoom-height + $leaflet-control-margin * 3 + $leaflet-control-padding-vertical-block * 2});
+  padding-right: $scrollbar-width; // compensates the scrollbar
 }
 
 .AreaList__area {

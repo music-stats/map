@@ -1,0 +1,10 @@
+// don't use "em" values - it leads to subpixel offsets of children elements (when mapped to non-integer pixels)
+
+$leaflet-control-margin: 10px;
+$leaflet-control-padding-vertical: 10px;
+$leaflet-control-padding-vertical-block: $leaflet-control-padding-vertical + 2px;
+$leaflet-control-padding-horizontal: 14px;
+$leaflet-control-padding: $leaflet-control-padding-vertical $leaflet-control-padding-horizontal;
+$leaflet-control-zoom-height: 65px;
+
+$scrollbar-width: 16px;

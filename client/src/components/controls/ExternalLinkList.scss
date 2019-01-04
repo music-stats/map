@@ -1,3 +1,5 @@
+@import '../../app-consts';
+
 .ExternalLinkList {
   transition-property: opacity, transform;
   transform: translate(80%, 0);
@@ -17,7 +19,7 @@
     bottom: 0;
     left: 100%;
 
-    width: 10px; // ".leaflet-control" offset
+    width: $leaflet-control-margin;
 
     content: '';
   }

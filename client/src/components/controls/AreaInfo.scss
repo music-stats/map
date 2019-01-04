@@ -1,3 +1,5 @@
+@import '../../app-consts';
+
 .AreaInfo__section {
   margin: 1em 0;
 
@@ -60,9 +62,9 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  max-height: calc(100vh - 340px);
+  max-height: calc(100vh - 320px); // "320" is a magic const here - a sum of heights of all other elements in a column
   margin-top: 1em;
-  padding-right: 1em; // compensates the scrollbar
+  padding-right: $scrollbar-width; // compensates the scrollbar
 }
 
 .AreaInfo__artist-rank {
