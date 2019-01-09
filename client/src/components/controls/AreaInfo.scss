@@ -57,6 +57,14 @@
   background-repeat: no-repeat;
 }
 
+.AreaInfo__artist {
+  line-height: 16px; // keeps the height of "tr" elements as even value, important for centering rank medals vertically
+
+  td {
+    padding: 2px;
+  }
+}
+
 .AreaInfo__artist-list {
   display: block;
   overflow-x: hidden;
@@ -83,12 +91,14 @@
 
 .AreaInfo__artist-rank--medal {
   &::before {
+    // dimensions should have even values in order to properly center it vertically
+
     position: absolute;
     top: calc(50% - 6px);
     left: 0;
 
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
 
     content: '';
 

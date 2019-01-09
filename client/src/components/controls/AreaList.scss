@@ -124,6 +124,9 @@
 }
 
 .AreaList__area-rank {
+  // playing with "background-clip" avoids subpixel extension of "background-color" over the border
+  // (strangely it appears depending on the "max-height" value of the ".AreaList__area-list")
+
   font-size: 10px;
   line-height: 24px;
 
@@ -139,6 +142,7 @@
   text-align: right;
 
   border: 2px solid white;
+  background-clip: padding-box;
 
   .AreaList__area:nth-child(1) & {
     &::before {
@@ -160,6 +164,7 @@
 
   .AreaList__area:hover & {
     border-color: transparent;
+    background-clip: border-box; // to show the border with the same color as "background-color"
   }
 }
 
