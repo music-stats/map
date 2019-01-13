@@ -15,9 +15,13 @@ export function logRequest(url: string): void {
 export function proxyLog<DataType>(data: DataType): DataType {
   console.log(data);
 
-  if (Array.isArray(data)) {
-    console.log(data.length);
-  }
+  return Array.isArray(data)
+    ? proxyLogLength(data) as unknown as DataType
+    : data;
+}
+
+export function proxyLogLength<ListItemType>(data: ListItemType[]): ListItemType[] {
+  console.log(data.length);
 
   return data;
 }

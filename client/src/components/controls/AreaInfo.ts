@@ -135,7 +135,8 @@ export default class AreaInfo extends L.Control implements CustomControl {
   }
 
   private renderSummary(): string {
-    const {username, totalAreaCount, totalArtistCount, totalScrobbleCount} = this.props;
+    const {totalAreaCount} = this.props;
+    const {areaScrobbleCount, areaFlagDataUrl, areaProperties} = this.state;
 
     return `
       <section
@@ -151,42 +152,33 @@ export default class AreaInfo extends L.Control implements CustomControl {
           countries: ${totalAreaCount}
         </p>
 
-        <p>
-          <span>
-            artists:&nbsp;
-          </span>
-          <a
-            href="https://www.last.fm/user/${username}/library/artists"
-            target="_blank"
-          >
-            ${totalArtistCount.toLocaleString()}
-          </a>
-        </p>
-
-        <p>
-          <span>
-            scrobbles:&nbsp;
-          </span>
-          <a
-            href="https://www.last.fm/user/${username}/library"
-            target="_blank"
-          >
-            ${totalScrobbleCount.toLocaleString()}
-          </a>
-        </p>
-      </section>
-    `;
-  }
-
-  private renderArtistList(): string {
-    const {areaScrobbleCount, areaFlagDataUrl, areaProperties} = this.state;
-
-    return `
-      <section
-        class="AreaInfo__section"
-      >
         ${areaProperties
-          ? `
+          ? ''
+          : `
+            <p>
+              <span>
+                artists:&nbsp;
+              </span>
+
+              ${this.renderLibraryArtistsLink()}
+            </p>
+
+            <p>
+              <span>
+                scrobbles:&nbsp;
+              </span>
+
+              ${this.renderLibraryLink()}
+            </p>
+          `
+        }
+      </section>
+
+      ${areaProperties
+        ? `
+          <section
+            class="AreaInfo__section"
+          >
             <header
               class="AreaInfo__header"
             >
@@ -204,13 +196,74 @@ export default class AreaInfo extends L.Control implements CustomControl {
             </header>
 
             <p>
-              artists: ${areaProperties.artists.length.toLocaleString()}
+              <span>
+                artists: ${areaProperties.artists.length.toLocaleString()}
+              </span>
+
+              <span
+                class="AreaInfo__stats-separator"
+              >
+                /
+              </span>
+
+              ${this.renderLibraryArtistsLink()}
             </p>
 
             <p>
-              scrobbles: ${areaScrobbleCount.toLocaleString()}
-            </p>
+              <span>
+                scrobbles: ${areaScrobbleCount.toLocaleString()}
+              </span>
 
+              <span
+                class="AreaInfo__stats-separator"
+              >
+                /
+              </span>
+
+              ${this.renderLibraryLink()}
+            </p>
+          </section>
+         `
+        : ''
+      }
+    `;
+  }
+
+  private renderLibraryArtistsLink(): string {
+    const {username, totalArtistCount} = this.props;
+
+    return `
+      <a
+        href="https://www.last.fm/user/${username}/library/artists"
+        target="_blank"
+      >
+        ${totalArtistCount.toLocaleString()}
+      </a>
+    `;
+  }
+
+  private renderLibraryLink(): string {
+    const {username, totalScrobbleCount} = this.props;
+
+    return `
+      <a
+        href="https://www.last.fm/user/${username}/library"
+        target="_blank"
+      >
+        ${totalScrobbleCount.toLocaleString()}
+      </a>
+    `;
+  }
+
+  private renderArtistList(): string {
+    const {areaProperties} = this.state;
+
+    return `
+      <section
+        class="AreaInfo__section"
+      >
+        ${areaProperties
+          ? `
             <table
               class="AreaInfo__artist-list"
             >

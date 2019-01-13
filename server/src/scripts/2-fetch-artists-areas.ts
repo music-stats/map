@@ -7,7 +7,7 @@ import {ArtistArea} from 'src/types/artist';
 import config from 'src/config';
 import {sequence} from 'src/utils/promise';
 import {readJsonFile, writeFile} from 'src/utils/file';
-import {proxyLog} from 'src/utils/log';
+import {proxyLogLength} from 'src/utils/log';
 import {fetchArtist} from 'src/connectors/musicbrainz';
 
 const argv = process.argv.slice(2);
@@ -58,5 +58,5 @@ function load(artistAreaList: ArtistArea[]): Promise<ArtistArea[]> {
 extract()
   .then(transform)
   .then(load)
-  .then(proxyLog)
+  .then(proxyLogLength)
   .catch(console.error);

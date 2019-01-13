@@ -3,7 +3,7 @@ import {Artist} from 'src/types/artist';
 
 import config from 'src/config';
 import {writeFile} from 'src/utils/file';
-import {proxyLog} from 'src/utils/log';
+import {proxyLogLength} from 'src/utils/log';
 import {fetchLibraryArtists} from 'src/connectors/lastfm';
 
 const argv = process.argv.slice(2);
@@ -38,5 +38,5 @@ function load(artistList: Artist[]): Promise<Artist[]> {
 extract()
   .then(transform)
   .then(load)
-  .then(proxyLog)
+  .then(proxyLogLength)
   .catch(console.error);

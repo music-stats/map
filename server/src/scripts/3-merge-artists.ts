@@ -2,7 +2,7 @@ import {Artist, ArtistArea, MergedArtist} from 'src/types/artist';
 
 import config from 'src/config';
 import {readJsonFile, writeFile} from 'src/utils/file';
-import {proxyLog} from 'src/utils/log';
+import {proxyLogLength} from 'src/utils/log';
 import {loadAllCorrections, merge} from 'src/utils/merge';
 
 interface InputLists {
@@ -33,5 +33,5 @@ function load(mergedArtistList: MergedArtist[]): Promise<MergedArtist[]> {
 extract()
   .then(transform)
   .then(load)
-  .then(proxyLog)
+  .then(proxyLogLength)
   .catch(console.error);

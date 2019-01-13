@@ -1,7 +1,7 @@
 @import '../../app-consts';
 
 .AreaInfo__section {
-  margin: 1em 0;
+  margin: 10px 0;
 
   &:first-of-type {
     margin-top: 0;
@@ -20,9 +20,9 @@
 
 .AreaInfo__close-button {
   font: inherit;
-  line-height: 1em;
+  line-height: 10px;
 
-  margin-left: 1em;
+  margin-left: 10px;
   padding: 0;
 
   transform: scale(1.2);
@@ -41,6 +41,12 @@
 
   display: flex;
   align-items: center;
+
+  color: #444;
+}
+
+.AreaInfo__stats-separator {
+  font-size: 10px;
 
   color: #444;
 }
@@ -70,8 +76,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  max-height: calc(100vh - 320px); // "320" is a magic const here - a sum of heights of all other elements in a column
-  margin-top: 1em;
+  max-height: calc(100vh - 270px); // "270" is a magic const here - a sum of heights of all other elements in a column
   padding-right: $scrollbar-width; // compensates the scrollbar
 }
 
@@ -126,7 +131,7 @@
 .AreaInfo__artist-name {
   overflow: hidden;
 
-  max-width: 16em;
+  max-width: 220px;
 
   white-space: nowrap;
   text-overflow: ellipsis;
