@@ -11,9 +11,9 @@ A playground for fetching and rendering music-related data.
 
 See [client/README.md](client/README.md).
 
-## back-end
+## back-end (to be, currently a set of scripts)
 
-See [server/README.md](server/README.md).
+See [scripts/README.md](scripts/README.md).
 
 [license-image]: https://img.shields.io/github/license/oleksmarkh/music-stats.svg?style=flat-square
 [license-url]: https://github.com/oleksmarkh/music-stats/blob/master/LICENSE

@@ -9,8 +9,8 @@ yarn-error.log*
 npm-debug.log*
 
 .env
-server/tmp/*.json
+scripts/output/*.json
 
 client/dist/
-server/dist/
-server/cache/**/*.json
+scripts/dist/
+scripts/cache/**/*.json

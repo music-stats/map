@@ -8,10 +8,11 @@ dev deps:
 [`typescript`](https://www.typescriptlang.org/docs).
 
 deps:
-[`node`](https://nodejs.org/dist/latest/docs/api) (at least v10, since experimental [`fs.promises` API](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html#fs_fs_promises_api) is used),
+[`node`](https://nodejs.org/dist/latest/docs/api) (at least v10, since experimental [`fs.promises` API](https://nodejs.org/dist/latest/docs/api/fs.html#fs_fs_promises_api) is used),
 [`ramda`](http://ramdajs.com/docs),
-[`axios`](https://github.com/axios/axios),
-[`koa`](http://koajs.com/#application).
+[`axios`](https://github.com/axios/axios).
+
+deps to consider for the server-side application: [`koa`](http://koajs.com/#application).
 
 ## APIs, datasets
 
@@ -22,10 +23,15 @@ deps:
 
 ### To consider
 
-- [ ] [Spotify](https://developer.spotify.com/documentation/web-api/reference/) Only [Personalization API](https://developer.spotify.com/documentation/web-api/reference/personalization) is available now (among other endpoints, but that's the only section about the user's listening habits), restricting to top 50 artists/tracks. And it doesn't provide any measurable metric except "popularity" which is some abstract (i.e. calculated) affinity level. Geo data (e.g. country) is also not there.
+- [ ] [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
 - [ ] [Songkick](https://www.songkick.com/developer/upcoming-events)
 - [ ] [FMA (Free Music Archive)](https://github.com/mdeff/fma)
 - [ ] [DuckDuckGo Instant Answers](https://duckduckgo.com/api)
+
+On Spotify, only [Personalization API](https://developer.spotify.com/documentation/web-api/reference/personalization)
+is available now (among other endpoints, but that's the only section about the user's listening habits),
+restricting to top 50 artists/tracks. And it doesn't provide any measurable metric except "popularity"
+which is some abstract (i.e. calculated) affinity level. Geo data (e.g. country) is also not there.
 
 ## Setup
 
@@ -89,7 +95,7 @@ Example output:
 
 ### Merge results of two scripts above
 
-Expects both input files (`.json`) to be located at `tmp/`.
+Expects both input files (`.json`) to be located at `output/`.
 Blends them together, applying three stages of corrections (see `data/corrections/`).
 
 ```bash

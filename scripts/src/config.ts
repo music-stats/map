@@ -4,7 +4,7 @@ import Config, {CorrectionDataType} from 'src/types/config';
 
 const rootDir = path.resolve(__dirname, '../../');
 const correctionsDir = path.resolve(rootDir, 'data/corrections/');
-const tmpDir = path.resolve(rootDir, 'tmp/');
+const outputDir = path.resolve(rootDir, 'output/');
 const cacheDir = path.resolve(rootDir, 'cache/');
 
 const config: Config = {
@@ -20,7 +20,7 @@ const config: Config = {
       perPage: 50,
       countDefault: 50,
     },
-    outputFilePath: path.resolve(tmpDir, '1-lastfm-user-library.json'),
+    outputFilePath: path.resolve(outputDir, '1-lastfm-user-library.json'),
     cache: {
       ttl: 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'lastfm/'),
@@ -35,7 +35,7 @@ const config: Config = {
     artists: {
       countDefault: 10,
     },
-    outputFilePath: path.resolve(tmpDir, '2-musicbrainz-artists-areas.json'),
+    outputFilePath: path.resolve(outputDir, '2-musicbrainz-artists-areas.json'),
     cache: {
       ttl: 365 * 24 * 60 * 60 * 1000,
       dir: path.resolve(cacheDir, 'musicbrainz/'),
@@ -57,7 +57,7 @@ const config: Config = {
         filePath: path.resolve(correctionsDir, '3-area/'),
       },
     },
-    outputFilePath: path.resolve(tmpDir, '3-merged-artists.json'),
+    outputFilePath: path.resolve(outputDir, '3-merged-artists.json'),
   },
 };
 
