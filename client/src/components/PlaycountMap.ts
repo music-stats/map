@@ -14,7 +14,6 @@ import AreaInfo from 'src/components/controls/AreaInfo';
 import AreaList, {AreaListItemProps, AreaListItemAnimatedProps} from 'src/components/controls/AreaList';
 import ExternalLinkList from 'src/components/controls/ExternalLinkList';
 
-import 'leaflet/dist/leaflet.css';
 import './PlaycountMap.scss';
 
 // @see: https://webpack.js.org/guides/dependency-management/#require-context
