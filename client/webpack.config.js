@@ -1,9 +1,10 @@
 const path = require('path');
+const dotenv = require('dotenv');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const dotenv = require('dotenv');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 dotenv.config();
 
@@ -101,9 +102,14 @@ plugins.copy = new CopyWebpackPlugin([
     from: '../assets/favicon/*',
     to: '[name].[ext]',
   },
+  {
+    from: '../data/*',
+    to: 'data/[name].[ext]',
+  },
 ]);
 
 plugins.hotModuleReplacement = new webpack.HotModuleReplacementPlugin();
+// plugins.bundleAnalyzer = new BundleAnalyzerPlugin();
 
 const config = {
   mode: IS_PROD
@@ -157,6 +163,7 @@ const config = {
     ? []
     : [
       plugins.hotModuleReplacement,
+      // plugins.bundleAnalyzer,
     ],
   ),
 

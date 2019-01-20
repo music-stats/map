@@ -1,6 +1,6 @@
 import * as L from 'leaflet';
 
-import * as artists from 'data/artists.json';
+import {Artist} from 'src/types/models';
 import config from 'src/config';
 import PlaycountMap from 'src/components/PlaycountMap';
 
@@ -21,12 +21,26 @@ const tileLayer = L.tileLayer(
   }
 );
 
-const playcountMap = new PlaycountMap(map, artists as any);
+function fetchAndParseJson<DataType>(url: string): Promise<DataType> {
+  return window.fetch(url)
+    .then((response) => response.json());
+}
+
+function initializePlaycountMap(artists: Artist[], world: any): void {
+  const playcountMap = new PlaycountMap(map, artists, world);
+
+  playcountMap.render();
+
+  // debug
+  (window as any).L = L;
+  (window as any).map = map;
+  (window as any).playcountMap = playcountMap;
+}
 
 tileLayer.addTo(map);
-playcountMap.render();
 
-// debug
-(window as any).L = L;
-(window as any).map = map;
-(window as any).playcountMap = playcountMap;
+Promise.all([
+  fetchAndParseJson(config.dataUrls.artists) as Promise<Artist[]>,
+  fetchAndParseJson(config.dataUrls.world),
+])
+  .then(([artists, world]) => initializePlaycountMap(artists, world));

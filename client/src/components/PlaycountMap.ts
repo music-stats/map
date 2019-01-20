@@ -18,6 +18,9 @@ import 'leaflet/dist/leaflet.css';
 import './PlaycountMap.scss';
 
 // @see: https://webpack.js.org/guides/dependency-management/#require-context
+// @todo:
+//   * transform SVGs to PNGs (or see if it's possible to compress SVGs removing unnecessary details)
+//   * load only flags for countries from the current "areas" dataset
 const flagSvgContext = require.context('src/../assets/flags/1x1/', false, /\.svg$/);
 
 type ColorScale = d3Scale.ScalePower<number, number>;
@@ -45,8 +48,9 @@ export default class PlaycountMap {
   constructor(
     private map: L.Map,
     private artists: Artist[],
+    private world: any,
   ) {
-    const areas = getArtistsAreas(this.artists);
+    const areas = getArtistsAreas(this.artists, this.world);
     const allArtistCounts = areas.map(getAreaArtistCount);
     const allScrobbleCounts = areas.map(getAreaScrobbleCount);
     const areasCollection = {

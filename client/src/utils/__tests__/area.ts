@@ -1,3 +1,5 @@
+import * as worldData from 'data/world.geo.json';
+
 import {groupArtistsByArea, getArtistsAreas, getAreaScrobbleCount} from '../area';
 
 const dreamTheater = {
@@ -62,7 +64,7 @@ const deftones = {
 
 describe('area utils', () => {
   test('groupArtistsByArea()', () => {
-    expect(groupArtistsByArea([
+    const artists = [
       dreamTheater,
       queen,
       rammstein,
@@ -73,7 +75,9 @@ describe('area utils', () => {
       korn,
       nightwish,
       deftones,
-    ])).toEqual({
+    ];
+
+    expect(groupArtistsByArea(artists)).toEqual({
       'Finland': {
         name: 'Finland',
         artists: [
@@ -147,7 +151,7 @@ describe('area utils', () => {
   });
 
   test('getArtistsAreas()', () => {
-    expect(getArtistsAreas([
+    const artists = [
       dreamTheater,
       queen,
       rammstein,
@@ -158,7 +162,9 @@ describe('area utils', () => {
       korn,
       nightwish,
       deftones,
-    ])).toMatchObject([
+    ];
+
+    expect(getArtistsAreas(artists, worldData)).toMatchObject([
       {
         type: 'Feature',
         properties: {

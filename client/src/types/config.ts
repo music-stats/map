@@ -2,6 +2,11 @@ import * as L from 'leaflet';
 
 import {Animation} from 'src/types/elements';
 
+interface DataUrlsConfig {
+  artists: string;
+  world: string;
+}
+
 interface ControlConfig {
   options: L.ControlOptions;
 }
@@ -65,6 +70,7 @@ interface MapConfig {
 }
 
 export interface Config {
+  dataUrls: DataUrlsConfig;
   controls: ControlsConfig;
   map: MapConfig;
 }
