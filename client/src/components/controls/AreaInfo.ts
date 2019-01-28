@@ -79,9 +79,29 @@ export default class AreaInfo extends L.Control implements CustomControl {
   private subscribe() {
     // the close button is only shown when an area is highlighted
     if (this.state.areaProperties) {
-      const closeButton = this.element.querySelector('.AreaInfo__close-button');
-      closeButton.addEventListener('click', this.handleCloseButtonClick.bind(this));
+      this.getCloseButtonElement().addEventListener('click', this.handleCloseButtonClick.bind(this));
     }
+  }
+
+  private getCloseButtonElement(): HTMLElement {
+    return this.element.querySelector('.AreaInfo__close-button');
+  }
+
+  // A workaround to prevent the following undesired behavior on mobile browsers:
+  // tapping is followed by a slightly delayed click
+  // (see https://css-tricks.com/annoying-mobile-double-tap-link-issue/).
+  // So when a country receives a tap, a "hover" event is fired first
+  // and "<AreaInfo />" renders a list of artists for a given country.
+  // Then the "click" event is fired on that list,
+  // eventually causing an underlying link to be opened,
+  // which is clearly not expected from the first tap on the map.
+  private deactivateAndReactivatePointerEvents() {
+    this.element.style.pointerEvents = 'none';
+
+    setTimeout(
+      () => this.element.style.pointerEvents = 'auto',
+      300,
+    );
   }
 
   private handleDocumentKeydown(e: KeyboardEvent) {
@@ -97,6 +117,7 @@ export default class AreaInfo extends L.Control implements CustomControl {
   private rerender() {
     this.element.innerHTML = this.render();
     this.subscribe();
+    this.deactivateAndReactivatePointerEvents();
   }
 
   private renderHeader(): string {
