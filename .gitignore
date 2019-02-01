@@ -1,4 +1,3 @@
-.DS_Store
 .awcache/
 node_modules/
 
@@ -9,8 +8,7 @@ yarn-error.log*
 npm-debug.log*
 
 .env
-scripts/output/*.json
-
-client/dist/
 scripts/dist/
 scripts/cache/**/*.json
+scripts/output/*.json
+client/dist/

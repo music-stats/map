@@ -180,6 +180,7 @@ function getArtistArea(
   const correctArea = areaCorrection[area];
 
   if (correctArea) {
+    // log(`corrected area for "${artist}": "${area}" -> "${correctArea}"`);
     return correctArea;
   }
 
