@@ -26,7 +26,7 @@
   },
   {
     "name": "Opeth",
-    "playcount": 627,
+    "playcount": 635,
     "area": "Sweden"
   },
   {
@@ -625,6 +625,11 @@
     "area": "United States"
   },
   {
+    "name": "Arch Enemy",
+    "playcount": 87,
+    "area": "Sweden"
+  },
+  {
     "name": "Demons & Wizards",
     "playcount": 86,
     "area": "United States"
@@ -663,11 +668,6 @@
     "name": "Gojira",
     "playcount": 84,
     "area": "France"
-  },
-  {
-    "name": "Arch Enemy",
-    "playcount": 83,
-    "area": "Sweden"
   },
   {
     "name": "Manowar",
@@ -1120,6 +1120,11 @@
     "area": "Ukraine"
   },
   {
+    "name": "Omnium Gatherum",
+    "playcount": 47,
+    "area": "Finland"
+  },
+  {
     "name": "Steve Vai",
     "playcount": 47,
     "area": "United States"
@@ -1233,11 +1238,6 @@
     "name": "Miles Davis",
     "playcount": 42,
     "area": "United States"
-  },
-  {
-    "name": "Omnium Gatherum",
-    "playcount": 42,
-    "area": "Finland"
   },
   {
     "name": "Rage Against the Machine",
@@ -1867,7 +1867,7 @@
   {
     "name": "Mors Principium Est",
     "playcount": 23,
-    "area": "Pori"
+    "area": "Finland"
   },
   {
     "name": "Rome",
@@ -3707,7 +3707,7 @@
   {
     "name": "Temperance",
     "playcount": 8,
-    "area": "United States"
+    "area": "Italy"
   },
   {
     "name": "The Pretty Reckless",
@@ -4057,7 +4057,7 @@
   {
     "name": "Moonsorrow",
     "playcount": 6,
-    "area": "Helsinki"
+    "area": "Finland"
   },
   {
     "name": "Mournful Gust",
@@ -4277,7 +4277,7 @@
   {
     "name": "Marduk",
     "playcount": 5,
-    "area": "United States"
+    "area": "Sweden"
   },
   {
     "name": "Neneh Cherry",
@@ -4830,6 +4830,11 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Nancy Wilson",
+    "playcount": 3,
+    "area": "United States"
+  },
+  {
     "name": "Pat Kirtley",
     "playcount": 3,
     "area": "United States"
@@ -5020,11 +5025,6 @@
     "area": "France"
   },
   {
-    "name": "Cloves",
-    "playcount": 2,
-    "area": "United Kingdom"
-  },
-  {
     "name": "Coldplay",
     "playcount": 2,
     "area": "United Kingdom"
@@ -5153,11 +5153,6 @@
     "name": "Georges Bizet",
     "playcount": 2,
     "area": "France"
-  },
-  {
-    "name": "Glow",
-    "playcount": 2,
-    "area": "United States"
   },
   {
     "name": "Halestorm",
@@ -6012,7 +6007,7 @@
   {
     "name": "Enola Gay",
     "playcount": 1,
-    "area": "Denmark"
+    "area": "Germany"
   },
   {
     "name": "Eric Gales",
@@ -6067,7 +6062,7 @@
   {
     "name": "Final Dawn",
     "playcount": 1,
-    "area": "Helsinki"
+    "area": "Finland"
   },
   {
     "name": "Fiona Apple",
@@ -6215,6 +6210,11 @@
     "area": "United Kingdom"
   },
   {
+    "name": "Halberd",
+    "playcount": 1,
+    "area": "[Worldwide]"
+  },
+  {
     "name": "Hans Zimmer",
     "playcount": 1,
     "area": "United States"
@@ -6243,6 +6243,11 @@
     "name": "Hidden Orchestra",
     "playcount": 1,
     "area": "Edinburgh"
+  },
+  {
+    "name": "Hiromi",
+    "playcount": 1,
+    "area": "Japan"
   },
   {
     "name": "Hiss Golden Messenger",
@@ -6615,6 +6620,11 @@
     "area": "United States"
   },
   {
+    "name": "Miles Bonny",
+    "playcount": 1,
+    "area": "United States"
+  },
+  {
     "name": "Milk & Bone",
     "playcount": 1,
     "area": "Canada"
@@ -6642,7 +6652,7 @@
   {
     "name": "Monk",
     "playcount": 1,
-    "area": "United Kingdom"
+    "area": "Austria"
   },
   {
     "name": "Motanka",
@@ -6667,7 +6677,7 @@
   {
     "name": "Musk Ox",
     "playcount": 1,
-    "area": "Ottawa"
+    "area": "Canada"
   },
   {
     "name": "Neal Morse",
