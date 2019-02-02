@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {ConnectorCacheConfig} from 'src/types/config';
+import {ConnectorCache as ConnectorCacheConfig} from 'src/types/config';
 import {readJsonFile, writeFile} from 'src/utils/file';
 import log from 'src/utils/log';
 

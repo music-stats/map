@@ -17,7 +17,7 @@ export function sequence(promises: Array<Promise<any>>): Promise<any> {
       .then(() => (promise as any)().then((result: any) => results.push(result)));
   }
 
-  // @see https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works
+  // @see: https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works
   return promises.reduce(enqueuePromise, Promise.resolve())
     .then(() => results);
 }

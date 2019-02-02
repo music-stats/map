@@ -61,10 +61,12 @@ function loadCorrection({dataType, filePath}: Correction): Promise<AnyParsedCorr
 }
 
 export function loadAllCorrections(): Promise<ParsedCorrections> {
+  const {artistName, artistArea, area} = config.scripts.artistAreaMap.mergeArtists.corrections;
+
   return Promise.all([
-    config.mergedArtists.corrections.artistName,
-    config.mergedArtists.corrections.artistArea,
-    config.mergedArtists.corrections.area,
+    artistName,
+    artistArea,
+    area,
   ].map(loadCorrection))
     .then(([artistNameCorrection, artistAreaCorrection, areaCorrection]: ParsedCorrectionsList) => ({
       artistNameCorrection,

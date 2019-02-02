@@ -1,21 +1,20 @@
-interface ConnectorApiConfig {
-  root: string;
-  requestFrequency?: number;
-}
-
-export interface ConnectorCacheConfig {
+export interface ConnectorCache {
   ttl: number; // ms
   dir: string;
 }
 
-interface ConnectorConfig {
-  api: ConnectorApiConfig;
-  outputFilePath: string;
-  cache: ConnectorCacheConfig;
+interface Connector {
+  api: {
+    root: string;
+    requestFrequency?: number; // ms
+  };
+
+  cache: ConnectorCache;
 }
 
-interface LastfmConfig extends ConnectorConfig {
+interface Lastfm extends Connector {
   username: string;
+
   artists: {
     maxPageNumber: number;
     perPage: number;
@@ -23,7 +22,7 @@ interface LastfmConfig extends ConnectorConfig {
   };
 }
 
-interface MusicbrainzConfig extends ConnectorConfig {
+interface Musicbrainz extends Connector {
   artists: {
     countDefault: number;
   };
@@ -39,20 +38,34 @@ export interface Correction {
   filePath: string;
 }
 
-interface MergedArtistsConfig {
+interface Script {
+  outputFilePath: string;
+}
+
+interface MergeArtistsScript extends Script {
   corrections: {
     artistName: Correction;
     artistArea: Correction;
     area: Correction;
   };
-  outputFilePath: string;
 }
 
-interface Config {
+export default interface Config {
   userAgent: string;
-  lastfm: LastfmConfig;
-  musicbrainz: MusicbrainzConfig;
-  mergedArtists: MergedArtistsConfig;
-}
 
-export default Config;
+  connectors: {
+    lastfm: Lastfm;
+    musicbrainz: Musicbrainz;
+  };
+
+  scripts: {
+    artistAreaMap: {
+      fetchArtist: Script;
+      fetchArtistsAreas: Script;
+      mergeArtists: MergeArtistsScript;
+    };
+
+    // scrobbleTimeline: {
+    // };
+  };
+}

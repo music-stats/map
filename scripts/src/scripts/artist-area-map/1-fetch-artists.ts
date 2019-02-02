@@ -3,11 +3,11 @@ import {Artist} from 'src/types/artist';
 
 import config from 'src/config';
 import {writeFile} from 'src/utils/file';
-import {proxyLogLength} from 'src/utils/log';
+import log, {proxyLogLength} from 'src/utils/log';
 import {fetchLibraryArtists} from 'src/connectors/lastfm';
 
 const argv = process.argv.slice(2);
-const artistsCount = parseInt(argv[0], 10) || config.lastfm.artists.countDefault;
+const artistsCount = parseInt(argv[0], 10) || config.connectors.lastfm.artists.countDefault;
 const toBypassCache = argv.includes('--no-cache');
 
 if (artistsCount <= 0) {
@@ -15,8 +15,13 @@ if (artistsCount <= 0) {
 }
 
 function extract(): Promise<LastfmArtist[]> {
-  console.log(`fetching ${artistsCount} artists from last.fm...`);
-  return fetchLibraryArtists(config.lastfm.username, artistsCount, toBypassCache);
+  log(`fetching ${artistsCount} artists from last.fm...`);
+
+  return fetchLibraryArtists(
+    config.connectors.lastfm.username,
+    artistsCount,
+    toBypassCache,
+  );
 }
 
 function transform(rawArtistList: LastfmArtist[]): Artist[] {
@@ -32,7 +37,10 @@ function convert({name, playcount, mbid}: LastfmArtist): Artist {
 }
 
 function load(artistList: Artist[]): Promise<Artist[]> {
-  return writeFile(config.lastfm.outputFilePath, artistList);
+  return writeFile(
+    config.scripts.artistAreaMap.fetchArtist.outputFilePath,
+    artistList,
+  );
 }
 
 extract()

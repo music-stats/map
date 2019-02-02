@@ -51,10 +51,12 @@ $ yarn build:watch  # compile with watch
 
 ## Scripts
 
-### List top artists for a given last.fm user
+### Artist-area map
+
+#### Fetch top artists for a given last.fm user
 
 ```bash
-$ yarn script:1-fetch-artists [50] [--no-color] [--no-cache] # username is set in "./src/config.js"
+$ yarn script:artist-area-map:1-fetch-artists [50] [--no-color] [--no-cache] # username is set in "./src/config.js"
 ```
 
 Example output:
@@ -75,12 +77,12 @@ Example output:
     mbid: '62cfcc64-a7d2-4ec2-ab4b-2a6b62e53940' } ]
 ```
 
-### List areas for a given set of artists
+#### Fetch areas for a given set of artists
 
 Expects an output of `script:fetch-artists` to be located at `config.lastfm.outputFilePath`.
 
 ```bash
-$ yarn script:2-fetch-artists-areas [10] [--no-color] [--no-cache]
+$ yarn script:artist-area-map:2-fetch-artists-areas [10] [--no-color] [--no-cache]
 ```
 
 Example output:
@@ -93,13 +95,13 @@ Example output:
   { artist: 'Lake of Tears', area: 'Sweden' } ]
 ```
 
-### Merge results of two scripts above
+#### Merge results of two scripts above
 
 Expects both input files (`.json`) to be located at `output/`.
 Blends them together, applying three stages of corrections (see `data/corrections/`).
 
 ```bash
-$ yarn script:3-merge-artists
+$ yarn script:artist-area-map:3-merge-artists [--no-color]
 ```
 
 Example output:

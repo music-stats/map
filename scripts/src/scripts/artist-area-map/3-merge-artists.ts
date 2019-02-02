@@ -12,8 +12,8 @@ interface InputLists {
 
 function extract(): Promise<InputLists> {
   return Promise.all([
-    config.lastfm.outputFilePath,
-    config.musicbrainz.outputFilePath,
+    config.scripts.artistAreaMap.fetchArtist.outputFilePath,
+    config.scripts.artistAreaMap.fetchArtistsAreas.outputFilePath,
   ].map(readJsonFile))
     .then(([artistList, artistAreaList]: [Artist[], ArtistArea[]]) => ({
       artistList,
@@ -27,7 +27,10 @@ function transform({artistList, artistAreaList}: InputLists): Promise<MergedArti
 }
 
 function load(mergedArtistList: MergedArtist[]): Promise<MergedArtist[]> {
-  return writeFile(config.mergedArtists.outputFilePath, mergedArtistList);
+  return writeFile(
+    config.scripts.artistAreaMap.mergeArtists.outputFilePath,
+    mergedArtistList,
+  );
 }
 
 extract()

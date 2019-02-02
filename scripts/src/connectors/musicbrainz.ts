@@ -15,7 +15,7 @@ export function buildApiLookupUrl(entity: string, mbid: string): string {
     fmt: 'json',
   };
 
-  return `${config.musicbrainz.api.root}/${entity}/${mbid}?${querystring.stringify(params)}`;
+  return `${config.connectors.musicbrainz.api.root}/${entity}/${mbid}?${querystring.stringify(params)}`;
 }
 
 export function fetchArtist(
@@ -36,11 +36,11 @@ export function fetchArtist(
   }
 
   function retrieveMusicbrainzArtistCache(): Promise<Artist> {
-    return retrieveResponseDataCache<Artist>(url, config.musicbrainz.cache);
+    return retrieveResponseDataCache<Artist>(url, config.connectors.musicbrainz.cache);
   }
 
   function storeMusicbrainzArtistCache(response: ArtistResponse): Promise<ArtistResponse> {
-    return storeResponseDataCache<Artist>(url, response.data, config.musicbrainz.cache)
+    return storeResponseDataCache<Artist>(url, response.data, config.connectors.musicbrainz.cache)
       .then(() => response);
   }
 
@@ -58,7 +58,7 @@ export function fetchArtist(
         return artistCache;
       }
 
-      return delay(requestMusicbrainzArtist, config.musicbrainz.api.requestFrequency)
+      return delay(requestMusicbrainzArtist, config.connectors.musicbrainz.api.requestFrequency)
         .then(storeMusicbrainzArtistCache)
         .then((response) => response.data);
     });

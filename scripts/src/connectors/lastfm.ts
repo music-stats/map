@@ -21,7 +21,7 @@ export function buildApiUrl(method: string, params = {}): string {
     format: 'json',
   };
 
-  return `${config.lastfm.api.root}?${querystring.stringify({
+  return `${config.connectors.lastfm.api.root}?${querystring.stringify({
     ...defaultParams,
     ...params,
   })}`;
@@ -33,10 +33,13 @@ function fetchPage(
   pagesCount: number,
   toBypassCache: boolean,
 ): Promise<LibraryResponseData> {
-  const url = buildApiUrl('library.getartists', {
-    user: username,
-    page: pageNumber + 1, // bounds: 1-1000000
-  });
+  const url = buildApiUrl(
+    'library.getartists',
+    {
+      user: username,
+      page: pageNumber + 1, // bounds: 1-1000000
+    },
+  );
   const headers = {
     'User-Agent': config.userAgent,
   };
@@ -47,11 +50,11 @@ function fetchPage(
   }
 
   function retrieveLastfmLibraryCache(): Promise<LibraryResponseData> {
-    return retrieveResponseDataCache<LibraryResponseData>(url, config.lastfm.cache);
+    return retrieveResponseDataCache<LibraryResponseData>(url, config.connectors.lastfm.cache);
   }
 
   function storeLastfmLibraryCache(response: LibraryResponse): Promise<LibraryResponse> {
-    return storeResponseDataCache<LibraryResponseData>(url, response.data, config.lastfm.cache)
+    return storeResponseDataCache<LibraryResponseData>(url, response.data, config.connectors.lastfm.cache)
       .then(() => response);
   }
 
@@ -87,9 +90,10 @@ export function fetchLibraryArtists(
   artistsCount: number,
   toBypassCache: boolean,
 ): Promise<Artist[]> {
+  const {perPage, maxPageNumber} = config.connectors.lastfm.artists;
   const pagesCount = Math.min(
-    Math.ceil(artistsCount / config.lastfm.artists.perPage),
-    config.lastfm.artists.maxPageNumber,
+    Math.ceil(artistsCount / perPage),
+    maxPageNumber,
   );
   const fetchAllPages = times(
     (pageNumber) => fetchPage.bind(null, username, pageNumber, pagesCount, toBypassCache),
@@ -97,7 +101,7 @@ export function fetchLibraryArtists(
   );
   const cutExtraArtists = (rawArtistList: Artist[]) => take(artistsCount, rawArtistList);
 
-  console.log('pages:', pagesCount);
+  log(`pages: ${pagesCount}`);
 
   return sequence(fetchAllPages)
     .then(concatPages)

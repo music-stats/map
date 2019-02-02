@@ -10,5 +10,5 @@ npm-debug.log*
 .env
 scripts/dist/
 scripts/cache/**/*.json
-scripts/output/*.json
+scripts/output/**/*.json
 client/dist/

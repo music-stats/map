@@ -7,11 +7,11 @@ import {ArtistArea} from 'src/types/artist';
 import config from 'src/config';
 import {sequence} from 'src/utils/promise';
 import {readJsonFile, writeFile} from 'src/utils/file';
-import {proxyLogLength} from 'src/utils/log';
+import log, {proxyLogLength} from 'src/utils/log';
 import {fetchArtist} from 'src/connectors/musicbrainz';
 
 const argv = process.argv.slice(2);
-const artistsCount = parseInt(argv[0], 10) || config.musicbrainz.artists.countDefault;
+const artistsCount = parseInt(argv[0], 10) || config.connectors.musicbrainz.artists.countDefault;
 const toBypassCache = argv.includes('--no-cache');
 
 if (artistsCount <= 0) {
@@ -19,12 +19,13 @@ if (artistsCount <= 0) {
 }
 
 function proxyLogArtistsCount(artists: LastfmArtist[]): LastfmArtist[] {
-  console.log(`fetching ${artists.length} artists from MusicBrainz...`);
+  log(`fetching ${artists.length} artists from MusicBrainz...`);
+
   return artists;
 }
 
 function extract(): Promise<MusicbrainzArtist[]> {
-  return readJsonFile<LastfmArtist[]>(config.lastfm.outputFilePath)
+  return readJsonFile<LastfmArtist[]>(config.scripts.artistAreaMap.fetchArtist.outputFilePath)
     .then(take(artistsCount))
     .then((artists) => artists.filter(({mbid}) => Boolean(mbid))) // "mbid" is missing for some artists
     .then(proxyLogArtistsCount)
@@ -52,7 +53,10 @@ function convert({name, area}: MusicbrainzArtist): ArtistArea {
 }
 
 function load(artistAreaList: ArtistArea[]): Promise<ArtistArea[]> {
-  return writeFile(config.musicbrainz.outputFilePath, artistAreaList);
+  return writeFile(
+    config.scripts.artistAreaMap.fetchArtistsAreas.outputFilePath,
+    artistAreaList,
+  );
 }
 
 extract()

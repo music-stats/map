@@ -2,6 +2,8 @@ import * as L from 'leaflet';
 
 import {Animation} from 'src/types/elements';
 
+// @todo: remove the "Config" part from names
+
 interface DataUrlsConfig {
   artists: string;
   world: string;

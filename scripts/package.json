@@ -11,9 +11,9 @@
     "prebuild": "yarn clean:dist",
     "build": "tsc",
     "build:watch": "tsc -w",
-    "script:1-fetch-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/1-fetch-artists",
-    "script:2-fetch-artists-areas": "export NODE_PATH=./dist/ && node ./dist/src/scripts/2-fetch-artists-areas",
-    "script:3-merge-artists": "export NODE_PATH=./dist/ && node ./dist/src/scripts/3-merge-artists"
+    "script:artist-area-map:1-fetch-artists": "./bin/artist-area-map/1-fetch-artists.sh",
+    "script:artist-area-map:2-fetch-artists-areas": "./bin/artist-area-map/2-fetch-artists-areas.sh",
+    "script:artist-area-map:3-merge-artists": "./bin/artist-area-map/3-merge-artists.sh"
   },
   "devDependencies": {
     "@types/dotenv": "6.1.0",
