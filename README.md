@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/oleksmarkh/music-stats/master/client/assets/logo/logo.png" alt="logo" />
+</p>
+
 # music-stats
 
   [![license][license-image]][license-url]
