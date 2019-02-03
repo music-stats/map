@@ -5,6 +5,7 @@ $leaflet-control-padding-vertical: 10px;
 $leaflet-control-padding-vertical-block: $leaflet-control-padding-vertical + 2px;
 $leaflet-control-padding-horizontal: 14px;
 $leaflet-control-padding: $leaflet-control-padding-vertical $leaflet-control-padding-horizontal;
+$leaflet-control-zoom-width: 34px; // 30px width + 2px border
 $leaflet-control-zoom-height: 65px;
 
 $scrollbar-width: 16px;

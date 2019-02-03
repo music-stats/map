@@ -227,7 +227,7 @@ export default class PlaycountMap {
     return new AreaInfo(
       config.controls.areaInfo.options,
       'article',
-      'PlaycountMap__control',
+      'PlaycountMap__control AreaInfo',
       {
         username: config.controls.areaInfo.username,
         totalAreaCount: this.areas.length,

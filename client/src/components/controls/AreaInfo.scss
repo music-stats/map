@@ -1,5 +1,9 @@
 @import '../../app-consts';
 
+.AreaInfo {
+  max-width: calc(100vw - #{$leaflet-control-zoom-width + $leaflet-control-margin * 3 + $leaflet-control-padding-horizontal * 2});
+}
+
 .AreaInfo__section {
   margin: 10px 0;
 
