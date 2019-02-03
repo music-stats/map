@@ -1,4 +1,4 @@
-export function delay(promise: (...args: any[]) => Promise<any>, wait: number, ...args: any[]): Promise<any> {
+export function delay<T>(promise: (...args: any[]) => Promise<T>, wait: number, ...args: any[]): Promise<T> {
   return new Promise((resolve, reject) => {
     setTimeout(
       () => promise(...args)
@@ -9,15 +9,14 @@ export function delay(promise: (...args: any[]) => Promise<any>, wait: number, .
   });
 }
 
-export function sequence(promises: Array<Promise<any>>): Promise<any> {
-  const results: any[] = [];
+type EnquableFunc<T> = () => Promise<T>;
 
-  function enqueuePromise(queue: Promise<any>, promise: Promise<any>) {
-    return queue
-      .then(() => (promise as any)().then((result: any) => results.push(result)));
-  }
+export function sequence<T>(funcs: Array<EnquableFunc<T>>): Promise<T[]> {
+  const results: T[] = [];
+  const pushResult: ((result: T) => void) = (result: T) => results.push(result);
+  const enqueueFuncs = (queue: Promise<void>, func: EnquableFunc<T>) => queue.then(() => func().then(pushResult));
 
   // @see: https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works
-  return promises.reduce(enqueuePromise, Promise.resolve())
+  return funcs.reduce(enqueueFuncs, Promise.resolve())
     .then(() => results);
 }

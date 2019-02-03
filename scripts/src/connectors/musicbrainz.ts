@@ -49,7 +49,7 @@ export function fetchArtist(
       .then((response) => response.data);
   }
 
-  log();
+  log(); // newline
   log(`fetching MusicBrainz artist "${mbid}" (#${index + 1}/${count}): "${name}"`);
 
   return retrieveMusicbrainzArtistCache()
