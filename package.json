@@ -1,7 +1,7 @@
 {
-  "name": "music-stats-client",
-  "version": "0.0.0",
-  "description": "the front-end",
+  "name": "music-stats-map",
+  "version": "1.0.0",
+  "description": "artists on a map",
   "main": "src/app.ts",
   "author": "Oleksii Markhovskyi",
   "license": "MIT",

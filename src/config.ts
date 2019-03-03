@@ -35,8 +35,8 @@ const config: Config = {
 
       links: {
         github: {
-          url: 'https://github.com/oleksmarkh/music-stats',
-          text: 'music-stats',
+          url: 'https://github.com/music-stats/map',
+          text: 'music-stats/map',
         },
 
         twitter: {

@@ -1,24 +1,61 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/oleksmarkh/music-stats/master/client/assets/logo/logo.png" alt="logo" />
-</p>
-
-# music-stats
+# music-stats map
 
   [![license][license-image]][license-url]
   ![code size][code-size-image]
 
-A playground for fetching and rendering music-related data.
+![screenshot](https://user-images.githubusercontent.com/2470363/48676289-d8b81600-eb64-11e8-9548-92a844292d16.png)
 
-![music-stats-client-screenshot](https://user-images.githubusercontent.com/2470363/48676289-d8b81600-eb64-11e8-9548-92a844292d16.png)
+## Tech stack
 
-## front-end
+dev deps:
+[`typescript`](https://www.typescriptlang.org/docs),
+[`sass`](https://sass-lang.com/documentation/file.SASS_REFERENCE.html),
+[`webpack`](https://webpack.js.org/api),
+[`jest`](https://facebook.github.io/jest).
 
-See [client/README.md](client/README.md).
+deps:
+[`leaflet`](http://leafletjs.com),
+[`d3-scale`](https://github.com/d3/d3-scale),
+[`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic),
+[`d3-color`](https://github.com/d3/d3-color).
 
-## back-end (to be, currently a set of scripts)
+Flags (1x1) are taken from [flag-icon-css](https://github.com/lipis/flag-icon-css/tree/master/flags/1x1).
 
-See [scripts/README.md](scripts/README.md).
+## Implementation details
 
-[license-image]: https://img.shields.io/github/license/oleksmarkh/music-stats.svg?style=flat-square
-[license-url]: https://github.com/oleksmarkh/music-stats/blob/master/LICENSE
-[code-size-image]: https://img.shields.io/github/languages/code-size/oleksmarkh/music-stats.svg?style=flat-square
+No rendering/templating framework is used, though UI consists of several component-like (React-inspired) classes.
+
+You can always find a `.render()` method there - in `<PlaycountMap />` it assembles children components together,
+in other (presentational) components it returns HTML as a string
+(using [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates))
+and relying on `.props` + `.state`.
+
+DOM event handlers are bound through `.subscribe()` methods.
+
+Presentational components actually extend Leaflet's [`Control`](https://leafletjs.com/reference-1.3.4.html#control),
+so `.onAdd()` is implemented there (responsible for `.element` rendering).
+
+Styles are organized as SASS files alongside the components. BEM methodology is used for naming.
+
+## Setup
+
+### Environment variables
+
+Create a `.env` file and fill its values according to [.env.template](.env.template):
+
+* `MAPBOX_ACCESS_TOKEN` (see Mapbox [account](https://www.mapbox.com/account/access-tokens) and [docs](https://www.mapbox.com/help/how-access-tokens-work))
+
+### Commands
+
+```bash
+$ yarn install     # install deps
+$ yarn lint        # lint scripts and styles
+$ yarn test        # run unit tests
+$ yarn run:dev     # run a local dev server
+$ yarn build:prod  # produce a build artifact
+$ yarn deploy      # deploy to GitHub pages
+```
+
+[license-image]: https://img.shields.io/github/license/music-stats/map.svg?style=flat-square
+[license-url]: https://github.com/music-stats/map/blob/master/LICENSE
+[code-size-image]: https://img.shields.io/github/languages/code-size/music-stats/map.svg?style=flat-square
