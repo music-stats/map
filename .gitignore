@@ -1,10 +1,5 @@
 node_modules/
-
-.yarn-integrity
-yarn.lock
-yarn-debug.log*
-yarn-error.log*
-npm-debug.log*
+package-lock.json
 
 .env
 dist/

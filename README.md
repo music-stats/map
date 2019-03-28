@@ -11,7 +11,7 @@ dev deps:
 [`typescript`](https://www.typescriptlang.org/docs),
 [`sass`](https://sass-lang.com/documentation/file.SASS_REFERENCE.html),
 [`webpack`](https://webpack.js.org/api),
-[`jest`](https://facebook.github.io/jest).
+[`jest`](https://jestjs.io/docs/en/expect).
 
 deps:
 [`leaflet`](http://leafletjs.com),
@@ -48,12 +48,12 @@ Create a `.env` file and fill its values according to [.env.template](.env.templ
 ### Commands
 
 ```bash
-$ yarn install     # install deps
-$ yarn lint        # lint scripts and styles
-$ yarn test        # run unit tests
-$ yarn run:dev     # run a local dev server
-$ yarn build:prod  # produce a build artifact
-$ yarn deploy      # deploy to GitHub pages
+$ npm i               # install deps
+$ npm run lint        # lint scripts and styles
+$ npm test            # run unit tests
+$ npm run run:dev     # run a local dev server
+$ npm run build:prod  # produce a build artifact
+$ npm run deploy      # deploy to GitHub pages
 ```
 
 [license-image]: https://img.shields.io/github/license/music-stats/map.svg?style=flat-square
