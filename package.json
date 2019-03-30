@@ -10,11 +10,11 @@
     "lint:scripts": "tslint ./src/{**,**/__tests__}/*.ts",
     "lint:config": "tslint ./*.js",
     "lint:styles": "stylelint ./src/**/*.scss",
-    "lint": "yarn lint:scripts && yarn lint:styles",
+    "lint": "npm run lint:scripts && npm run lint:styles",
     "test": "NODE_PATH=./src jest",
     "clean": "rm -rf ./dist/*",
-    "prebuild:dev": "yarn clean",
-    "prebuild:prod": "yarn clean",
+    "prebuild:dev": "npm run clean",
+    "prebuild:prod": "npm run clean",
     "run:dev": "set -o allexport && source .env-dev && webpack-dev-server",
     "build:dev": "set -o allexport && source .env-dev && webpack --progress --bail",
     "build:prod": "set -o allexport && source .env-prod && webpack --progress --bail",
@@ -73,7 +73,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn test"
+      "pre-commit": "npm run lint && npm test"
     }
   }
 }
