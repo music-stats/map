@@ -50,7 +50,7 @@ const config: Config = {
   map: {
     defaultView: {
       center: [50.45, 30.52], // Kyiv
-      zoom: 3,
+      zoom: 4,
     },
 
     tileLayer: {

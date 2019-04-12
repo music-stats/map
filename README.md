@@ -58,7 +58,7 @@ Create a `.env` file and fill its values according to [`.env.template`](.env.tem
 $ npm i               # install deps
 $ npm run lint        # lint scripts and styles
 $ npm test            # run unit tests
-$ npm run run:dev     # run a local dev server
+$ npm run dev         # run a local dev server
 $ npm run build:prod  # produce a build artifact
 $ npm run deploy      # deploy to GitHub pages
 ```
