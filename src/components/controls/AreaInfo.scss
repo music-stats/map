@@ -2,6 +2,18 @@
 
 .AreaInfo {
   max-width: calc(100vw - #{$leaflet-control-zoom-width + $leaflet-control-margin * 3 + $leaflet-control-padding-horizontal * 2});
+
+  // avoids map selection if a cursor goes to the right or above the element
+  &::after {
+    position: absolute;
+    z-index: -1;
+    top: -$leaflet-control-margin;
+    right: -$leaflet-control-margin;
+    left: 0;
+    bottom: 0;
+
+    content: '';
+  }
 }
 
 .AreaInfo__section {

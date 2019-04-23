@@ -18,14 +18,14 @@
     opacity: 1;
   }
 
-  // to avoid jumping if a cursor goes below the element
+  // avoids map selection if a cursor goes to the left or below the element
   &::after {
     position: absolute;
-    top: 100%;
+    z-index: -1;
+    top: 0;
     right: 0;
-    left: 0;
-
-    height: $leaflet-control-margin;
+    bottom: -$leaflet-control-margin;
+    left: -$leaflet-control-margin;
 
     content: '';
   }
