@@ -49,7 +49,7 @@ loaders.tslint = {
 
 loaders.ts = {
   test: /\.ts$/,
-  loader: 'ts-loader',
+  loader: 'awesome-typescript-loader',
   exclude: NODE_MODULES_DIR,
 };
 
