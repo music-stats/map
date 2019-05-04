@@ -293,7 +293,7 @@ export default class AreaInfo extends L.Control implements CustomControl {
           `
           : `
             <p>
-              (hover over a country)
+              (click on a country)
             </p>
           `
         }

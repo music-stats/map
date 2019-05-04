@@ -148,16 +148,9 @@ export default class PlaycountMap {
 
   private highlightArea(e: L.LeafletEvent) {
     const layer = e.target as L.Polyline;
-    const area = layer.feature as Area;
 
     layer.setStyle(config.map.area.style.highlight);
     layer.bringToFront();
-
-    this.areaInfo.setState({
-      areaScrobbleCount: getAreaScrobbleCount(area),
-      areaFlagDataUrl: this.getAreaFlagDataUrl(area),
-      areaProperties: area.properties,
-    });
   }
 
   private resetAreaHighlight(e: L.LeafletEvent) {
@@ -170,13 +163,25 @@ export default class PlaycountMap {
     this.map.fitBounds(layer.getBounds());
   }
 
-  private selectArea(e: L.LeafletEvent) {
+  private updateAreaInfo(area: Area) {
+    this.areaInfo.setState({
+      areaScrobbleCount: getAreaScrobbleCount(area),
+      areaFlagDataUrl: this.getAreaFlagDataUrl(area),
+      areaProperties: area.properties,
+    });
+  }
+
+  private selectArea(e: L.LeafletEvent, withZoom = false) {
     const area = (e.target as L.Polyline).feature as Area;
 
     this.geojson.getLayers().forEach((layer: L.Polyline) => {
       if (layer.feature === area) {
-        this.zoomToArea(e);
         this.highlightArea(e);
+        this.updateAreaInfo(area);
+
+        if (withZoom) {
+          this.zoomToArea(e);
+        }
       } else {
         this.resetAreaHighlight({
           type: 'mouseleave',
@@ -259,7 +264,7 @@ export default class PlaycountMap {
         onListItemMouseClick: (areaName) => this.selectArea({
           type: 'click',
           target: this.getAreaLayer(areaName),
-        }),
+        }, true),
       }
     );
   }
