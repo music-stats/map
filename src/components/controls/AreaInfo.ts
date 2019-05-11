@@ -156,98 +156,100 @@ export default class AreaInfo extends L.Control implements CustomControl {
   }
 
   private renderSummary(): string {
-    const {totalAreaCount} = this.props;
-    const {areaScrobbleCount, areaFlagDataUrl, areaProperties} = this.state;
+    const {areaProperties} = this.state;
 
     return `
       <section
         class="AreaInfo__section"
       >
-        <header
-          class="AreaInfo__header"
-        >
-          Total
-        </header>
-
-        <p>
-          countries: ${totalAreaCount}
-        </p>
-
         ${areaProperties
-          ? ''
-          : `
-            <p>
-              <span>
-                artists:&nbsp;
-              </span>
-
-              ${this.renderLibraryArtistsLink()}
-            </p>
-
-            <p>
-              <span>
-                scrobbles:&nbsp;
-              </span>
-
-              ${this.renderLibraryLink()}
-            </p>
-          `
+          ? this.renderAreaSummary()
+          : this.renderTotalSummary()
         }
       </section>
-
-      ${areaProperties
-        ? `
-          <section
-            class="AreaInfo__section"
-          >
-            <header
-              class="AreaInfo__header"
-            >
-              <div
-                class="AreaInfo__area-flag"
-                style="
-                  background-image: url('${areaFlagDataUrl}');
-                "
-              >
-              </div>
-
-              <span>
-                ${areaProperties.name}
-              </span>
-            </header>
-
-            <p>
-              <span>
-                artists: ${areaProperties.artists.length.toLocaleString()}
-              </span>
-
-              <span
-                class="AreaInfo__stats-separator"
-              >
-                /
-              </span>
-
-              ${this.renderLibraryArtistsLink()}
-            </p>
-
-            <p>
-              <span>
-                scrobbles: ${areaScrobbleCount.toLocaleString()}
-              </span>
-
-              <span
-                class="AreaInfo__stats-separator"
-              >
-                /
-              </span>
-
-              ${this.renderLibraryLink()}
-            </p>
-          </section>
-         `
-        : ''
-      }
     `;
+  }
+
+  private renderTotalSummary(): string {
+    const {totalAreaCount} = this.props;
+
+    return `
+      <header
+        class="AreaInfo__header"
+      >
+        Total
+      </header>
+
+      <p>
+        countries: ${totalAreaCount}
+      </p>
+
+      <p>
+        <span>
+          artists:&nbsp;
+        </span>
+
+        ${this.renderLibraryArtistsLink()}
+      </p>
+
+      <p>
+        <span>
+          scrobbles:&nbsp;
+        </span>
+
+        ${this.renderLibraryLink()}
+      </p>
+    `;
+  }
+
+  private renderAreaSummary(): string {
+    const {areaScrobbleCount, areaFlagDataUrl, areaProperties} = this.state;
+
+    return `
+      <header
+        class="AreaInfo__header"
+      >
+        <div
+          class="AreaInfo__area-flag"
+          style="
+            background-image: url('${areaFlagDataUrl}');
+          "
+        >
+        </div>
+
+        <span>
+          ${areaProperties.name}
+        </span>
+      </header>
+
+      <p>
+        <span>
+          artists: ${areaProperties.artists.length.toLocaleString()}
+        </span>
+
+        <span
+          class="AreaInfo__stats-separator"
+        >
+          /
+        </span>
+
+        ${this.renderLibraryArtistsLink()}
+      </p>
+
+      <p>
+        <span>
+          scrobbles: ${areaScrobbleCount.toLocaleString()}
+        </span>
+
+        <span
+          class="AreaInfo__stats-separator"
+        >
+          /
+        </span>
+
+        ${this.renderLibraryLink()}
+      </p>
+     `;
   }
 
   private renderLibraryArtistsLink(): string {

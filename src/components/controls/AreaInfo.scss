@@ -92,7 +92,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  max-height: calc(100vh - 270px); // "270" is a magic const here - a sum of heights of all other elements in a column
+  max-height: calc(100vh - 220px); // "220" is a magic const here - a sum of heights of all other elements in a column
   padding-right: $scrollbar-width; // compensates the scrollbar
 }
 
