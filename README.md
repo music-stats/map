@@ -3,7 +3,7 @@
   [![license][license-image]][license-url]
   ![code size][code-size-image]
 
-![screenshot](https://user-images.githubusercontent.com/2470363/48676289-d8b81600-eb64-11e8-9548-92a844292d16.png)
+![screenshot](https://user-images.githubusercontent.com/2470363/57573663-5b8e9f00-742b-11e9-96bc-4139e1873c9a.png)
 
 ## Tech stack
 
