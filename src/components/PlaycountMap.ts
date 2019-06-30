@@ -45,9 +45,10 @@ export default class PlaycountMap {
   private externalLinkList: ExternalLinkList;
 
   constructor(
-    private map: L.Map,
+    public map: L.Map,
     private artists: Artist[],
     private world: any,
+    private isDarkMode: boolean,
   ) {
     const areas = getArtistsAreas(this.artists, this.world);
     const allArtistCounts = areas.map(getAreaArtistCount);
@@ -137,11 +138,17 @@ export default class PlaycountMap {
     return d3ScaleChromatic.interpolateBlues(this.colorScale(scrobbleCount));
   }
 
+  private getAreaBorderColorString(): string {
+    return config.map.area.style.defaultModes[this.isDarkMode ? 'dark' : 'light'].color;
+  }
+
   private getAreaStyle(area: Area): L.PathOptions {
+    const color = this.getAreaBorderColorString();
     const fillColor = this.getAreaColorString(getAreaScrobbleCount(area));
 
     return {
       ...config.map.area.style.default,
+      color,
       fillColor,
     };
   }
@@ -149,7 +156,10 @@ export default class PlaycountMap {
   private highlightArea(e: L.LeafletEvent) {
     const layer = e.target as L.Polyline;
 
-    layer.setStyle(config.map.area.style.highlight);
+    layer.setStyle({
+      ...config.map.area.style.highlight,
+      color: config.map.area.style.highlightModes[this.isDarkMode ? 'dark' : 'light'].color,
+    });
     layer.bringToFront();
   }
 

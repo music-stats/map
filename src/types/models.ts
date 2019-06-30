@@ -1,4 +1,11 @@
+import * as L from 'leaflet';
 import {Feature, GeometryObject} from 'geojson';
+
+export interface MapTileLayerOptions extends L.TileLayerOptions {
+  accessToken: string;
+  id: 'mapbox.light' | 'mapbox.dark';
+  highResolution: '@2x' | '';
+}
 
 export interface Artist {
   name: string;

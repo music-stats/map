@@ -54,12 +54,11 @@ const config: Config = {
     },
 
     tileLayer: {
-      urlTemplate: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+      urlTemplate: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}{highResolution}.png?access_token={accessToken}',
 
       options: {
         minZoom: 2,
         maxZoom: 6,
-        id: 'mapbox.light',
         attribution: [
           'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -73,16 +72,32 @@ const config: Config = {
         default: {
           weight: 2,
           opacity: 1,
-          color: 'white',
           dashArray: '3',
           fillOpacity: 0.6,
         },
 
+        defaultModes: {
+          light: {
+            color: 'white',
+          },
+          dark: {
+            color: 'black',
+          },
+        },
+
         highlight: {
           weight: 3,
-          color: '#abc',
           dashArray: '',
           fillOpacity: 0.8,
+        },
+
+        highlightModes: {
+          light: {
+            color: '#ABC',
+          },
+          dark: {
+            color: '#456',
+          },
         },
       },
 

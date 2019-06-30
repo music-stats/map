@@ -42,10 +42,6 @@ interface ControlsConfig {
   externalLinkList: ExternalLinkListControlConfig;
 }
 
-interface TileLayerOptions extends L.TileLayerOptions {
-  id: string;
-}
-
 interface MapConfig {
   defaultView: {
     center: L.LatLngExpression;
@@ -54,13 +50,21 @@ interface MapConfig {
 
   tileLayer: {
     urlTemplate: string;
-    options: TileLayerOptions;
+    options: L.TileLayerOptions;
   };
 
   area: {
     style: {
       default: L.PathOptions;
+      defaultModes: {
+        light: L.PathOptions;
+        dark: L.PathOptions;
+      };
       highlight: L.PathOptions;
+      highlightModes: {
+        light: L.PathOptions;
+        dark: L.PathOptions;
+      };
     };
 
     fillColorScale: {
