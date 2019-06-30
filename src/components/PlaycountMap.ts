@@ -135,7 +135,7 @@ export default class PlaycountMap {
   }
 
   private getAreaColorString(scrobbleCount: number): string {
-    return d3ScaleChromatic.interpolateBlues(this.colorScale(scrobbleCount));
+    return d3ScaleChromatic.interpolateYlOrRd(this.colorScale(scrobbleCount));
   }
 
   private getAreaBorderColorString(): string {
@@ -210,7 +210,9 @@ export default class PlaycountMap {
     const scrobbleCountPercent = scrobbleCount / this.totalScrobbleCount * 100;
     const scrobbleCountBgWidthPercent = this.scrobbleCountBgWidthPercentScale(scrobbleCount);
     const color = d3Color.color(this.getAreaColorString(scrobbleCount));
-    const rankColor = color.darker(2);
+    const rankColor = this.isDarkMode
+      ? color.brighter(1)
+      : color.darker(2);
 
     return {
       name,

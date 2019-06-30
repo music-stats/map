@@ -45,6 +45,7 @@
 
   border: none;
   outline: none;
+  color: var(--body-color);
   background-color: transparent;
 
   &:hover {
@@ -58,13 +59,13 @@
   display: flex;
   align-items: center;
 
-  color: #444;
+  color: var(--area-info-header-color);
 }
 
 .AreaInfo__stats-separator {
   font-size: 10px;
 
-  color: #444;
+  color: var(--area-info-header-color);
 }
 
 .AreaInfo__area-flag {
@@ -103,10 +104,10 @@
 
   text-align: right;
 
-  color: #888;
+  color: var(--list-item-color);
 
   .AreaInfo__artist:hover & {
-    color: #444;
+    color: var(--list-item-color--hover);
   }
 }
 

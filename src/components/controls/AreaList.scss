@@ -118,7 +118,7 @@
 
   content: '';
 
-  border: 2px solid white;
+  border: 2px solid var(--area-rank-border-color);
   border-radius: 50%;
   background-color: $color;
 }
@@ -141,7 +141,7 @@
 
   text-align: right;
 
-  border: 2px solid white;
+  border: 2px solid var(--area-rank-border-color);
   background-clip: padding-box;
 
   .AreaList__area:nth-child(1) & {
@@ -176,7 +176,7 @@
   width: 40%;
   height: 40%;
 
-  border: 2px solid white;
+  border: 2px solid var(--area-rank-border-color);
   border-radius: 50%;
   background-repeat: no-repeat;
 
@@ -203,10 +203,10 @@
 }
 
 .AreaList__area-stats {
-  color: #888;
+  color: var(--list-item-color);
 
   .AreaList__area:hover & {
-    color: #444;
+    color: var(--list-item-color--hover);
   }
 
   > * {
