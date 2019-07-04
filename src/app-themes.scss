@@ -1,5 +1,6 @@
 html {
   --body-color: #222;
+  --body-background-color: #d1d1d1;
   --control-background-color: rgba(255, 255, 255, 0.9);
   --control-background-color--hover: rgba(245, 245, 245, 0.9);
   --zoom-control-separator-color: #ccc;
@@ -11,6 +12,7 @@ html {
 
   @media (prefers-color-scheme: dark) {
     --body-color: #bbb;
+    --body-background-color: #222;
     --control-background-color: rgba(70, 70, 70, 0.9);
     --control-background-color--hover: rgba(60, 60, 60, 0.9);
     --zoom-control-separator-color: #222;
