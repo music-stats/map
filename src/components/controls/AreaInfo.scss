@@ -89,6 +89,8 @@
 }
 
 .AreaInfo__artist-list {
+  font-size: inherit; // overrides the default value for tables
+
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
