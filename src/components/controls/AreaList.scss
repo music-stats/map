@@ -110,11 +110,11 @@
 
 @mixin Ledend__area-rank-medal($color) {
   position: absolute;
-  top: calc(-20% - 2px);
-  left: calc(-20% - 2px);
+  top: -7px;
+  left: -7px;
 
-  width: 40%;
-  height: 40%;
+  width: 10px;
+  height: 10px;
 
   content: '';
 
@@ -135,7 +135,6 @@
   box-sizing: border-box;
 
   width: 28px;
-  min-width: 28px;
   height: 28px;
   padding-right: 0.2em;
 
@@ -170,11 +169,11 @@
 
 .AreaList__area-flag {
   position: absolute;
-  bottom: calc(-20% - 2px);
-  left: calc(-20% - 2px);
+  bottom: -7px;
+  left: -7px;
 
-  width: 40%;
-  height: 40%;
+  width: 10px;
+  height: 10px;
 
   border: 2px solid var(--area-rank-border-color);
   border-radius: 50%;
