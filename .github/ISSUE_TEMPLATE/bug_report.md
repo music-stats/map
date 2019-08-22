@@ -1,16 +1,9 @@
-:bicyclist: __Motivation__
-
-(why?)
-
-:card_index: __Considerations__
-
-(what?)
-
-:clipboard: __Steps__
-
-(how?)
-
-- [ ] ...
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
