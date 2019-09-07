@@ -1,7 +1,11 @@
 @import '../app-consts';
 
 .PlaycountMap {
-  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .PlaycountMap__control {
