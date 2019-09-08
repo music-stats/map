@@ -33,7 +33,8 @@ interface FlagDataUrlDict {
 export default class PlaycountMap {
   private areas: Area[];
   private totalScrobbleCount: number;
-  private isFirstRoute: boolean = true;
+  private isFirstRoute: boolean;
+  private defaultTitle: string;
 
   private colorScale: ColorScale;
   private artistCountBgWidthPercentScale: WidthPercentScale;
@@ -62,6 +63,8 @@ export default class PlaycountMap {
 
     this.areas = areas;
     this.totalScrobbleCount = allScrobbleCounts.reduce((sum, areaScrobbleCount) => sum + areaScrobbleCount, 0);
+    this.isFirstRoute = true;
+    this.defaultTitle = document.title;
 
     this.colorScale = this.getColorScale(allScrobbleCounts);
     this.artistCountBgWidthPercentScale = this.getWidthPercentScale(allArtistCounts);
@@ -94,6 +97,7 @@ export default class PlaycountMap {
     this.geojson.getLayers().forEach((layer: L.Polyline) => {
       if (layer.feature === area) {
         this.updateAreaInfo(area);
+        document.title = `${this.defaultTitle}: ${area.properties.name}`;
 
         if (this.isFirstRoute) {
           this.isFirstRoute = false;
@@ -114,6 +118,7 @@ export default class PlaycountMap {
 
   public deselectArea() {
     this.areaInfo.setState();
+    document.title = this.defaultTitle;
 
     // if the map is initialized with an empty route,
     // it should not zoom to the next selected area
