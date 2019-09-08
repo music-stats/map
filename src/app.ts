@@ -1,3 +1,5 @@
+import Router, {parse} from 'micro-conductor';
+
 import {Artist} from 'src/types/models';
 import config from 'src/config';
 import createMap from 'src/map';
@@ -26,6 +28,15 @@ function createPlaycountMap(artists: Artist[], world: any): PlaycountMap {
 
 function initialize(artists: Artist[], world: any): void {
   let playcountMap = createPlaycountMap(artists, world);
+  const router = new Router(
+    {
+      '': playcountMap.deselectArea,
+      [parse`${/[a-z,A-Z,+]+/}`]: playcountMap.selectAreaByRoute,
+    },
+    playcountMap,
+  );
+
+  router.start();
 
   getDarkModeMediaQuery().addEventListener('change', () => {
     playcountMap.map.remove();

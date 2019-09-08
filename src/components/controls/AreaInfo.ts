@@ -58,6 +58,10 @@ export default class AreaInfo extends L.Control implements CustomControl {
       ? state
       : this.getDefaultState();
 
+    if (!state) {
+      document.location.hash = '';
+    }
+
     this.rerender();
   }
 

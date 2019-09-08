@@ -9,6 +9,7 @@ import {Animation} from 'src/types/elements';
 
 import config from 'src/config';
 import {getArtistsAreas, getAreaArtistCount, getAreaScrobbleCount} from 'src/utils/area';
+import {convertToTitleCase} from 'src/utils/string';
 
 import AreaInfo from 'src/components/controls/AreaInfo';
 import AreaList, {AreaListItemProps, AreaListItemAnimatedProps} from 'src/components/controls/AreaList';
@@ -32,6 +33,7 @@ interface FlagDataUrlDict {
 export default class PlaycountMap {
   private areas: Area[];
   private totalScrobbleCount: number;
+  private isFirstRoute: boolean = true;
 
   private colorScale: ColorScale;
   private artistCountBgWidthPercentScale: WidthPercentScale;
@@ -79,6 +81,47 @@ export default class PlaycountMap {
     this.externalLinkList = this.createExternalLinkList();
   }
 
+  public selectAreaByRoute(route: string) {
+    const layer = this.getAreaLayer(this.convertRouteToAreaName(route));
+
+    if (!layer) {
+      console.warn(`no area matches "${route}"`);
+      return;
+    }
+
+    const area = (layer as L.Polyline).feature as Area;
+
+    this.geojson.getLayers().forEach((layer: L.Polyline) => {
+      if (layer.feature === area) {
+        this.updateAreaInfo(area);
+
+        if (this.isFirstRoute) {
+          this.isFirstRoute = false;
+          this.zoomToAreaLayer(layer);
+          this.highlightArea({
+            type: 'mouseenter',
+            target: layer,
+          });
+        }
+      } else {
+        this.resetAreaHighlight({
+          type: 'mouseleave',
+          target: layer,
+        });
+      }
+    });
+  }
+
+  public deselectArea() {
+    this.areaInfo.setState();
+
+    // if the map is initialized with an empty route,
+    // it should not zoom to the next selected area
+    if (this.isFirstRoute) {
+      this.isFirstRoute = false;
+    }
+  }
+
   public render() {
     this.geojson.addTo(this.map);
     this.areaInfo.addTo(this.map);
@@ -92,6 +135,14 @@ export default class PlaycountMap {
       mouseout: this.resetAreaHighlight.bind(this),
       click: this.selectArea.bind(this),
     });
+  }
+
+  private convertRouteToAreaName(route: string): string {
+    return convertToTitleCase(route.replace(/\+/g, ' '));
+  }
+
+  private convertAreaNameToRoute(areaName: string): string {
+    return areaName.replace(/\s/g, '+');
   }
 
   private getAreaFlagDataUrlDict(): FlagDataUrlDict {
@@ -168,9 +219,8 @@ export default class PlaycountMap {
     this.geojson.resetStyle(layer);
   }
 
-  private zoomToArea(e: L.LeafletEvent) {
-    const layer = e.target as L.Polyline;
-    this.map.fitBounds(layer.getBounds());
+  private zoomToAreaLayer(layer: L.Layer) {
+    this.map.fitBounds((layer as L.Polyline).getBounds());
   }
 
   private updateAreaInfo(area: Area) {
@@ -181,24 +231,11 @@ export default class PlaycountMap {
     });
   }
 
-  private selectArea(e: L.LeafletEvent, withZoom = false) {
+  private selectArea(e: L.LeafletEvent) {
     const area = (e.target as L.Polyline).feature as Area;
+    const {name} = area.properties;
 
-    this.geojson.getLayers().forEach((layer: L.Polyline) => {
-      if (layer.feature === area) {
-        this.highlightArea(e);
-        this.updateAreaInfo(area);
-
-        if (withZoom) {
-          this.zoomToArea(e);
-        }
-      } else {
-        this.resetAreaHighlight({
-          type: 'mouseleave',
-          target: layer,
-        });
-      }
-    });
+    document.location.hash = this.convertAreaNameToRoute(name);
   }
 
   private getAreaListItemProps(area: Area): AreaListItemProps {
@@ -273,10 +310,16 @@ export default class PlaycountMap {
           type: 'mouseleave',
           target: this.getAreaLayer(areaName),
         }),
-        onListItemMouseClick: (areaName) => this.selectArea({
-          type: 'click',
-          target: this.getAreaLayer(areaName),
-        }, true),
+        onListItemMouseClick: (areaName) => {
+          const layer = this.getAreaLayer(areaName);
+          const e = {
+            type: 'click',
+            target: layer,
+          };
+
+          this.selectArea(e);
+          this.zoomToAreaLayer(layer);
+        },
       }
     );
   }

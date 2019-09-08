@@ -72,6 +72,7 @@
     "d3-scale-chromatic": "1.5.0",
     "geojson": "0.5.0",
     "leaflet": "1.5.1",
+    "micro-conductor": "git+https://github.com/oleksmarkh/micro-conductor.git",
     "ramda": "0.26.1"
   },
   "husky": {
