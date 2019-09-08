@@ -1,45 +1,24 @@
-import * as L from 'leaflet';
-
-import {MapTileLayerOptions, Artist} from 'src/types/models';
+import {Artist} from 'src/types/models';
 import config from 'src/config';
+import createMap from 'src/map';
 import PlaycountMap from 'src/components/PlaycountMap';
 
-import 'leaflet/dist/leaflet.css';
 import 'src/app.scss';
-
-const {MAPBOX_ACCESS_TOKEN: accessToken} = process.env;
-const {defaultView: {center, zoom}, tileLayer: {urlTemplate, options}} = config.map;
-const darkModeMediaQueryString = '(prefers-color-scheme: dark)';
 
 function fetchAndParseData<DataType>(url: string): Promise<DataType> {
   return window.fetch(url)
     .then((response) => response.json());
 }
 
-function getTileLayerOptions(isDarkMode: boolean): MapTileLayerOptions {
-  return {
-    ...options,
-    accessToken,
-    id: isDarkMode
-      ? 'mapbox.dark'
-      : 'mapbox.light',
-    highResolution: window.devicePixelRatio === 1
-      ? ''
-      : '@2x',
-  };
-}
-
 function getDarkModeMediaQuery(): MediaQueryList {
-  return window.matchMedia(darkModeMediaQueryString);
+  return window.matchMedia('(prefers-color-scheme: dark)');
 }
 
 function createPlaycountMap(artists: Artist[], world: any): PlaycountMap {
   const isDarkMode = getDarkModeMediaQuery().matches;
-  const map = L.map('map').setView(center, zoom);
-  const tileLayer = L.tileLayer(urlTemplate, getTileLayerOptions(isDarkMode));
+  const map = createMap(isDarkMode);
   const playcountMap = new PlaycountMap(map, artists, world, isDarkMode);
 
-  tileLayer.addTo(map);
   playcountMap.render();
 
   return playcountMap;
