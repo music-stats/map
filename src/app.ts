@@ -41,7 +41,7 @@ function initialize(artists: Artist[], world: any): void {
   getDarkModeMediaQuery().addEventListener('change', () => {
     playcountMap.map.remove();
     playcountMap = createPlaycountMap(artists, world);
-    // @todo: check if routing is not broken when an instance of playcount map is replaced
+    // @todo: check if routing and highlighting are not broken when an instance of playcount map is replaced
   });
 }
 

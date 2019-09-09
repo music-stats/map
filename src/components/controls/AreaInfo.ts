@@ -58,10 +58,6 @@ export default class AreaInfo extends L.Control implements CustomControl {
       ? state
       : this.getDefaultState();
 
-    if (!state) {
-      document.location.hash = '';
-    }
-
     this.rerender();
   }
 
@@ -108,14 +104,18 @@ export default class AreaInfo extends L.Control implements CustomControl {
     );
   }
 
+  private resetRoute() {
+    document.location.hash = '';
+  }
+
   private handleDocumentKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape') {
-      this.setState();
+      this.resetRoute();
     }
   }
 
   private handleCloseButtonClick() {
-    this.setState();
+    this.resetRoute();
   }
 
   private rerender() {

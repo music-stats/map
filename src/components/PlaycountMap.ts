@@ -34,6 +34,7 @@ export default class PlaycountMap {
   private areas: Area[];
   private totalScrobbleCount: number;
   private isFirstRoute: boolean;
+  private autoHighlightedAreaLayer: L.Layer | null;
   private defaultTitle: string;
 
   private colorScale: ColorScale;
@@ -64,6 +65,7 @@ export default class PlaycountMap {
     this.areas = areas;
     this.totalScrobbleCount = allScrobbleCounts.reduce((sum, areaScrobbleCount) => sum + areaScrobbleCount, 0);
     this.isFirstRoute = true;
+    this.autoHighlightedAreaLayer = null;
     this.defaultTitle = document.title;
 
     this.colorScale = this.getColorScale(allScrobbleCounts);
@@ -106,6 +108,7 @@ export default class PlaycountMap {
             type: 'mouseenter',
             target: layer,
           });
+          this.autoHighlightedAreaLayer = layer;
         }
       } else {
         this.resetAreaHighlight({
@@ -217,6 +220,14 @@ export default class PlaycountMap {
       color: config.map.area.style.highlightModes[this.isDarkMode ? 'dark' : 'light'].color,
     });
     layer.bringToFront();
+
+    if (this.autoHighlightedAreaLayer && this.autoHighlightedAreaLayer !== layer) {
+      this.resetAreaHighlight({
+        type: 'mouseleave',
+        target: this.autoHighlightedAreaLayer,
+      });
+      this.autoHighlightedAreaLayer = null;
+    }
   }
 
   private resetAreaHighlight(e: L.LeafletEvent) {
@@ -240,6 +251,9 @@ export default class PlaycountMap {
     const area = (e.target as L.Polyline).feature as Area;
     const {name} = area.properties;
 
+    // since it's URL that drives application state,
+    // only a route update happens here and further logic follows it
+    // (see "this.selectAreaByRoute()")
     document.location.hash = this.convertAreaNameToRoute(name);
   }
 
