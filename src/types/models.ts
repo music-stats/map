@@ -7,6 +7,9 @@ export interface MapTileLayerOptions extends L.TileLayerOptions {
   highResolution: '@2x' | '';
 }
 
+// [name, playcount, countryCode]
+export type PackedArtist = [string, number, string];
+
 export interface Artist {
   name: string;
   playcount: number;

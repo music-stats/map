@@ -212,7 +212,7 @@ export default class PlaycountMap {
     };
   }
 
-  private highlightArea(e: L.LeafletEvent) {
+  private highlightArea(e: Partial<L.LeafletEvent>) {
     const layer = e.target as L.Polyline;
 
     layer.setStyle({
@@ -230,7 +230,7 @@ export default class PlaycountMap {
     }
   }
 
-  private resetAreaHighlight(e: L.LeafletEvent) {
+  private resetAreaHighlight(e: Partial<L.LeafletEvent>) {
     const layer = e.target as L.Polyline;
     this.geojson.resetStyle(layer);
   }
@@ -247,7 +247,7 @@ export default class PlaycountMap {
     });
   }
 
-  private selectArea(e: L.LeafletEvent) {
+  private selectArea(e: Partial<L.LeafletEvent>) {
     const area = (e.target as L.Polyline).feature as Area;
     const {name} = area.properties;
 

@@ -1,11 +1,33 @@
 import Router, {parse} from 'micro-conductor';
 
-import {Artist} from 'src/types/models';
+import {Artist, PackedArtist, Area} from 'src/types/models';
 import config from 'src/config';
 import createMap from 'src/map';
 import PlaycountMap from 'src/components/PlaycountMap';
 
 import 'src/app.scss';
+
+interface CountryCodeMapping {
+  [code: string]: string;
+}
+
+function prepareArtists(packedArtists: PackedArtist[], world: any): Artist[] {
+  const countryCodeToArea: CountryCodeMapping = world.features.reduce(
+    (acc: CountryCodeMapping, {properties: {name, iso_a2}}: Area) => {
+      acc[iso_a2] = name;
+      return acc;
+    },
+    {},
+  );
+
+  return packedArtists
+    .map(([name, playcount, countryCode]) => ({
+      name,
+      playcount,
+      area: countryCodeToArea[countryCode],
+    }))
+    .sort((a, b) => b.playcount - a.playcount);
+}
 
 function fetchAndParseData<DataType>(url: string): Promise<DataType> {
   return window.fetch(url)
@@ -46,7 +68,10 @@ function initialize(artists: Artist[], world: any): void {
 }
 
 Promise.all([
-  fetchAndParseData(config.dataUrls.artists) as Promise<Artist[]>,
+  fetchAndParseData(config.dataUrls.artists) as Promise<PackedArtist[]>,
   fetchAndParseData(config.dataUrls.world),
 ])
-  .then(([artists, world]) => initialize(artists, world));
+  .then(([packedArtists, world]) => initialize(
+    prepareArtists(packedArtists, world),
+    world,
+  ));
