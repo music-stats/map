@@ -68,10 +68,10 @@ function initialize(artists: Artist[], world: any): void {
 }
 
 Promise.all([
-  fetchAndParseData(config.dataUrls.artists) as Promise<PackedArtist[]>,
+  fetchAndParseData(config.dataUrls.artists),
   fetchAndParseData(config.dataUrls.world),
 ])
   .then(([packedArtists, world]) => initialize(
-    prepareArtists(packedArtists, world),
+    prepareArtists(packedArtists as PackedArtist[], world),
     world,
   ));
