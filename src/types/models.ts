@@ -7,20 +7,30 @@ export interface MapTileLayerOptions extends L.TileLayerOptions {
   highResolution: '@2x' | '';
 }
 
-// [name, playcount, countryCode]
-export type PackedArtist = [string, number, string];
+export type PackedArtist = [
+  string, // name
+  number, // playcount
+  string, // countryCode
+];
 
 export interface Artist {
   name: string;
   playcount: number;
-  area: string;
+  countryName: string;
   rank?: number;
 }
 
-export interface AreaProperties {
+interface CountryGeoJsonProperties {
+  name_long: string;
+  iso_a2: string; // "ISO 3166-1-alpha-2" code
+}
+
+export type CountryGeoJson = Feature<GeometryObject, CountryGeoJsonProperties>;
+
+export interface CountryProperties {
   name: string;
-  iso_a2?: string; // "ISO 3166-1-alpha-2" code, underscore_case because it comes directly from GeoJSON data
+  code?: string;
   artists: Artist[];
 }
 
-export type Area = Feature<GeometryObject, AreaProperties>;
+export type Country = Feature<GeometryObject, CountryProperties>;

@@ -2,36 +2,36 @@ import * as L from 'leaflet';
 import classNames from 'classnames';
 
 import {CustomControl} from 'src/types/elements';
-import {Artist, AreaProperties} from 'src/types/models';
+import {Artist, CountryProperties} from 'src/types/models';
 import {html, url} from 'src/utils/render';
 
-import './AreaInfo.scss';
+import './CountryInfo.scss';
 
-interface AreaInfoProps {
+interface CountryInfoProps {
   username: string;
-  totalAreaCount: number;
+  totalCountryCount: number;
   totalArtistCount: number;
   totalScrobbleCount: number;
 }
 
-interface AreaInfoState {
-  areaScrobbleCount: number;
-  areaFlagDataUrl: string;
-  areaProperties: AreaProperties;
+interface CountryInfoState {
+  countryScrobbleCount: number;
+  countryFlagDataUrl: string;
+  countryProperties: CountryProperties;
 }
 
-export default class AreaInfo extends L.Control implements CustomControl {
+export default class CountryInfo extends L.Control implements CustomControl {
   element: HTMLElement;
   tagName: string;
   className: string;
-  private props: AreaInfoProps;
-  private state: AreaInfoState;
+  private props: CountryInfoProps;
+  private state: CountryInfoState;
 
   constructor(
     options: L.ControlOptions,
     tagName: string,
     className: string,
-    props: AreaInfoProps,
+    props: CountryInfoProps,
   ) {
     super(options);
 
@@ -53,7 +53,7 @@ export default class AreaInfo extends L.Control implements CustomControl {
     return this.element;
   }
 
-  public setState(state?: AreaInfoState) {
+  public setState(state?: CountryInfoState) {
     this.state = state
       ? state
       : this.getDefaultState();
@@ -61,11 +61,11 @@ export default class AreaInfo extends L.Control implements CustomControl {
     this.rerender();
   }
 
-  private getDefaultState(): AreaInfoState {
+  private getDefaultState(): CountryInfoState {
     return {
-      areaScrobbleCount: null,
-      areaFlagDataUrl: null,
-      areaProperties: null,
+      countryScrobbleCount: null,
+      countryFlagDataUrl: null,
+      countryProperties: null,
     };
   }
 
@@ -77,21 +77,21 @@ export default class AreaInfo extends L.Control implements CustomControl {
   }
 
   private subscribe() {
-    // the close button is only shown when an area is highlighted
-    if (this.state.areaProperties) {
+    // the close button is only shown when an country is highlighted
+    if (this.state.countryProperties) {
       this.getCloseButtonElement().addEventListener('click', this.handleCloseButtonClick.bind(this));
     }
   }
 
   private getCloseButtonElement(): HTMLElement {
-    return this.element.querySelector('.AreaInfo__close-button');
+    return this.element.querySelector('.CountryInfo__close-button');
   }
 
   // A workaround to prevent the following undesired behavior on mobile browsers:
   // tapping is followed by a slightly delayed click
   // (see https://css-tricks.com/annoying-mobile-double-tap-link-issue/).
   // So when a country receives a tap, a "hover" event is fired first
-  // and "<AreaInfo />" renders a list of artists for a given country.
+  // and "<CountryInfo />" renders a list of artists for a given country.
   // Then the "click" event is fired on that list,
   // eventually causing an underlying link to be opened,
   // which is clearly not expected from the first tap on the map.
@@ -126,11 +126,11 @@ export default class AreaInfo extends L.Control implements CustomControl {
 
   private renderHeader(): string {
     const {username} = this.props;
-    const {areaProperties} = this.state;
+    const {countryProperties} = this.state;
 
     return `
       <section
-        class="AreaInfo__section AreaInfo__section--header"
+        class="CountryInfo__section CountryInfo__section--header"
       >
         <div>
           <span>
@@ -144,10 +144,10 @@ export default class AreaInfo extends L.Control implements CustomControl {
           </a>
         </div>
 
-        ${areaProperties
+        ${countryProperties
           ? `
             <button
-              class="AreaInfo__close-button"
+              class="CountryInfo__close-button"
               title="close"
             >
               &times;
@@ -160,14 +160,14 @@ export default class AreaInfo extends L.Control implements CustomControl {
   }
 
   private renderSummary(): string {
-    const {areaProperties} = this.state;
+    const {countryProperties} = this.state;
 
     return `
       <section
-        class="AreaInfo__section"
+        class="CountryInfo__section"
       >
-        ${areaProperties
-          ? this.renderAreaSummary()
+        ${countryProperties
+          ? this.renderCountrySummary()
           : this.renderTotalSummary()
         }
       </section>
@@ -175,17 +175,17 @@ export default class AreaInfo extends L.Control implements CustomControl {
   }
 
   private renderTotalSummary(): string {
-    const {totalAreaCount} = this.props;
+    const {totalCountryCount} = this.props;
 
     return `
       <header
-        class="AreaInfo__header"
+        class="CountryInfo__header"
       >
         Total
       </header>
 
       <p>
-        countries: ${totalAreaCount}
+        countries: ${totalCountryCount}
       </p>
 
       <p>
@@ -206,33 +206,33 @@ export default class AreaInfo extends L.Control implements CustomControl {
     `;
   }
 
-  private renderAreaSummary(): string {
-    const {areaScrobbleCount, areaFlagDataUrl, areaProperties} = this.state;
+  private renderCountrySummary(): string {
+    const {countryScrobbleCount, countryFlagDataUrl, countryProperties} = this.state;
 
     return `
       <header
-        class="AreaInfo__header"
+        class="CountryInfo__header"
       >
         <div
-          class="AreaInfo__area-flag"
+          class="CountryInfo__country-flag"
           style="
-            background-image: url('${areaFlagDataUrl}');
+            background-image: url('${countryFlagDataUrl}');
           "
         >
         </div>
 
         <span>
-          ${areaProperties.name}
+          ${countryProperties.name}
         </span>
       </header>
 
       <p>
         <span>
-          artists: ${areaProperties.artists.length.toLocaleString()}
+          artists: ${countryProperties.artists.length.toLocaleString()}
         </span>
 
         <span
-          class="AreaInfo__stats-separator"
+          class="CountryInfo__stats-separator"
         >
           /
         </span>
@@ -242,18 +242,18 @@ export default class AreaInfo extends L.Control implements CustomControl {
 
       <p>
         <span>
-          scrobbles: ${areaScrobbleCount.toLocaleString()}
+          scrobbles: ${countryScrobbleCount.toLocaleString()}
         </span>
 
         <span
-          class="AreaInfo__stats-separator"
+          class="CountryInfo__stats-separator"
         >
           /
         </span>
 
         ${this.renderLibraryLink()}
       </p>
-     `;
+    `;
   }
 
   private renderLibraryArtistsLink(): string {
@@ -283,18 +283,18 @@ export default class AreaInfo extends L.Control implements CustomControl {
   }
 
   private renderArtistList(): string {
-    const {areaProperties} = this.state;
+    const {countryProperties} = this.state;
 
     return `
       <section
-        class="AreaInfo__section"
+        class="CountryInfo__section"
       >
-        ${areaProperties
+        ${countryProperties
           ? `
             <table
-              class="AreaInfo__artist-list"
+              class="CountryInfo__artist-list"
             >
-              ${areaProperties.artists.map(this.renderArtistListItem).join('')}
+              ${countryProperties.artists.map(this.renderArtistListItem).join('')}
             </table>
           `
           : `
@@ -312,15 +312,15 @@ export default class AreaInfo extends L.Control implements CustomControl {
 
     return `
       <tr
-        class="AreaInfo__artist"
+        class="CountryInfo__artist"
       >
         <td
           class="${classNames(
-            'AreaInfo__artist-rank',
+            'CountryInfo__artist-rank',
             {
               [classNames(
-                'AreaInfo__artist-rank--medal',
-                `AreaInfo__artist-rank--medal-${artist.rank}`,
+                'CountryInfo__artist-rank--medal',
+                `CountryInfo__artist-rank--medal-${artist.rank}`,
               )]: artist.rank <= 3
             }
           )}"
@@ -329,7 +329,7 @@ export default class AreaInfo extends L.Control implements CustomControl {
         </td>
 
         <td
-          class="AreaInfo__artist-playcount"
+          class="CountryInfo__artist-playcount"
         >
           <a
             href="${url`https://www.last.fm/user/${username}/library/music/${artist.name}`}"
@@ -340,7 +340,7 @@ export default class AreaInfo extends L.Control implements CustomControl {
         </td>
 
         <td
-          class="AreaInfo__artist-name"
+          class="CountryInfo__artist-name"
         >
           <a
             href="${url`https://www.last.fm/music/${artist.name}`}"

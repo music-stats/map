@@ -5,10 +5,10 @@ html {
   --control-background-color--hover: rgba(245, 245, 245, 0.9);
   --zoom-control-separator-color: #ccc;
   --link-color: #ee7c74;
-  --area-info-header-color: #444;
+  --country-info-header-color: #444;
   --list-item-color: #888;
   --list-item-color--hover: #444;
-  --area-rank-border-color: white;
+  --country-rank-border-color: white;
 
   @media (prefers-color-scheme: dark) {
     --body-color: #bbb;
@@ -17,9 +17,9 @@ html {
     --control-background-color--hover: rgba(60, 60, 60, 0.9);
     --zoom-control-separator-color: #222;
     --link-color: #e84;
-    --area-info-header-color: #ccc;
+    --country-info-header-color: #ccc;
     --list-item-color: #aaa;
     --list-item-color--hover: #ccc;
-    --area-rank-border-color: #333;
+    --country-rank-border-color: #333;
   }
 }

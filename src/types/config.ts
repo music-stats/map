@@ -13,11 +13,11 @@ interface ControlConfig {
   options: L.ControlOptions;
 }
 
-interface AreaInfoControlConfig extends ControlConfig {
+interface CountryInfoControlConfig extends ControlConfig {
   username: string;
 }
 
-interface AreaListControlConfig extends ControlConfig {
+interface CountryListControlConfig extends ControlConfig {
   itemScaleAnimation: Animation;
 }
 
@@ -37,8 +37,8 @@ interface ExternalLinkListControlConfig extends ControlConfig {
 
 interface ControlsConfig {
   toggleAnimationDuration: number;
-  areaInfo: AreaInfoControlConfig;
-  areaList: AreaListControlConfig;
+  countryInfo: CountryInfoControlConfig;
+  countryList: CountryListControlConfig;
   externalLinkList: ExternalLinkListControlConfig;
 }
 
@@ -53,7 +53,7 @@ interface MapConfig {
     options: L.TileLayerOptions;
   };
 
-  area: {
+  country: {
     style: {
       default: L.PathOptions;
       defaultModes: {

@@ -1,6 +1,6 @@
 import Router, {parse} from 'micro-conductor';
 
-import {Artist, PackedArtist, Area} from 'src/types/models';
+import {Artist, PackedArtist, CountryGeoJson} from 'src/types/models';
 import config from 'src/config';
 import createMap from 'src/map';
 import PlaycountMap from 'src/components/PlaycountMap';
@@ -12,9 +12,9 @@ interface CountryCodeMapping {
 }
 
 function prepareArtists(packedArtists: PackedArtist[], world: any): Artist[] {
-  const countryCodeToArea: CountryCodeMapping = world.features.reduce(
-    (acc: CountryCodeMapping, {properties: {name, iso_a2}}: Area) => {
-      acc[iso_a2] = name;
+  const countryCodeToCountry: CountryCodeMapping = world.features.reduce(
+    (acc: CountryCodeMapping, {properties: {name_long, iso_a2}}: CountryGeoJson) => {
+      acc[iso_a2] = name_long;
       return acc;
     },
     {},
@@ -24,7 +24,7 @@ function prepareArtists(packedArtists: PackedArtist[], world: any): Artist[] {
     .map(([name, playcount, countryCode]) => ({
       name,
       playcount,
-      area: countryCodeToArea[countryCode],
+      countryName: countryCodeToCountry[countryCode],
     }))
     .sort((a, b) => b.playcount - a.playcount);
 }
@@ -52,18 +52,18 @@ function initialize(artists: Artist[], world: any): void {
   let playcountMap = createPlaycountMap(artists, world);
   const router = new Router(
     {
-      '': playcountMap.deselectArea,
-      [parse`${/[a-z,A-Z,+]+/}`]: playcountMap.selectAreaByRoute,
+      '': playcountMap.deselectCountry,
+      [parse`${/[a-z,A-Z,+]+/}`]: playcountMap.selectCountryByRoute,
     },
     playcountMap,
   );
 
   router.start();
 
+  // @todo: fix routing and highlighting when an instance of playcount map is replaced
   getDarkModeMediaQuery().addEventListener('change', () => {
     playcountMap.map.remove();
     playcountMap = createPlaycountMap(artists, world);
-    // @todo: check if routing and highlighting are not broken when an instance of playcount map is replaced
   });
 }
 

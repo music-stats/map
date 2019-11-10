@@ -3,9 +3,9 @@ import * as L from 'leaflet';
 import {CustomControl, Animation} from 'src/types/elements';
 import {html} from 'src/utils/render';
 
-import './AreaList.scss';
+import './CountryList.scss';
 
-export interface AreaListItemProps {
+export interface CountryListItemProps {
   name: string;
   flagDataUrl: string;
   artistCount: number;
@@ -17,29 +17,29 @@ export interface AreaListItemProps {
   rankColor: string;
 }
 
-export interface AreaListItemAnimatedProps extends AreaListItemProps {
+export interface CountryListItemAnimatedProps extends CountryListItemProps {
   animation: Animation;
 }
 
-interface AreaListProps {
-  areaList: AreaListItemProps[];
+interface CountryListProps {
+  countryList: CountryListItemProps[];
   toggleAnimationDuration: number;
-  onListItemMouseEnter: (areaName: string) => void;
-  onListItemMouseLeave: (areaName: string) => void;
-  onListItemMouseClick: (areaName: string) => void;
+  onListItemMouseEnter: (countryName: string) => void;
+  onListItemMouseLeave: (countryName: string) => void;
+  onListItemMouseClick: (countryName: string) => void;
 }
 
-export default class AreaList extends L.Control implements CustomControl {
+export default class CountryList extends L.Control implements CustomControl {
   element: HTMLElement;
   tagName: string;
   className: string;
-  private props: AreaListProps;
+  private props: CountryListProps;
 
   constructor(
     options: L.ControlOptions,
     tagName: string,
     className: string,
-    props: AreaListProps,
+    props: CountryListProps,
   ) {
     super(options);
 
@@ -67,18 +67,18 @@ export default class AreaList extends L.Control implements CustomControl {
     this.element.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
 
     Array.prototype.forEach.call(
-      this.element.querySelectorAll('.AreaList__area'),
+      this.element.querySelectorAll('.CountryList__country'),
       this.subscribeListItemElement.bind(this),
     );
   }
 
   private subscribeListItemElement(listItemElement: HTMLElement) {
     const {onListItemMouseEnter, onListItemMouseLeave, onListItemMouseClick} = this.props;
-    const {name: areaName} = listItemElement.dataset;
+    const {name: countryName} = listItemElement.dataset;
 
-    const onMouseEnter = () => onListItemMouseEnter(areaName);
-    const onMouseLeave = () => onListItemMouseLeave(areaName);
-    const onClick = () => onListItemMouseClick(areaName);
+    const onMouseEnter = () => onListItemMouseEnter(countryName);
+    const onMouseLeave = () => onListItemMouseLeave(countryName);
+    const onClick = () => onListItemMouseClick(countryName);
 
     listItemElement.addEventListener('mouseenter', onMouseEnter);
     listItemElement.addEventListener('mouseleave', onMouseLeave);
@@ -98,7 +98,7 @@ export default class AreaList extends L.Control implements CustomControl {
     this.element.setAttribute('disabled', 'disabled');
   }
 
-  private renderAreaListItem(
+  private renderCountryListItem(
     {
       name,
       flagDataUrl,
@@ -110,24 +110,24 @@ export default class AreaList extends L.Control implements CustomControl {
       color,
       rankColor,
       animation,
-    }: AreaListItemAnimatedProps,
+    }: CountryListItemAnimatedProps,
     index: number,
   ): string {
     // "data-name" is used for binding mouse events
     return `
       <li
-        class="AreaList__area"
+        class="CountryList__country"
         data-name="${name}"
       >
         <div
-          class="AreaList__area-scale-container"
+          class="CountryList__country-scale-container"
           style="
             animation-duration: ${animation.duration}ms;
             animation-delay: ${animation.delay}ms;
           "
         >
           <div
-            class="AreaList__area-scale AreaList__area-scale--top"
+            class="CountryList__country-scale CountryList__country-scale--top"
             style="
               width: ${artistCountBgWidthPercent}%;
               background-color: ${color};
@@ -136,7 +136,7 @@ export default class AreaList extends L.Control implements CustomControl {
           </div>
 
           <div
-            class="AreaList__area-scale AreaList__area-scale--bottom"
+            class="CountryList__country-scale CountryList__country-scale--bottom"
             style="
               width: ${scrobbleCountBgWidthPercent}%;
               background-color: ${color};
@@ -146,14 +146,14 @@ export default class AreaList extends L.Control implements CustomControl {
         </div>
 
         <div
-          class="AreaList__area-rank"
+          class="CountryList__country-rank"
           style="
             color: ${rankColor};
             background-color: ${color};
           "
         >
           <div
-            class="AreaList__area-flag"
+            class="CountryList__country-flag"
             style="
               background-image: url('${flagDataUrl}');
             "
@@ -163,7 +163,7 @@ export default class AreaList extends L.Control implements CustomControl {
         </div>
 
         <span
-          class="AreaList__area-name"
+          class="CountryList__country-name"
           style="
             color: ${rankColor};
           "
@@ -172,7 +172,7 @@ export default class AreaList extends L.Control implements CustomControl {
         </span>
 
         <span
-          class="AreaList__area-stats"
+          class="CountryList__country-stats"
         >
           <span>
             ${scrobbleCountPercent.toFixed(2)}%
@@ -191,13 +191,13 @@ export default class AreaList extends L.Control implements CustomControl {
   }
 
   private render(): string {
-    const {areaList} = this.props;
+    const {countryList} = this.props;
 
     return html`
       <ul
-        class="AreaList__area-list"
+        class="CountryList__country-list"
       >
-        ${areaList.map(this.renderAreaListItem).join('')}
+        ${countryList.map(this.renderCountryListItem).join('')}
       </ul>
     `;
   }

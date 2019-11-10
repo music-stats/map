@@ -1,6 +1,6 @@
 @import '../../app-consts';
 
-.AreaList {
+.CountryList {
   transition-property: opacity, transform;
   transform: translate(0, 80%);
 
@@ -31,14 +31,14 @@
   }
 }
 
-.AreaList__area-list {
+.CountryList__country-list {
   overflow: auto;
 
   max-height: calc(100vh - #{$leaflet-control-zoom-height + $leaflet-control-margin * 3 + $leaflet-control-padding-vertical-block * 2});
   padding-right: $scrollbar-width; // compensates the scrollbar
 }
 
-.AreaList__area {
+.CountryList__country {
   position: relative;
 
   display: flex;
@@ -58,7 +58,7 @@
     margin-bottom: 0;
   }
 
-  .AreaList[disabled] & {
+  .CountryList[disabled] & {
     pointer-events: none; // prevents from highlighting many countries while the cursor stays but the legend moves
   }
 }
@@ -73,25 +73,25 @@
   }
 }
 
-.AreaList__area-scale-container {
+.CountryList__country-scale-container {
   position: absolute;
-  z-index: 1; // keeping ".AreaList__area-rank" below, important for ignoring its border
+  z-index: 1; // keeping ".CountryList__country-rank" below, important for ignoring its border
   top: 2px;
   bottom: 2px;
   left: 26px;
 
-  .AreaList:hover & {
+  .CountryList:hover & {
     animation-name: slideIn;
     animation-fill-mode: forwards;
   }
 
-  .AreaList__area:hover & {
+  .CountryList__country:hover & {
     top: 0;
     bottom: 0;
   }
 }
 
-.AreaList__area-scale {
+.CountryList__country-scale {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -108,7 +108,7 @@
   }
 }
 
-@mixin Ledend__area-rank-medal($color) {
+@mixin Ledend__country-rank-medal($color) {
   position: absolute;
   top: -7px;
   left: -7px;
@@ -118,14 +118,14 @@
 
   content: '';
 
-  border: 2px solid var(--area-rank-border-color);
+  border: 2px solid var(--country-rank-border-color);
   border-radius: 50%;
   background-color: $color;
 }
 
-.AreaList__area-rank {
+.CountryList__country-rank {
   // playing with "background-clip" avoids subpixel extension of "background-color" over the border
-  // (strangely it appears depending on the "max-height" value of the ".AreaList__area-list")
+  // (strangely it appears depending on the "max-height" value of the ".CountryList__country-list")
 
   font-size: 10px;
   line-height: 24px;
@@ -142,34 +142,34 @@
 
   text-align: right;
 
-  border: 2px solid var(--area-rank-border-color);
+  border: 2px solid var(--country-rank-border-color);
   background-clip: padding-box;
 
-  .AreaList__area:nth-child(1) & {
+  .CountryList__country:nth-child(1) & {
     &::before {
-      @include Ledend__area-rank-medal(gold);
+      @include Ledend__country-rank-medal(gold);
     }
   }
 
-  .AreaList__area:nth-child(2) & {
+  .CountryList__country:nth-child(2) & {
     &::before {
-      @include Ledend__area-rank-medal(silver);
+      @include Ledend__country-rank-medal(silver);
     }
   }
 
-  .AreaList__area:nth-child(3) & {
+  .CountryList__country:nth-child(3) & {
     &::before {
-      @include Ledend__area-rank-medal(#8c7853);
+      @include Ledend__country-rank-medal(#8c7853);
     }
   }
 
-  .AreaList__area:hover & {
+  .CountryList__country:hover & {
     border-color: transparent;
     background-clip: border-box; // to show the border with the same color as "background-color"
   }
 }
 
-.AreaList__area-flag {
+.CountryList__country-flag {
   position: absolute;
   bottom: -7px;
   left: -7px;
@@ -177,11 +177,11 @@
   width: 10px;
   height: 10px;
 
-  border: 2px solid var(--area-rank-border-color);
+  border: 2px solid var(--country-rank-border-color);
   border-radius: 50%;
   background-repeat: no-repeat;
 
-  .AreaList__area:hover & {
+  .CountryList__country:hover & {
     bottom: -4px;
     left: -4px;
 
@@ -192,21 +192,21 @@
   }
 }
 
-.AreaList__area-name,
-.AreaList__area-stats {
-  z-index: 2; // keeping ".AreaList__area-scale-container" below, important for text color and "title" attribute
+.CountryList__country-name,
+.CountryList__country-stats {
+  z-index: 2; // keeping ".CountryList__country-scale-container" below, important for text color and "title" attribute
 
   white-space: nowrap;
 }
 
-.AreaList__area-name {
+.CountryList__country-name {
   margin: 0 10px;
 }
 
-.AreaList__area-stats {
+.CountryList__country-stats {
   color: var(--list-item-color);
 
-  .AreaList__area:hover & {
+  .CountryList__country:hover & {
     color: var(--list-item-color--hover);
   }
 

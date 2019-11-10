@@ -1,69 +1,69 @@
 import * as worldData from 'data/world.geo.json';
 
-import {groupArtistsByArea, getArtistsAreas, getAreaScrobbleCount} from '../area';
+import {groupArtistsByCountryName, getArtistsCountries, getCountryScrobbleCount} from '../country';
 
 const dreamTheater = {
   name: 'Dream Theater',
   playcount: 755,
-  area: 'United States',
+  countryName: 'United States',
 };
 
 const queen = {
   name: 'Queen',
   playcount: 738,
-  area: 'United Kingdom',
+  countryName: 'United Kingdom',
 };
 
 const rammstein = {
   name: 'Rammstein',
   playcount: 693,
-  area: 'Germany',
+  countryName: 'Germany',
 };
 
 const darkTranquillity = {
   name: 'Dark Tranquillity',
   playcount: 626,
-  area: 'Sweden',
+  countryName: 'Sweden',
 };
 
 const inFlames = {
   name: 'In Flames',
   playcount: 626,
-  area: 'Sweden',
+  countryName: 'Sweden',
 };
 
 const opeth = {
   name: 'Opeth',
   playcount: 583,
-  area: 'Sweden',
+  countryName: 'Sweden',
 };
 
 const him = {
   name: 'Him',
   playcount: 572,
-  area: 'Finland',
+  countryName: 'Finland',
 };
 
 const korn = {
   name: 'Korn',
   playcount: 474,
-  area: 'United States',
+  countryName: 'United States',
 };
 
 const nightwish = {
   name: 'Nightwish',
   playcount: 461,
-  area: 'Finland',
+  countryName: 'Finland',
 };
 
 const deftones = {
   name: 'Deftones',
   playcount: 450,
-  area: 'United States',
+  countryName: 'United States',
 };
 
-describe('area utils', () => {
-  test('groupArtistsByArea()', () => {
+describe('country utils', () => {
+  test('groupArtistsByCountryName()', () => {
     const artists = [
       dreamTheater,
       queen,
@@ -77,7 +77,7 @@ describe('area utils', () => {
       deftones,
     ];
 
-    expect(groupArtistsByArea(artists)).toEqual({
+    expect(groupArtistsByCountryName(artists)).toEqual({
       'Finland': {
         name: 'Finland',
         artists: [
@@ -150,7 +150,7 @@ describe('area utils', () => {
     });
   });
 
-  test('getArtistsAreas()', () => {
+  test('getArtistsCountries()', () => {
     const artists = [
       dreamTheater,
       queen,
@@ -164,7 +164,7 @@ describe('area utils', () => {
       deftones,
     ];
 
-    expect(getArtistsAreas(artists, worldData)).toMatchObject([
+    expect(getArtistsCountries(artists, worldData)).toMatchObject([
       {
         type: 'Feature',
         properties: {
@@ -252,8 +252,8 @@ describe('area utils', () => {
     ]);
   });
 
-  test('getAreaScrobbleCount()', () => {
-    expect(getAreaScrobbleCount({
+  test('getCountryScrobbleCount()', () => {
+    expect(getCountryScrobbleCount({
       type: 'Feature',
       geometry: null,
       properties: {
@@ -266,7 +266,7 @@ describe('area utils', () => {
       },
     })).toBe(1835);
 
-    expect(getAreaScrobbleCount({
+    expect(getCountryScrobbleCount({
       type: 'Feature',
       geometry: null,
       properties: {

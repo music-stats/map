@@ -1,6 +1,6 @@
 @import '../../app-consts';
 
-.AreaInfo {
+.CountryInfo {
   max-width: calc(100vw - #{$leaflet-control-zoom-width + $leaflet-control-margin * 3 + $leaflet-control-padding-horizontal * 2});
 
   // avoids map selection if a cursor goes to the right or above the element
@@ -16,7 +16,7 @@
   }
 }
 
-.AreaInfo__section {
+.CountryInfo__section {
   margin: 10px 0;
 
   &:first-of-type {
@@ -34,7 +34,7 @@
   }
 }
 
-.AreaInfo__close-button {
+.CountryInfo__close-button {
   font: inherit;
   line-height: 10px;
 
@@ -53,22 +53,22 @@
   }
 }
 
-.AreaInfo__header {
+.CountryInfo__header {
   font-weight: bold;
 
   display: flex;
   align-items: center;
 
-  color: var(--area-info-header-color);
+  color: var(--country-info-header-color);
 }
 
-.AreaInfo__stats-separator {
+.CountryInfo__stats-separator {
   font-size: 10px;
 
-  color: var(--area-info-header-color);
+  color: var(--country-info-header-color);
 }
 
-.AreaInfo__area-flag {
+.CountryInfo__country-flag {
   // Size should be at least integer, better a common multiple of 2 and 3,
   // since many flags consist of 2 or 3 equally sized horizontal or vertical bands.
   // Otherwise SVG looks blurry (a browser tries to map colors to pixels).
@@ -80,7 +80,7 @@
   background-repeat: no-repeat;
 }
 
-.AreaInfo__artist {
+.CountryInfo__artist {
   line-height: 16px; // keeps the height of "tr" elements as even value, important for centering rank medals vertically
 
   td {
@@ -88,7 +88,7 @@
   }
 }
 
-.AreaInfo__artist-list {
+.CountryInfo__artist-list {
   font-size: inherit; // overrides the default value for tables
 
   display: block;
@@ -99,7 +99,7 @@
   padding-right: $scrollbar-width; // compensates the scrollbar
 }
 
-.AreaInfo__artist-rank {
+.CountryInfo__artist-rank {
   font-size: 10px;
 
   position: relative;
@@ -108,12 +108,12 @@
 
   color: var(--list-item-color);
 
-  .AreaInfo__artist:hover & {
+  .CountryInfo__artist:hover & {
     color: var(--list-item-color--hover);
   }
 }
 
-.AreaInfo__artist-rank--medal {
+.CountryInfo__artist-rank--medal {
   &::before {
     // dimensions should have even values in order to properly center it vertically
 
@@ -126,7 +126,7 @@
 
     content: '';
 
-    border: 2px solid var(--area-rank-border-color);
+    border: 2px solid var(--country-rank-border-color);
     border-radius: 50%;
   }
 
@@ -143,11 +143,11 @@
   }
 }
 
-.AreaInfo__artist-playcount {
+.CountryInfo__artist-playcount {
   text-align: right;
 }
 
-.AreaInfo__artist-name {
+.CountryInfo__artist-name {
   overflow: hidden;
 
   max-width: 220px;
