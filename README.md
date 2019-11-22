@@ -17,7 +17,8 @@ deps:
 [`d3-scale`](https://github.com/d3/d3-scale),
 [`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic),
 [`d3-color`](https://github.com/d3/d3-color),
-[`micro-conductor`](https://github.com/oleksmarkh/micro-conductor).
+[`micro-conductor`](https://github.com/oleksmarkh/micro-conductor),
+[`htm`](https://github.com/developit/htm) + [`vhtml`](https://github.com/developit/vhtml) + [`classnames`](https://github.com/JedWatson/classnames).
 
 ## Data sources and assets
 There are two files the map relies on:
@@ -31,7 +32,7 @@ No rendering/templating framework is used, though UI consists of several compone
 
 You can always find a `.render()` method there - in `<PlaycountMap />` it assembles children components together,
 in other (presentational) components it returns HTML as a string
-(using [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates))
+(using `htm` based on [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates))
 and relying on `.props` + `.state`.
 
 DOM event handlers are bound through `.subscribe()` methods.

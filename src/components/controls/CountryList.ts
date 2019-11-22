@@ -1,7 +1,7 @@
 import * as L from 'leaflet';
 
 import {CustomControl, Animation} from 'src/types/elements';
-import {html} from 'src/utils/render';
+import html from 'src/lib/html';
 
 import './CountryList.scss';
 
@@ -114,7 +114,7 @@ export default class CountryList extends L.Control implements CustomControl {
     index: number,
   ): string {
     // "data-name" is used for binding mouse events
-    return `
+    return html`
       <li
         class="CountryList__country"
         data-name="${name}"
@@ -197,7 +197,7 @@ export default class CountryList extends L.Control implements CustomControl {
       <ul
         class="CountryList__country-list"
       >
-        ${countryList.map(this.renderCountryListItem).join('')}
+        ${countryList.map(this.renderCountryListItem)}
       </ul>
     `;
   }

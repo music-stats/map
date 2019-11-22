@@ -3,7 +3,8 @@ import classNames from 'classnames';
 
 import {CustomControl} from 'src/types/elements';
 import {Artist, CountryProperties} from 'src/types/models';
-import {html, url} from 'src/utils/render';
+import html from 'src/lib/html';
+import {url} from 'src/utils/string';
 
 import './CountryInfo.scss';
 
@@ -128,13 +129,13 @@ export default class CountryInfo extends L.Control implements CustomControl {
     const {username} = this.props;
     const {countryProperties} = this.state;
 
-    return `
+    return html`
       <section
         class="CountryInfo__section CountryInfo__section--header"
       >
         <div>
           <span>
-            last.fm user:&nbsp;
+            last.fm user:${' '}
           </span>
           <a
             href="https://www.last.fm/user/${username}"
@@ -144,17 +145,14 @@ export default class CountryInfo extends L.Control implements CustomControl {
           </a>
         </div>
 
-        ${countryProperties
-          ? `
-            <button
-              class="CountryInfo__close-button"
-              title="close"
-            >
-              &times;
-            </button>
-          `
-          : ``
-        }
+        ${countryProperties && html`
+          <button
+            class="CountryInfo__close-button"
+            title="close"
+          >
+            ×
+          </button>
+        `}
       </section>
     `;
   }
@@ -162,7 +160,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
   private renderSummary(): string {
     const {countryProperties} = this.state;
 
-    return `
+    return html`
       <section
         class="CountryInfo__section"
       >
@@ -177,7 +175,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
   private renderTotalSummary(): string {
     const {totalCountryCount} = this.props;
 
-    return `
+    return html`
       <header
         class="CountryInfo__header"
       >
@@ -190,7 +188,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
 
       <p>
         <span>
-          artists:&nbsp;
+          artists:${' '}
         </span>
 
         ${this.renderLibraryArtistsLink()}
@@ -198,7 +196,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
 
       <p>
         <span>
-          scrobbles:&nbsp;
+          scrobbles:${' '}
         </span>
 
         ${this.renderLibraryLink()}
@@ -209,7 +207,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
   private renderCountrySummary(): string {
     const {countryScrobbleCount, countryFlagDataUrl, countryProperties} = this.state;
 
-    return `
+    return html`
       <header
         class="CountryInfo__header"
       >
@@ -259,7 +257,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
   private renderLibraryArtistsLink(): string {
     const {username, totalArtistCount} = this.props;
 
-    return `
+    return html`
       <a
         href="https://www.last.fm/user/${username}/library/artists"
         target="_blank"
@@ -272,7 +270,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
   private renderLibraryLink(): string {
     const {username, totalScrobbleCount} = this.props;
 
-    return `
+    return html`
       <a
         href="https://www.last.fm/user/${username}/library"
         target="_blank"
@@ -285,19 +283,19 @@ export default class CountryInfo extends L.Control implements CustomControl {
   private renderArtistList(): string {
     const {countryProperties} = this.state;
 
-    return `
+    return html`
       <section
         class="CountryInfo__section"
       >
         ${countryProperties
-          ? `
+          ? html`
             <table
               class="CountryInfo__artist-list"
             >
-              ${countryProperties.artists.map(this.renderArtistListItem).join('')}
+              ${countryProperties.artists.map(this.renderArtistListItem)}
             </table>
           `
-          : `
+          : html`
             <p>
               (click on a country)
             </p>
@@ -310,7 +308,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
   private renderArtistListItem(artist: Artist): string {
     const {username} = this.props;
 
-    return `
+    return html`
       <tr
         class="CountryInfo__artist"
       >
@@ -354,7 +352,7 @@ export default class CountryInfo extends L.Control implements CustomControl {
   }
 
   private render(): string {
-    return html`
+    return `
       ${this.renderHeader()}
       ${this.renderSummary()}
       ${this.renderArtistList()}

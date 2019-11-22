@@ -1,4 +1,4 @@
-import {convertToTitleCase} from '../string';
+import {convertToTitleCase, url} from '../string';
 
 describe('string utils', () => {
   describe('convertToTitleCase()', () => {
@@ -7,6 +7,16 @@ describe('string utils', () => {
       expect(convertToTitleCase('czech republic')).toBe('Czech Republic');
       expect(convertToTitleCase('CANADA')).toBe('Canada');
       expect(convertToTitleCase('bRAzIl')).toBe('Brazil');
+    });
+  });
+
+  describe('url`` tagged template', () => {
+    test('replaces spaces with "+" characters', () => {
+      expect(
+        url`https://example.org/${'some path'}?param=${'some value'}`
+      ).toBe(
+        'https://example.org/some+path?param=some+value'
+      );
     });
   });
 });

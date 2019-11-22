@@ -2,7 +2,7 @@ import * as L from 'leaflet';
 
 import {ExternalLinkListConfig} from 'src/types/config';
 import {CustomControl} from 'src/types/elements';
-import {html} from 'src/utils/render';
+import html from 'src/lib/html';
 
 import './ExternalLinkList.scss';
 
@@ -41,10 +41,10 @@ export default class ExternalLinkList extends L.Control implements CustomControl
   }
 
   private renderLinkListItem(url: string, text: string, label: string): string {
-    return `
+    return html`
       <li>
         <span>
-          ${label}:&nbsp;
+          ${label}:${' '}
         </span>
         <a
           href="${url}"
