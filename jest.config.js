@@ -2,7 +2,7 @@ const config = {
   transform: {
     '\\.ts$': 'ts-jest',
   },
-  testRegex: '/__tests__/.*\\.ts',
+  testRegex: '.*\\.spec\\.ts',
   moduleFileExtensions: [
     'ts',
     'js',

@@ -1,4 +1,4 @@
-import {convertToTitleCase, url} from '../string';
+import {convertToTitleCase, url} from './string';
 
 describe('string utils', () => {
   describe('convertToTitleCase()', () => {
