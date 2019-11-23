@@ -1,35 +1,14 @@
 import Router, {parse} from 'micro-conductor';
 
-import {Artist, PackedArtist, CountryGeoJson} from 'src/types/models';
+import {Artist, PackedArtist, WorldGeoJson} from 'src/types/models';
 import config from 'src/config';
-import createMap from 'src/map';
+import createMap from 'src/map/map';
+import {unpackArtists} from 'src/utils/country';
 import PlaycountMap from 'src/components/PlaycountMap';
 
 import 'src/app.scss';
 
-interface CountryCodeMapping {
-  [code: string]: string;
-}
-
-function prepareArtists(packedArtists: PackedArtist[], world: any): Artist[] {
-  const countryCodeToCountry: CountryCodeMapping = world.features.reduce(
-    (acc: CountryCodeMapping, {properties: {name_long, iso_a2}}: CountryGeoJson) => {
-      acc[iso_a2] = name_long;
-      return acc;
-    },
-    {},
-  );
-
-  return packedArtists
-    .map(([name, playcount, countryCode]) => ({
-      name,
-      playcount,
-      countryName: countryCodeToCountry[countryCode],
-    }))
-    .sort((a, b) => b.playcount - a.playcount);
-}
-
-function fetchAndParseData<DataType>(url: string): Promise<DataType> {
+function fetchAndParseJson<DataType>(url: string): Promise<DataType> {
   return window.fetch(url)
     .then((response) => response.json());
 }
@@ -38,40 +17,37 @@ function getDarkModeMediaQuery(): MediaQueryList {
   return window.matchMedia('(prefers-color-scheme: dark)');
 }
 
-function createPlaycountMap(artists: Artist[], world: any): PlaycountMap {
+function createPlaycountMap(artists: Artist[], world: WorldGeoJson): PlaycountMap {
   const isDarkMode = getDarkModeMediaQuery().matches;
   const map = createMap(isDarkMode);
-  const playcountMap = new PlaycountMap(map, artists, world, isDarkMode);
 
-  playcountMap.render();
-
-  return playcountMap;
+  return new PlaycountMap(map, artists, world, isDarkMode);
 }
 
-function initialize(artists: Artist[], world: any): void {
+function initialize(artists: Artist[], world: WorldGeoJson): void {
   let playcountMap = createPlaycountMap(artists, world);
-  const router = new Router(
-    {
-      '': playcountMap.deselectCountry,
-      [parse`${/[a-z,A-Z,+]+/}`]: playcountMap.selectCountryByRoute,
-    },
-    playcountMap,
-  );
-
-  router.start();
-
-  // @todo: fix routing and highlighting when an instance of playcount map is replaced
-  getDarkModeMediaQuery().addEventListener('change', () => {
+  const getPlaycountMap = () => playcountMap;
+  const router = new Router({
+    '': () => getPlaycountMap().deselectCountry(),
+    [parse`${/[a-z,A-Z,+]+/}`]: (route) => getPlaycountMap().selectCountryByRoute(route),
+  });
+  const onDarkModeChange = () => {
     playcountMap.map.remove();
     playcountMap = createPlaycountMap(artists, world);
-  });
+    playcountMap.render();
+    router.navigate();
+  };
+
+  playcountMap.render();
+  router.start();
+  getDarkModeMediaQuery().addEventListener('change', onDarkModeChange);
 }
 
-Promise.all([
-  fetchAndParseData(config.dataUrls.artists),
-  fetchAndParseData(config.dataUrls.world),
+Promise.all<PackedArtist[], WorldGeoJson>([
+  fetchAndParseJson(config.dataUrls.artists),
+  fetchAndParseJson(config.dataUrls.world),
 ])
   .then(([packedArtists, world]) => initialize(
-    prepareArtists(packedArtists as PackedArtist[], world),
+    unpackArtists(packedArtists, world),
     world,
   ));

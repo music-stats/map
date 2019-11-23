@@ -1,5 +1,5 @@
+import {WorldGeoJson} from 'src/types/models';
 import * as worldData from 'data/world.geo.json';
-
 import {groupArtistsByCountryName, getArtistsCountries, getCountryScrobbleCount} from '../country';
 
 const dreamTheater = {
@@ -164,7 +164,7 @@ describe('country utils', () => {
       deftones,
     ];
 
-    expect(getArtistsCountries(artists, worldData)).toMatchObject([
+    expect(getArtistsCountries(artists, worldData as unknown as WorldGeoJson)).toMatchObject([
       {
         type: 'Feature',
         properties: {

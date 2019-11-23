@@ -34,3 +34,8 @@ export interface CountryProperties {
 }
 
 export type Country = Feature<GeometryObject, CountryProperties>;
+
+export interface WorldGeoJson {
+  type: 'FeatureCollection';
+  features: CountryGeoJson[];
+}

@@ -4,7 +4,7 @@ import * as d3Scale from 'd3-scale';
 import * as d3ScaleChromatic from 'd3-scale-chromatic';
 import * as d3Color from 'd3-color';
 
-import {Artist, Country, CountryProperties} from 'src/types/models';
+import {Artist, Country, CountryProperties, WorldGeoJson} from 'src/types/models';
 import {Animation} from 'src/types/elements';
 
 import config from 'src/config';
@@ -51,7 +51,7 @@ export default class PlaycountMap {
   constructor(
     public map: L.Map,
     private artists: Artist[],
-    private world: any,
+    private world: WorldGeoJson,
     private isDarkMode: boolean,
   ) {
     const countries = getArtistsCountries(this.artists, this.world);
@@ -77,7 +77,7 @@ export default class PlaycountMap {
       {
         style: this.getCountryStyle.bind(this),
         onEachFeature: (_, layer) => this.subscribeLayer(layer),
-      }
+      },
     );
     this.countryFlagDataUrlDict = this.getCountryFlagDataUrlDict();
 

@@ -4,7 +4,7 @@ import {MapTileLayerOptions} from 'src/types/models';
 import config from 'src/config';
 
 import 'leaflet/dist/leaflet.css';
-import 'src/map.scss';
+import './map.scss';
 
 const {MAPBOX_ACCESS_TOKEN: accessToken} = process.env;
 const {defaultView: {center, zoom}, tileLayer: {urlTemplate, options}} = config.map;

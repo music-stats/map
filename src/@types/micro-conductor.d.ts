@@ -11,5 +11,6 @@ declare module 'micro-conductor' {
     notFound(route: string): void;
     start(): void;
     stop(): void;
+    navigate(): void;
   }
 }

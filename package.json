@@ -1,6 +1,6 @@
 {
   "name": "music-stats-map",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "artists on a map",
   "main": "src/app.ts",
   "author": "Oleksii Markhovskyi",
