@@ -9,7 +9,6 @@ import {Animation} from 'src/types/elements';
 
 import config from 'src/config';
 import {getArtistsCountries, getCountryArtistCount, getCountryScrobbleCount} from 'src/utils/country';
-import {convertToTitleCase} from 'src/utils/string';
 
 import CountryInfo from 'src/components/controls/CountryInfo';
 import CountryList, {CountryListItemProps, CountryListItemAnimatedProps} from 'src/components/controls/CountryList';
@@ -146,7 +145,7 @@ export default class PlaycountMap {
   }
 
   private convertRouteToCountryName(route: string): string {
-    return convertToTitleCase(route.replace(/\+/g, ' '));
+    return route.replace(/\+/g, ' ');
   }
 
   private convertCountryNameToRoute(countryName: string): string {
@@ -171,7 +170,7 @@ export default class PlaycountMap {
   private getCountryLayer(countryName: string): L.Layer {
     return this.geojson
       .getLayers()
-      .find((layer) => ((layer as any).feature as Country).properties.name === countryName);
+      .find((layer) => ((layer as any).feature as Country).properties.name.toLowerCase() === countryName.toLowerCase());
   }
 
   private getColorScale(allScrobbleCounts: number[]): ColorScale {
