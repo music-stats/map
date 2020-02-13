@@ -89,8 +89,7 @@ plugins.define = new webpack.DefinePlugin({
 
 plugins.html = new HtmlWebpackPlugin({
   template: './index.html',
-  title: 'music-stats',
-  favicon: '../assets/favicon/favicon.ico',
+  title: `${IS_PROD ? '' : '[dev] '}music-stats - map`,
 });
 
 plugins.extractText = new ExtractTextPlugin({
