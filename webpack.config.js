@@ -96,16 +96,18 @@ plugins.extractText = new ExtractTextPlugin({
   filename: `styles${IS_PROD ? '-[hash].min' : ''}.css`,
 });
 
-plugins.copy = new CopyWebpackPlugin([
-  {
-    from: '../assets/favicon/*',
-    to: '[name].[ext]',
-  },
-  {
-    from: '../data/*',
-    to: 'data/[name].[ext]',
-  },
-]);
+plugins.copy = new CopyWebpackPlugin({
+  patterns: [
+    {
+      from: '../assets/favicon/*',
+      to: '[name].[ext]',
+    },
+    {
+      from: '../data/*',
+      to: 'data/[name].[ext]',
+    },
+  ],
+});
 
 plugins.hotModuleReplacement = new webpack.HotModuleReplacementPlugin();
 // plugins.bundleAnalyzer = new BundleAnalyzerPlugin();

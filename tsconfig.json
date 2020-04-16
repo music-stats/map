@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "removeComments": false,
+    "lib": ["dom", "es2017"],
     "sourceMap": true,
     "inlineSourceMap": false,
     "noImplicitAny": true,
@@ -11,10 +11,6 @@
     "noEmitHelpers": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "es2017"
-    ],
     "baseUrl": "./",
     "paths" : {
       "src/*": ["./src/*"]
