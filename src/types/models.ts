@@ -1,9 +1,10 @@
 import * as L from 'leaflet';
 import {Feature, GeometryObject} from 'geojson';
 
+// @see: https://docs.mapbox.com/api/maps/styles/
 export interface MapTileLayerOptions extends L.TileLayerOptions {
   accessToken: string;
-  id: 'mapbox.light' | 'mapbox.dark';
+  id: 'mapbox/light-v10' | 'mapbox/dark-v10';
   highResolution: '@2x' | '';
 }
 

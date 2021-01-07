@@ -14,8 +14,8 @@ function getTileLayerOptions(isDarkMode: boolean): MapTileLayerOptions {
     ...options,
     accessToken,
     id: isDarkMode
-      ? 'mapbox.dark'
-      : 'mapbox.light',
+      ? 'mapbox/dark-v10'
+      : 'mapbox/light-v10',
     highResolution: window.devicePixelRatio === 1
       ? ''
       : '@2x',
