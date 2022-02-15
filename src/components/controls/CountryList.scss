@@ -64,7 +64,7 @@
   }
 }
 
-@keyframes slideIn {
+@keyframes slide-in {
   from {
     right: 100%;
   }
@@ -82,7 +82,7 @@
   left: 26px;
 
   .CountryList:hover & {
-    animation-name: slideIn;
+    animation-name: slide-in;
     animation-fill-mode: forwards;
   }
 

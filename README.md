@@ -49,7 +49,7 @@ Create a `.env` file and fill its values according to [`.env.template`](.env.tem
 
 ### Commands
 ```bash
-$ npm i               # install deps
+$ npm ci              # install deps
 $ npm run lint        # lint scripts and styles
 $ npm test            # run unit tests
 $ npm run dev         # run a local dev server

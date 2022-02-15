@@ -8,9 +8,9 @@ import PlaycountMap from 'src/components/PlaycountMap';
 
 import 'src/app.scss';
 
-function fetchAndParseJson<DataType>(url: string): Promise<DataType> {
-  return window.fetch(url)
-    .then((response) => response.json());
+async function fetchAndParseJson<DataType>(url: string): Promise<DataType> {
+  const response = await window.fetch(url);
+  return response.json();
 }
 
 function getDarkModeMediaQuery(): MediaQueryList {
@@ -43,9 +43,9 @@ function initialize(artists: Artist[], world: WorldGeoJson): void {
   getDarkModeMediaQuery().addEventListener('change', onDarkModeChange);
 }
 
-Promise.all<PackedArtist[], WorldGeoJson>([
-  fetchAndParseJson(config.dataUrls.artists),
-  fetchAndParseJson(config.dataUrls.world),
+Promise.all([
+  fetchAndParseJson<PackedArtist[]>(config.dataUrls.artists),
+  fetchAndParseJson<WorldGeoJson>(config.dataUrls.world),
 ])
   .then(([packedArtists, world]) => initialize(
     unpackArtists(packedArtists, world),

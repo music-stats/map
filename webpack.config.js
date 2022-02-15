@@ -3,12 +3,17 @@ const dotenv = require('dotenv');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 dotenv.config();
 
 const {NODE_ENV, PUBLIC_PATH, MAPBOX_ACCESS_TOKEN} = process.env;
+
+if (!MAPBOX_ACCESS_TOKEN) {
+  console.error('Config error: MAPBOX_ACCESS_TOKEN env var is not set');
+  process.exit(1);
+}
 
 const IS_PROD = NODE_ENV === 'production';
 
@@ -49,28 +54,18 @@ loaders.tslint = {
 
 loaders.ts = {
   test: /\.ts$/,
-  loader: 'awesome-typescript-loader',
+  loader: 'ts-loader',
   exclude: NODE_MODULES_DIR,
 };
 
 loaders.css = {
   test: /\.css$/,
-  use: ExtractTextPlugin.extract({
-    use: 'css-loader',
-    fallback: 'style-loader',
-  }),
+  use: [MiniCssExtractPlugin.loader, 'css-loader']
 };
 
 loaders.scss = {
   test: /\.scss$/,
-  use: ExtractTextPlugin.extract({
-    use: [
-      'css-loader?sourceMap',
-      'postcss-loader',
-      'sass-loader',
-    ],
-    fallback: 'style-loader',
-  }),
+  use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
 };
 
 loaders.url = {
@@ -92,7 +87,7 @@ plugins.html = new HtmlWebpackPlugin({
   title: `${IS_PROD ? '' : '[dev] '}music-stats - map`,
 });
 
-plugins.extractText = new ExtractTextPlugin({
+plugins.miniCss = new MiniCssExtractPlugin({
   filename: `styles${IS_PROD ? '-[hash].min' : ''}.css`,
 });
 
@@ -100,16 +95,15 @@ plugins.copy = new CopyWebpackPlugin({
   patterns: [
     {
       from: '../assets/favicon/*',
-      to: '[name].[ext]',
+      to: '[name][ext]',
     },
     {
       from: '../data/*',
-      to: 'data/[name].[ext]',
+      to: 'data/[name][ext]',
     },
   ],
 });
 
-plugins.hotModuleReplacement = new webpack.HotModuleReplacementPlugin();
 // plugins.bundleAnalyzer = new BundleAnalyzerPlugin();
 
 const config = {
@@ -158,32 +152,19 @@ const config = {
   plugins: [
     plugins.define,
     plugins.html,
-    plugins.extractText,
+    plugins.miniCss,
     plugins.copy,
   ].concat(IS_PROD
     ? []
     : [
-      plugins.hotModuleReplacement,
       // plugins.bundleAnalyzer,
     ],
   ),
 
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        vendors: {
-          // Prevents ".css" files from being extracted into a chunk.
-          // Should be checked with a new version of "ExtractTextPlugin" and removed, if not needed.
-          test: /[\\/]node_modules[\\/].*\.js$/,
-        },
-      },
-    },
-  },
-
   devServer: {
-    contentBase: DIST_DIR,
-    hot: true,
+    static: {
+      directory: DIST_DIR,
+    },
   },
 
   devtool: 'inline-source-map',

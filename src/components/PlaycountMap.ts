@@ -20,7 +20,7 @@ import './PlaycountMap.scss';
 // @todo:
 //   * transform SVGs to PNGs (or see if it's possible to compress SVGs removing unnecessary details)
 //   * load only flags for countries from the current "countries" dataset
-const flagSvgContext = require.context('src/../assets/flags/1x1/', false, /\.svg$/);
+const flagSvgContext = require.context('assets/flags/1x1/', false, /\.svg$/);
 
 type ColorScale = d3Scale.ScalePower<number, number>;
 type WidthPercentScale = d3Scale.ScaleLinear<number, number>;
@@ -153,8 +153,12 @@ export default class PlaycountMap {
   }
 
   private getCountryFlagDataUrlDict(): FlagDataUrlDict {
-    const flagContextKeys = flagSvgContext.keys();
-    const flagDataUrls = flagContextKeys.map(flagSvgContext) as [string];
+    // "require.context()" maps entries twice:
+    // first half: {..., "./se.svg": "../assets/flags/1x1/se.svg", ...}
+    // second half: {..., "assets/flags/1x1/se.svg": "../assets/flags/1x1/se.svg", ...}
+    const flagContextKeysAll = flagSvgContext.keys();
+    const flagContextKeys = flagContextKeysAll.slice(0, flagContextKeysAll.length / 2);
+    const flagDataUrls = flagContextKeys.map((key) => flagSvgContext(key).default as string);
     const flagContextKeyReducer = (flagDataUrlDict: FlagDataUrlDict, key: string, index: number) => {
       flagDataUrlDict[key.slice(2, 4)] = flagDataUrls[index];
       return flagDataUrlDict;
