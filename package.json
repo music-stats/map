@@ -10,7 +10,7 @@
     "url": "https://github.com/music-stats/map.git"
   },
   "scripts": {
-    "upgrade-interactive": "npm-check --update",
+    "upgrade-interactive": "ncu --interactive",
     "lint:scripts": "tslint './src/**/*.ts'",
     "lint:styles": "stylelint './src/**/*.scss'",
     "lint": "npm run lint:scripts && npm run lint:styles",
@@ -42,7 +42,7 @@
     "html-webpack-plugin": "5.5.0",
     "jest": "27.5.1",
     "mini-css-extract-plugin": "2.5.3",
-    "npm-check": "5.9.2",
+    "npm-check-updates": "14.1.1",
     "postcss": "8.4.6",
     "postcss-loader": "6.2.1",
     "postcss-scss": "4.0.3",
